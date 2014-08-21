@@ -5,6 +5,9 @@
       <configuration>
         <webroots>
           <root url="file://$MODULE_DIR$/target/work/plugins/joda-time-1.5/grails-app/views" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC4/grails-app/views" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.7/grails-app/views" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/famfamfam-1.0.1/web-app" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -32,14 +35,31 @@
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/cache-1.1.7/grails-app/services" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/cache-1.1.7/grails-app/taglib" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/target/work/plugins/famfamfam-1.0.1">
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/famfamfam-1.0.1/grails-app/taglib" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/joda-time-1.5">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/joda-time-1.5/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/joda-time-1.5/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.7">
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.7/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.7/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.7/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.7/grails-app/taglib" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/mongodb-3.0.2" />
     <content url="file://$MODULE_DIR$/target/work/plugins/scaffolding-2.1.2">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/scaffolding-2.1.2/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/scaffolding-2.1.2/src/groovy" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC4">
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC4/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC4/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC4/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC4/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC4/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC4/grails-app/taglib" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/tomcat-7.0.55">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/tomcat-7.0.55/src/java" isTestSource="false" />
@@ -73,6 +93,11 @@
           <root url="jar://$USER_HOME$/.m2/repository/org/springframework/data/spring-data-mongodb/1.4.3.RELEASE/spring-data-mongodb-1.4.3.RELEASE.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/grails/grails-datastore-gorm-mongodb/3.0.2.RELEASE/grails-datastore-gorm-mongodb-3.0.2.RELEASE.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/joda-time/joda-time/2.3/joda-time-2.3.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/springframework/security/spring-security-web/3.2.3.RELEASE/spring-security-web-3.2.3.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/springframework/security/spring-security-core/3.2.3.RELEASE/spring-security-core-3.2.3.RELEASE.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/javax/mail/javax.mail-api/1.5.1/javax.mail-api-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/com/sun/mail/javax.mail/1.5.1/javax.mail-1.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
