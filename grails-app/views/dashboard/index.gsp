@@ -3,6 +3,7 @@
 <head>
     <meta name="layout" content="main"/>
     <title>Dashboard</title>
+    <asset:stylesheet src="dashboard.cs"/>
 </head>
 
 <body>

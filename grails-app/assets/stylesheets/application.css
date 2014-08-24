@@ -11,4 +11,5 @@
 *= require font-awesome
 *= require smartadmin-production
 *= require smartadmin-skins
+*= require custom-style
 */

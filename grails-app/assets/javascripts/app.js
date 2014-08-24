@@ -342,7 +342,6 @@ var calc_navbar_height = function () {
                 e.preventDefault();
             });
 
-            console.log('minify initialize');
             $.root_.on('click', '[data-action="minifyMenu"]', function (e) {
                 var $this = $(this);
                 smartActions.minifyMenu($this);
@@ -1794,6 +1793,7 @@ function pageSetUp() {
 
         // activate tooltips
         $("[rel=tooltip]").tooltip();
+        $("[data-toggle='tooltip']").tooltip();
 
         // activate popovers
         $("[rel=popover]").popover();

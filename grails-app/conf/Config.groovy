@@ -117,6 +117,25 @@ log4j.main = {
 }
 
 
+grails {
+    mail {
+        host = "smtp.gmail.com"
+        port = 465
+        username = "app.educally@gmail.com"
+        password = "Mercure+2010"
+        props = ["mail.smtp.auth"                  : "true",
+                 "mail.smtp.socketFactory.port"    : "465",
+                 "mail.smtp.socketFactory.class"   : "javax.net.ssl.SSLSocketFactory",
+                 "mail.smtp.socketFactory.fallback": "false"]
+
+    }
+}
+
+grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[_+!@#$%^&]).*$'
+grails.plugin.springsecurity.ui.register.postRegisterUrl = '/dashboard'
+
+grails.plugin.springsecurity.rejectIfNoRule = true
+
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'educally.security.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'educally.security.UserRole'
@@ -130,6 +149,14 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
     '/**/sound/**':                   ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
+	'/**/favicon.ico':                ['permitAll'],
+    '/register*//**':                 ['permitAll'],
+    '/login*//**':                    ['permitAll'],
+    '/logout*//**':                   ['IS_AUTHENTICATED_REMEMBERED'],
+    '/user*//**':                     ['ROLE_ADMIN'],
+    '/role*//**':                     ['ROLE_ADMIN'],
+    '/registrationCode*//**':         ['ROLE_ADMIN'],
+    '/securityInfo*//**':             ['ROLE_ADMIN'],
+    '/dashboard*//**':                    ['IS_AUTHENTICATED_FULLY']
 ]
 

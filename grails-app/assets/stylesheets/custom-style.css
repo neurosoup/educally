@@ -1,0 +1,8 @@
+.has-feedback .form-control-feedback {
+    top: 0;
+    right: -26px;
+}
+
+.smart-form fieldset {
+    padding: 25px 20px 5px;
+ }
