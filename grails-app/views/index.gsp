@@ -81,8 +81,7 @@
     </style>
 </head>
 <body>
-<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-<button type="button" class="btn btn-default" data-toggle="tooltip" title="Vous en aurez besoin pour vous connecter à votre compte">toto </button>
+
 <div id="status" role="complementary">
     <h1>Application Status</h1>
     <ul>

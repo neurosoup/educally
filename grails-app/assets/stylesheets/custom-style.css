@@ -6,3 +6,7 @@
 .smart-form fieldset {
     padding: 25px 20px 5px;
  }
+
+.smart-form .radio i, .smart-form .checkbox i {
+    left: -25px;
+ }
