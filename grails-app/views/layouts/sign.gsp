@@ -39,17 +39,27 @@
     <g:layoutHead/>
 
 </head>
-<body id="login">
+
+<body id="login" class="animated fadeInDown">
 <!-- possible classes: minified, no-right-panel, fixed-ribbon, fixed-header, fixed-width-->
 <header id="header">
     <!--<span id="logo"></span>-->
 
     <div id="logo-group">
-        <span id="logo"> <asset:image src="logo.png" alt="Educally"/> </span>
+        <span id="logo"><asset:image src="logo.png" alt="Educally"/></span>
         <!-- END AJAX-DROPDOWN -->
     </div>
 
-    <span id="extr-page-header-space"> <span class="hidden-mobile">Vous avez déjà un compte ?</span> <a href="login.html" class="btn btn-danger">Se connecter</a> </span>
+    <span id="extr-page-header-space">
+        <g:if test="${pageProperty(name: 'meta.sign-type') == 'sign-up'}">
+            <span class="hidden-mobile">Vous avez déjà un compte ?</span>
+            <a href="${createLink(controller: 'login', action: 'auth')}" class="btn btn-danger">Se connecter</a>
+        </g:if>
+        <g:elseif test="${pageProperty(name: 'meta.sign-type') == 'sign-in'}">
+            <span class="hidden-mobile">Vous n'avez pas encore de compte ?</span>
+            <a href="${createLink(controller: 'register', action: 'index')}" class="btn btn-danger">S'inscrire</a>
+        </g:elseif>
+    </span>
 
 </header>
 
@@ -57,7 +67,7 @@
 
     <!-- MAIN CONTENT -->
     <div id="content" class="container">
-     <g:layoutBody/>
+        <g:layoutBody/>
     </div>
 
 </div>
@@ -70,16 +80,14 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
     &times;
     </button>
-    <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+    <h4 class="modal-title" id="myModalLabel">Conditions d'utilisation</h4>
 </div>
+
 <div class="modal-body custom-scroll terms-body">
 
     <div id="left">
 
-
-
         <h1>SMARTADMIN TERMS & CONDITIONS TEMPLATE</h1>
-
 
 
         <h2>Introduction</h2>
@@ -90,6 +98,7 @@
 
 
         <h2>License to use website</h2>
+
         <p>Unless otherwise stated, [NAME] and/or its licensors own the intellectual property rights in the website and material on the website.  Subject to the license below, all these intellectual property rights are reserved.</p>
 
         <p>You may view, download for caching purposes only, and print pages [or [OTHER CONTENT]] from the website for your own personal use, subject to the restrictions set out below and elsewhere in these terms and conditions.</p>
@@ -103,6 +112,7 @@
             <li>[edit or otherwise modify any material on the website; or]</li>
             <li>[redistribute material from this website [except for content specifically and expressly made available for redistribution].]</li>
         </ul>
+
         <p>[Where content is specifically made available for redistribution, it may only be redistributed [within your organisation].]</p>
 
         <h2>Acceptable use</h2>
@@ -148,6 +158,7 @@
             <li>this website will be constantly available, or available at all; or</li>
             <li>the information on this website is complete, true, accurate or non-misleading.</li>
         </ul>
+
         <p>Nothing on this website constitutes, or is meant to constitute, advice of any kind.  [If you require advice in relation to any [legal, financial or medical] matter you should consult an appropriate professional.]</p>
 
         <h2>Limitations of liability</h2>
@@ -158,6 +169,7 @@
             <li>for any indirect, special or consequential loss; or</li>
             <li>for any business losses, loss of revenue, income, profits or anticipated savings, loss of contracts or business relationships, loss of reputation or goodwill, or loss or corruption of information or data.</li>
         </ul>
+
         <p>These limitations of liability apply even if [NAME] has been expressly advised of the potential loss.</p>
 
         <h2>Exceptions</h2>
@@ -168,6 +180,7 @@
             <li>fraud or fraudulent misrepresentation on the part of [NAME]; or</li>
             <li>matter which it would be illegal or unlawful for [NAME] to exclude or limit, or to attempt or purport to exclude or limit, its liability.</li>
         </ul>
+
         <h2>Reasonableness</h2>
 
         <p>By using this website, you agree that the exclusions and limitations of liability set out in this website disclaimer are reasonable.</p>
@@ -214,9 +227,14 @@
 
         <p>These terms and conditions will be governed by and construed in accordance with [GOVERNING LAW], and any disputes relating to these terms and conditions will be subject to the [non-]exclusive jurisdiction of the courts of [JURISDICTION].</p>
 
-        <h2>About these website terms and conditions</h2><p>We created these website terms and conditions with the help of a free website terms and conditions form developed by Contractology and available at <a href="http://www.SmartAdmin.com">www.SmartAdmin.com</a>.
-    Contractology supply a wide variety of commercial legal documents, such as <a href="#">template data protection statements</a>.
-    </p>
+        <h2>About these website terms and conditions</h2>
+
+        <p>We created these website terms and conditions with the help of a free website terms and conditions form developed by Contractology and available at <a
+                href="http://www.SmartAdmin.com">www.SmartAdmin.com</a>.
+        Contractology supply a wide variety of commercial legal documents, such as <a
+                href="#">template data protection statements</a>.
+        </p>
+
         <h2>[Registrations and authorisations</h2>
 
         <p>[[NAME] is registered with [TRADE REGISTER].  You can find the online version of the register at [URL].  [NAME'S] registration number is [NUMBER].]</p>
@@ -239,8 +257,6 @@
 
         <p>You can contact [NAME] by email to [EMAIL].</p>
 
-
-
     </div>
 
     <br><br>
@@ -253,8 +269,8 @@
         website.  If you are not a lawyer, we recommend that you take professional legal advice in relation to the editing and
         use of the template.</strong></p>
 
-
 </div>
+
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">
         Cancel
@@ -273,7 +289,8 @@
 
 <!--================================================== -->
 
-<script data-pace-options='{ "restartOnRequestAfter": true }' src="${assetPath(src: 'plugin/pace/pace.min.js')}"></script>
+<script data-pace-options='{ "restartOnRequestAfter": true }'
+        src="${assetPath(src: 'plugin/pace/pace.min.js')}"></script>
 
 <!--[if IE 8]>
 			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>

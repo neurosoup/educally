@@ -7,6 +7,10 @@
     padding: 25px 20px 5px;
  }
 
-.smart-form .radio i, .smart-form .checkbox i {
-    left: -25px;
- }
+.has-feedback {
+    position: initial;
+}
+
+.smart-form .input input, .smart-form .select select, .smart-form .textarea textarea {
+    padding: 7px 10px;
+}

@@ -3,13 +3,14 @@
 <head>
     <meta name="layout" content="sign"/>
     <title>Essayer Educally gratuitement</title>
+    <meta name="sign-type" content="sign-up">
 </head>
 
 <body>
 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 hidden-xs hidden-sm">
-        <h1 class="txt-color-red login-header-big">SmartAdmin</h1>
+        <h1 class="txt-color-red login-header-big">Educally</h1>
 
         <div class="hero">
 
@@ -61,7 +62,7 @@
                                title="Vous en aurez besoin pour vous connecter à votre compte">
                             <div class="form-group">
                                 <i class="icon-append fa fa-user"></i>
-                                <input type="text" name="username" placeholder="Nom d'utilisateur"
+                                <input type="text" id="username" name="username" placeholder="Nom d'utilisateur"
                                        value="${command?.username}"/>
                             </div>
                         </label>
@@ -155,9 +156,6 @@
                         <section>
                             <div class="alert adjusted alert-info fade in">
                                 <a href="${createLink(uri: '/')}" class="close" >x</a>
-                                %{--<button class="close" data-dismiss="alert">
-                                    ×
-                                </button>--}%
                                 <i class="fa-fw fa-lg fa fa-exclamation"></i>
                                 <strong>Votre inscription a bien été prise en compte.</strong> <p>Vous allez recevoir un email de confirmation.</p>
                             </div>
