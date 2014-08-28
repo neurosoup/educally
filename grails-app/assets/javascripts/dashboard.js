@@ -3,10 +3,7 @@
 //= require fullcalendar
 //= require_self
 
-$(document).ready(function () {
-    pageSetUp();
-    pagefunction();
-});
+pageSetUp();
 
 /*
  * PAGE RELATED SCRIPTS
@@ -717,3 +714,4 @@ var pagefunction = function () {
 
 // end pagefunction
 
+pagefunction();

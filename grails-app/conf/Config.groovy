@@ -136,6 +136,8 @@ grails.plugin.springsecurity.ui.register.postRegisterUrl = '/dashboard'
 
 grails.plugin.springsecurity.rejectIfNoRule = true
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/app/index'
+/*grails.plugin.springsecurity.logout.afterLogoutUrl = '/login'
+grails.plugin.springsecurity.logout.alwaysUseDefaultTargetUrl = true*/
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'educally.security.User'

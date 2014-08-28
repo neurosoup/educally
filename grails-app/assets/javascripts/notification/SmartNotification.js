@@ -9,7 +9,7 @@
  * ************************************************************* */
 
 // Sound path
-$.sound_path = "sound/";
+$.sound_path = "../sound/";
 // Sound on = true / false
 $.sound_on = true; 
 

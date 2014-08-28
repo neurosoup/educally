@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Bienvenue</title>
 </head>
+
 <body>
 <!-- #NAVIGATION -->
 <!-- Left panel : Navigation area -->
@@ -17,7 +17,7 @@
             <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
                 <asset:image src="avatars/sunny.png" alt="me" class="online"/>
                 <span>
-                    john.doe
+                    <sec:username/>
                 </span>
                 <i class="fa fa-angle-down"></i>
             </a>
@@ -41,7 +41,7 @@
 
         <ul>
             <li class="">
-                <a href="${createLink(controller: 'dashboard', action: 'index')}" title="Dashboard"><i
+                <a href="${createLink(controller: 'app', action: 'dashboard')}" title="Dashboard"><i
                         class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
             </li>
         </ul>

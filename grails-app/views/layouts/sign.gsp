@@ -2,7 +2,7 @@
 <html lang="en-us" id="extr-page">
 <head>
     <meta charset="utf-8">
-    <title><g:layoutTitle default="Comptes"/></title>
+    <title><g:layoutTitle/></title>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -289,8 +289,7 @@
 
 <!--================================================== -->
 
-<script data-pace-options='{ "restartOnRequestAfter": true }'
-        src="${assetPath(src: 'plugin/pace/pace.min.js')}"></script>
+<script src="${assetPath(src: 'plugin/pace/pace.min.js')}"></script>
 
 <!--[if IE 8]>
 			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>

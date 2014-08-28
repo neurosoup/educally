@@ -180,12 +180,12 @@ var calc_navbar_height = function () {
 
                     // ask verification
                     $.SmartMessageBox({
-                        title: "<i class='fa fa-sign-out txt-color-orangeDark'></i> Logout <span class='txt-color-orangeDark'><strong>" + $('#show-shortcut').text() + "</strong></span> ?",
+                        title: "<i class='fa fa-sign-out txt-color-orangeDark'></i> Voulez-vous vous déconnecter <span class='txt-color-orangeDark'><strong>" + $('#show-shortcut').text() + "</strong></span> ?",
                         content: $this.data('logout-msg') || "You can improve your security further after logging out by closing this opened browser",
-                        buttons: '[No][Yes]'
+                        buttons: '[Non][Oui]'
 
                     }, function (ButtonPressed) {
-                        if (ButtonPressed == "Yes") {
+                        if (ButtonPressed == "Oui") {
                             $.root_.addClass('animated fadeOutUp');
                             setTimeout(logout, 1000);
                         }
@@ -1632,7 +1632,7 @@ function checkURL() {
         var title = ($('nav a[href="' + url + '"]').attr('title'));
 
         // change page title from global var
-        document.title = (title || document.title);
+        document.title = (document.title +' - ' + title);
         //console.log("page title: " + document.title);
 
         // parse url to jquery
@@ -1771,7 +1771,7 @@ function drawBreadCrumb() {
     nav_elems.each(function () {
         bread_crumb.append($("<li></li>").html($.trim($(this).clone().children(".badge").remove().end().text())));
         // update title when breadcrumb is finished...
-        if (!--count) document.title = bread_crumb.find("li:last-child").text();
+        //if (!--count) document.title = bread_crumb.find("li:last-child").text();
         //nav_elems = null;
     });
 

@@ -35,7 +35,7 @@
 /*
  * GLOBAL: Sound Config (define sound path, enable or disable all global sounds)
  */
-	$.sound_path = "sound/";
+	$.sound_path = "../sound/";
 	$.sound_on = true; 
 /*
  * Impacts the responce rate of some of the responsive elements (lower 
