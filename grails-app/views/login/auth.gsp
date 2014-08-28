@@ -49,8 +49,7 @@
 
     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
         <div class="well no-padding">
-            <g:form role="form" controller="login" action='auth' name='loginForm' id="login-form"
-                    class="smart-form client-form">
+            <form role="form" action='${postUrl}' method='POST' id="loginForm" name="loginForm" autocomplete='off' class="smart-form client-form">
                 <header>
                     Connexion
                 </header>
@@ -59,10 +58,10 @@
 
                     <section>
                         <label class="input" data-toggle="tooltip"
-                               title="Veuillez saisir votre adresse email ou votre nom d'utilisateur">
+                               title="Veuillez saisir votre nom d'utilisateur">
                             <div class="form-group">
                                 <i class="icon-append fa fa-user"></i>
-                                <input type="text" id="email" name="email" placeholder="Email ou nom d'utilisateur">
+                                <input type="text" name="j_username" id="username" placeholder="Nom d'utilisateur">
                             </div>
                         </label>
                     </section>
@@ -71,7 +70,7 @@
                         <label class="input" data-toggle="tooltip" title="Veuillez saisir votre mot de passe">
                             <div class="form-group">
                                 <i class="icon-append fa fa-lock"></i>
-                                <input type="password" name="password" placeholder="Mot de passe">
+                                <input type="password" name="j_password" id="password" placeholder="Mot de passe">
                             </div>
                         </label>
 
@@ -83,7 +82,7 @@
                     <section>
                         <label class="checkbox">
                             <div class="form-group">
-                                <input type="checkbox" name="remember" checked="">
+                                <input type="checkbox" name="${rememberMeParameter}" id="remember_me" checked="checked">
                                 <i></i>Rester connecté
                             </div>
                         </label>
@@ -93,7 +92,7 @@
                 <footer>
                     <g:submitButton name="Connexion" class="btn btn-primary"/>
                 </footer>
-            </g:form>
+            </form>
 
         </div>
 

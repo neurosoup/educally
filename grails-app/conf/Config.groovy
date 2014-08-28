@@ -135,6 +135,7 @@ grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*\\d)(?=.*[a-
 grails.plugin.springsecurity.ui.register.postRegisterUrl = '/dashboard'
 
 grails.plugin.springsecurity.rejectIfNoRule = true
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/app/index'
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'educally.security.User'
@@ -157,6 +158,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     '/role*//**':                     ['ROLE_ADMIN'],
     '/registrationCode*//**':         ['ROLE_ADMIN'],
     '/securityInfo*//**':             ['ROLE_ADMIN'],
-    '/dashboard*//**':                    ['IS_AUTHENTICATED_FULLY']
+    '/dashboard*//**':                ['IS_AUTHENTICATED_FULLY'],
+    '/app*//**':                ['IS_AUTHENTICATED_FULLY']
 ]
 
