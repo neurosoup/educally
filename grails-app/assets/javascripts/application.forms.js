@@ -8,7 +8,8 @@ $(document).ready(function () {
     runAllForms();
 
     $("[data-toggle='tooltip']").tooltip({
-        container: 'body'
+        container: 'body',
+        trigger: 'focus'
     });
 
 });

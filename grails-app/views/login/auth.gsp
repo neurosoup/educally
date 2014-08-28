@@ -49,7 +49,8 @@
 
     <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
         <div class="well no-padding">
-            <form role="form" action='${postUrl}' method='POST' id="loginForm" name="loginForm" autocomplete='off' class="smart-form client-form">
+            <form role="form" action='${postUrl}' method='POST' id="loginForm" name="loginForm" autocomplete='off'
+                  class="smart-form client-form">
                 <header>
                     Connexion
                 </header>
@@ -87,6 +88,18 @@
                             </div>
                         </label>
                     </section>
+
+                    <g:if test="${params.login_error == '1'}">
+                        <section>
+                            <div class="alert adjusted alert-danger fade in">
+                                <button class="close" data-dismiss="alert">
+                                    ×
+                                </button>
+                                <i class="fa-fw fa-lg fa fa-times"></i>
+                                ${flash.message}
+                            </div>
+                        </section>
+                    </g:if>
 
                 </fieldset>
                 <footer>
