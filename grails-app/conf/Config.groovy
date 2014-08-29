@@ -132,7 +132,7 @@ grails {
 }
 
 grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[_+!@#$%^&]).*$'
-grails.plugin.springsecurity.ui.register.postRegisterUrl = '/dashboard'
+grails.plugin.springsecurity.ui.register.postRegisterUrl = '/app'
 
 grails.plugin.springsecurity.rejectIfNoRule = true
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/app/index'

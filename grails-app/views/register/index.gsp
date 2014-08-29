@@ -149,29 +149,30 @@
                             </div>
                         </label>
                     </section>
-                </fieldset>
 
-                <g:if test='${emailSent}'>
-                    <fieldset>
+                    <g:if test='${emailSent}'>
                         <section>
                             <div class="alert adjusted alert-info fade in">
-                                <a href="${createLink(uri: '/')}" class="close" >x</a>
+                                <a href="${createLink(uri: '/')}" class="close">x</a>
                                 <i class="fa-fw fa-lg fa fa-exclamation"></i>
-                                <strong>Votre inscription a bien été prise en compte.</strong> <p>Vous allez recevoir un email de confirmation.</p>
+                                <strong>Votre inscription a bien été prise en compte.</strong>
+
+                                <p>Vous allez recevoir un email de confirmation.</p>
                             </div>
                         </section>
-                    </fieldset>
-                </g:if>
+                    </g:if>
+
+                </fieldset>
 
                 <footer>
-                    <g:submitButton name="Commencez votre mois GRATUIT" class="btn btn-primary"/>
+                    <g:submitButton name="J'essaye !" class="btn btn-primary"/>
                 </footer>
 
             </g:form>
 
         </div>
 
-        <p class="note text-center">*Inscrivez-vous pour essayer Educally gratuitement pendant 1 mois. Sans engagement, annulez en ligne à tout moment.</p>
+        <p class="note text-center">*Inscrivez-vous pour essayer Educally gratuitement pendant 3 mois. Sans engagement, annulez en ligne à tout moment.</p>
         %{--<h5 class="text-center">- Or sign in using -</h5>
         <ul class="list-inline text-center">
             <li>
