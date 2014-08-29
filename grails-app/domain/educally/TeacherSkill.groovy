@@ -1,13 +1,13 @@
 package educally
 
-class EvaluatedSkill {
+class TeacherSkill {
 
     static constraints = {
-        officialSkill nullable: true
+        skill nullable: true
     }
 
     static belongsTo = [teacher: Teacher]
 
     String title
-    OfficialSkill officialSkill
+    Skill skill
 }
