@@ -8,6 +8,6 @@ class Teacher {
 
     static belongsTo = [account: Account]
 
-    static hasMany = [pupils: Pupil, evaluations: Evaluation]
+    static hasMany = [pupils: Pupil, evaluations: Evaluation, skills: TeacherSkill]
 
 }

@@ -10,7 +10,13 @@ class Evaluation {
 
     static hasMany = [skills: TeacherSkill]
 
+    public Evaluation() {
+        missing = false
+    }
+
     String title
     NotationValue notationValue
+    Boolean missing
+    List<String> tags
 
 }
