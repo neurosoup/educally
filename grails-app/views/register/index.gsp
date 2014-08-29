@@ -58,46 +58,46 @@
 
                 <fieldset>
                     <section>
-                        <label class="input" data-toggle="tooltip"
-                               title="Vous en aurez besoin pour vous connecter à votre compte">
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label class="input" data-toggle="tooltip"
+                                   title="Vous en aurez besoin pour vous connecter à votre compte">
                                 <i class="icon-append fa fa-user"></i>
                                 <input type="text" id="username" name="username" placeholder="Nom d'utilisateur"
                                        value="${command?.username}"/>
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </section>
 
                     <section>
-                        <label class="input" data-toggle="tooltip"
-                               title="Vous en aurez besoin pour vérifier votre compte">
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label class="input" data-toggle="tooltip"
+                                   title="Vous en aurez besoin pour vérifier votre compte">
                                 <i class="icon-append fa fa-envelope"></i>
                                 <input type="email" name="email" placeholder="Adresse email" value="${command?.email}">
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </section>
 
                     <section>
-                        <label class="input" data-toggle="tooltip"
-                               title="Le mot de passe est obligatoire">
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label class="input" data-toggle="tooltip"
+                                   title="Le mot de passe est obligatoire">
                                 <i class="icon-append fa fa-lock"></i>
                                 <input type="password" name="password" placeholder="Mot de passe" id="password"
                                        value="${command?.password}">
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </section>
 
                     <section>
-                        <label class="input" data-toggle="tooltip"
-                               title="Le mot de passe est obligatoire">
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label class="input" data-toggle="tooltip"
+                                   title="Le mot de passe est obligatoire">
                                 <i class="icon-append fa fa-lock"></i>
                                 <input type="password" name="password2" placeholder="Confirmation du mot de passe"
                                        value="${command?.password2}">
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </section>
                 </fieldset>
 
@@ -141,13 +141,13 @@
                         %{--<label class="checkbox">
                             <input type="checkbox" name="subscription" id="subscription">
                             <i></i>I want to receive news and special offers</label>--}%
-                        <label class="checkbox">
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label class="checkbox">
                                 <input type="checkbox" name="terms" id="terms">
                                 <i></i>J'accepte les <a href="#" data-toggle="modal"
                                                         data-target="#myModal">conditions d'utilisation</a>
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </section>
 
                     <g:if test='${emailSent}'>
@@ -188,7 +188,7 @@
     </div>
 </div>
 
-<asset:javascript src="register.js"/>
+<asset:javascript src="page.register.js"/>
 
 </body>
 </html>

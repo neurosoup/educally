@@ -393,8 +393,9 @@
         <!-- widget edit box -->
         <div class="jarviswidget-editbox">
             <div>
-                <label>Title:</label>
-                <input type="text"/>
+                <label>Title:
+                    <input type="text"/>
+                </label>
             </div>
         </div>
         <!-- end widget edit box -->
@@ -414,15 +415,18 @@
                                     class="fa fa-circle txt-color-green pull-right"></i></span></a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><asset:image src="avatars/male.png" alt=""/>Mark Zeukartech <span
+                            <a href="javascript:void(0);"><asset:image src="avatars/male.png"
+                                                                       alt=""/>Mark Zeukartech <span
                                     class="state"><i class="last-online pull-right">2hrs</i></span></a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><asset:image src="avatars/male.png" alt=""/>Belmain Dolson <span
+                            <a href="javascript:void(0);"><asset:image src="avatars/male.png"
+                                                                       alt=""/>Belmain Dolson <span
                                     class="state"><i class="last-online pull-right">45m</i></span></a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><asset:image src="avatars/male.png" alt=""/>Galvitch Drewbery <span
+                            <a href="javascript:void(0);"><asset:image src="avatars/male.png"
+                                                                       alt=""/>Galvitch Drewbery <span
                                     class="state"><i class="fa fa-circle txt-color-green pull-right"></i></span></a>
                         </li>
                         <li>
@@ -585,7 +589,7 @@
         <!-- widget edit box -->
         <div class="jarviswidget-editbox">
 
-            <input class="form-control" type="text">
+            <g:textField name="myinput" class="form-control"/>
 
         </div>
         <!-- end widget edit box -->
@@ -656,8 +660,9 @@
 <!-- widget edit box -->
 <div class="jarviswidget-editbox">
     <div>
-        <label>Title:</label>
-        <input type="text"/>
+        <label>Title:
+            <input type="text"/>
+        </label>
     </div>
 </div>
 <!-- end widget edit box -->
@@ -967,8 +972,9 @@
         <!-- widget edit box -->
         <div class="jarviswidget-editbox">
             <div>
-                <label>Title:</label>
-                <input type="text"/>
+                <label>Title:
+                    <input type="text"/>
+                </label>
             </div>
         </div>
         <!-- end widget edit box -->
@@ -1064,7 +1070,7 @@
 </section>
 <!-- end widget grid -->
 
-<asset:javascript src="dashboard.js"/>
+<asset:javascript src="page.dashboard.js"/>
 
 </body>
 </html>

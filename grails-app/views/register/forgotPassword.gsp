@@ -3,7 +3,7 @@
 <head>
     <meta name="layout" content="sign"/>
     <meta name="sign-type" content="sign-forgot">
-    <title>Connexion</title>
+    <title>Réinitialisation du mot de passe</title>
 </head>
 
 <body>
@@ -57,13 +57,13 @@
                 <fieldset>
 
                     <section>
+                        <div class="form-group">
                         <label class="input" data-toggle="tooltip"
                                title="Veuillez saisir votre nom d'utilisateur">
-                            <div class="form-group">
                                 <i class="icon-append fa fa-user"></i>
                                 <input type="text" name="username" id="username" placeholder="Nom d'utilisateur">
-                            </div>
                         </label>
+                        </div>
                     </section>
 
                     <g:if test='${emailSent}'>
@@ -89,7 +89,7 @@
     </div>
 </div>
 
-<asset:javascript src="forgot-password.js"/>
+<asset:javascript src="page.forgot-password.js"/>
 
 </body>
 </html>

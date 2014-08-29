@@ -58,22 +58,22 @@
                 <fieldset>
 
                     <section>
-                        <label class="input" data-toggle="tooltip"
-                               title="Veuillez saisir votre nom d'utilisateur">
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label class="input" data-toggle="tooltip"
+                                   title="Veuillez saisir votre nom d'utilisateur">
                                 <i class="icon-append fa fa-user"></i>
                                 <input type="text" name="j_username" id="username" placeholder="Nom d'utilisateur">
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </section>
 
                     <section>
-                        <label class="input" data-toggle="tooltip" title="Veuillez saisir votre mot de passe">
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label class="input" data-toggle="tooltip" title="Veuillez saisir votre mot de passe">
                                 <i class="icon-append fa fa-lock"></i>
                                 <input type="password" name="j_password" id="password" placeholder="Mot de passe">
-                            </div>
-                        </label>
+                            </label>
+                        </div>
 
                         <div class="note">
                             <a href="${createLink(controller: 'register', action: 'forgotPassword')}">Mot de passe oublié ?</a>
@@ -81,12 +81,12 @@
                     </section>
 
                     <section>
-                        <label class="checkbox">
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label class="checkbox">
                                 <input type="checkbox" name="${rememberMeParameter}" id="remember_me" checked="checked">
                                 <i></i>Rester connecté
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </section>
 
                     <g:if test="${params.login_error == '1'}">
@@ -126,7 +126,7 @@
     </div>
 </div>
 
-<asset:javascript src="login.js"/>
+<asset:javascript src="page.login.js"/>
 
 </body>
 </html>

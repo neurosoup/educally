@@ -55,7 +55,8 @@ var pagefunction = function () {
             // insert undo code here...
         }
 
-    })
+    });
+
     // count tasks
     function countTasks() {
 
@@ -87,10 +88,11 @@ var pagefunction = function () {
 
         /* TAB 1: UPDATING CHART */
         // For the demo we use generated data, but normally it would be coming from the server
+        var updatingchart = $("#updating-chart");
 
         var data = [],
             totalPoints = 200,
-            $UpdatingChartColors = $("#updating-chart").css('color');
+            $UpdatingChartColors = updatingchart.css('color');
 
         function getRandomData() {
             if (data.length > 0)
@@ -116,7 +118,7 @@ var pagefunction = function () {
 
         // setup control widget
         var updateInterval = 1500;
-        $("#updating-chart").val(updateInterval).change(function () {
+        updatingchart.val(updateInterval).change(function () {
 
             var v = $(this).val();
             if (v && !isNaN(+v)) {
@@ -157,7 +159,7 @@ var pagefunction = function () {
             }
         };
 
-        var plot = $.plot($("#updating-chart"), [getRandomData()], options);
+        var plot = $.plot(updatingchart, [getRandomData()], options);
 
         /* live switch */
         $('input[type="checkbox"]#start_interval').click(function () {
@@ -300,7 +302,7 @@ var pagefunction = function () {
                 }
             };
 
-            var plot3 = $.plot($("#statsChart"), data, options);
+            //var plot3 = $.plot($("#statsChart"), data, options);
         });
 
         // END TAB 2
@@ -389,7 +391,7 @@ var pagefunction = function () {
                         show: true
                     }
                 }
-            ]
+            ];
 
             var options = {
                 grid: {
@@ -431,7 +433,7 @@ var pagefunction = function () {
                     }
                 }
 
-            };
+            }
 
             toggles.find(':checkbox').on('change', function () {
                 plotNow();
@@ -617,27 +619,28 @@ var pagefunction = function () {
             });
 
         }
-        ;
 
         /* hide default buttons */
         $('.fc-header-right, .fc-header-center').hide();
 
     }
 
+    var calendarbuttons = $('#calendar-buttons');
+
     // calendar prev
-    $('#calendar-buttons #btn-prev').click(function () {
+    calendarbuttons.find('#btn-prev').click(function () {
         $('.fc-button-prev').click();
         return false;
     });
 
     // calendar next
-    $('#calendar-buttons #btn-next').click(function () {
+    calendarbuttons.find('#btn-next').click(function () {
         $('.fc-button-next').click();
         return false;
     });
 
     // calendar today
-    $('#calendar-buttons #btn-today').click(function () {
+    calendarbuttons.find('#btn-today').click(function () {
         $('.fc-button-today').click();
         return false;
     });
@@ -662,9 +665,9 @@ var pagefunction = function () {
      */
 
     var filter_input = $('#filter-chat-list'),
-        chat_users_container = $('#chat-container > .chat-list-body'),
+        //chat_users_container = $('#chat-container > .chat-list-body'),
         chat_users = $('#chat-users'),
-        chat_list_btn = $('#chat-container > .chat-list-open-close'),
+        chat_list_btn = $('#chat-container').find('> .chat-list-open-close'),
         chat_body = $('#chat-body');
 
     /*
@@ -676,7 +679,7 @@ var pagefunction = function () {
         return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
     };
 
-    function listFilter(list) { // header is any element, list is an unordered list
+    function listFilter(/*list*/) { // header is any element, list is an unordered list
         // create and add the filter form to the header
 
         filter_input.change(function () {
@@ -704,7 +707,7 @@ var pagefunction = function () {
     // open chat list
     chat_list_btn.click(function () {
         $(this).parent('#chat-container').toggleClass('open');
-    })
+    });
 
     chat_body.animate({
         scrollTop: chat_body[0].scrollHeight
