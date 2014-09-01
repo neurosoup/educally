@@ -3,20 +3,15 @@ package educally
 class Evaluation {
 
     static constraints = {
-        notationValue nullable: true
     }
 
-    static belongsTo = [pupil: Pupil, teacher: Teacher]
+    static belongsTo = [pupil: Pupil]
 
-    static hasMany = [skills: TeacherSkill]
+    static hasMany = [evaluatedSkills: EvaluatedSkill]
 
-    public Evaluation() {
-        missing = false
-    }
+    static hasOne = [preferredNotationSystem: NotationSystem]
 
     String title
-    NotationValue notationValue
-    Boolean missing
-    List<String> tags
+    List<String> tags = []
 
 }

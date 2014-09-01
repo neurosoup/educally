@@ -8,14 +8,11 @@ class Pupil {
 
     }
 
-    static belongsTo = [teacher: Teacher]
-
     static hasMany = [evaluations: Evaluation]
 
     String firstName
     String lastName
     DateTime birthDay
-
-    List<String> tags
+    List<String> tags = []
 
 }

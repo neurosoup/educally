@@ -8,6 +8,9 @@ class Teacher {
 
     static belongsTo = [account: Account]
 
-    static hasMany = [pupils: Pupil, evaluations: Evaluation, skills: TeacherSkill]
+    static hasMany = [evaluationSkills: EvaluationSkill, pupils: Pupil]
+
+    List<String> evaluationTags = []
+    List<String> pupilTags = []
 
 }

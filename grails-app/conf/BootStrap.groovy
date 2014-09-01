@@ -1,7 +1,8 @@
 import educally.Account
+import educally.EvaluationSkill
 import educally.NotationSystem
 import educally.NotationValue
-import educally.TeacherSkill
+import educally.EvaluatedSkill
 import educally.Evaluation
 import educally.Skill
 import educally.Pupil
@@ -117,13 +118,14 @@ class BootStrap {
 
         //Notation systems
         log.info('Initializing notation systems...')
-        createNotationSystem('Note sur 40', (1..40))
-        createNotationSystem('Note sur 20', (1..20))
-        createNotationSystem('Note sur 10', (1..10))
-        createNotationSystem('Note sur 5', (1..5))
-        createNotationSystem('A, B, C, D, E', ('A'..'E'))
-        createNotationSystem('Rouge, Orange, Jaune, Vert', ['Rouge', 'Orange', 'Jaune', 'Vert'])
-        createNotationSystem("Non acquis, En cours d'acquisition, Acquis", ["Non acquis", "En cours d'acquisition", "Acquis"])
+        createNotationSystem('Note sur 40', (0..40), 4)
+        createNotationSystem('Note sur 20', (0..20), 4)
+        createNotationSystem('Note sur 10', (0..10), 4)
+        createNotationSystem('Note sur 5', (0..5), 1)
+        createNotationSystem('Lettres de E à A', ('E'..'A'), 1)
+        createNotationSystem('Lettres de E à A avec signes + et -', ['E-', 'E', 'E+', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+'], 1)
+        createNotationSystem('Rouge, Orange, Jaune, Vert', ['Rouge', 'Orange', 'Jaune', 'Vert'], 1)
+        createNotationSystem("Non acquis, En cours d'acquisition, Acquis", ["Non acquis", "En cours d'acquisition", "Acquis"], 1)
 
         //Initial demo data
         log.info('Initializing demo data...')
@@ -135,117 +137,121 @@ class BootStrap {
 
             def teacher = Teacher.findByAccount(account)
             if (teacher) {
+                teacher.pupils.each { it.delete() }
                 teacher.delete()
             }
 
-            teacher = new Teacher(account: account)
+            def removeDemoData = false
+            if (!removeDemoData) {
 
-            Skill.list().each {
-                teacher.addToSkills(new TeacherSkill(skill: it, title: it.title))
-            }
+                teacher = new Teacher(account: account)
 
-            def pupil1 = new Pupil(teacher: teacher, firstName: 'Michel', lastName: 'Constantin', birthDay: new DateTime(1924, 7, 13, 0, 0), tags: ['cm2'])
-            def pupil2 = new Pupil(teacher: teacher, firstName: 'Alain', lastName: 'Peters', birthDay: new DateTime(1962, 3, 10, 0, 0), tags: ['cm2'])
-            def pupil3 = new Pupil(teacher: teacher, firstName: 'Audrey', lastName: 'Hepburn', birthDay: new DateTime(1929, 5, 4, 0, 0), tags: ['cm2'])
-            def pupil4 = new Pupil(teacher: teacher, firstName: 'Garret', lastName: 'Fitzgerald', birthDay: new DateTime(1926, 5, 19, 0, 0), tags: ['cm2'])
-            def pupil5 = new Pupil(teacher: teacher, firstName: 'Joelle', lastName: 'Mogensen', birthDay: new DateTime(1953, 2, 3, 0, 0), tags: ['cm2'])
+                Skill.list().each {
+                    teacher.addToEvaluationSkills(new EvaluationSkill(skill: it, title: it.title))
+                }
 
-            teacher
-                    .addToPupils(pupil1)
-                    .addToPupils(pupil2)
-                    .addToPupils(pupil3)
-                    .addToPupils(pupil4)
-                    .addToPupils(pupil5)
+                teacher.evaluationTags.add('exercice')
+                teacher.evaluationTags.add('contrôle')
+                teacher.pupilTags.add('cm2')
 
-            def evaluation11 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[12])
-                    .addToSkills(teacher.skills.find {
-                it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
-            })
-            def evaluation12 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[8])
-                    .addToSkills(teacher.skills.find {
-                it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
-            })
-            def evaluation13 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[15])
-                    .addToSkills(teacher.skills.find { it.title == 'Estimer l’ordre de grandeur d’un résultat' })
-            def evaluation14 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', missing: true)
-                    .addToSkills(teacher.skills.find { it.title == 'Utiliser une calculatrice' })
+                def pupil1 = new Pupil(firstName: 'Michel', lastName: 'Constantin', birthDay: new DateTime(1924, 7, 13, 0, 0), tags: ['cm2'])
+                def pupil2 = new Pupil(firstName: 'Alain', lastName: 'Peters', birthDay: new DateTime(1962, 3, 10, 0, 0), tags: ['cm2'])
+                def pupil3 = new Pupil(firstName: 'Audrey', lastName: 'Hepburn', birthDay: new DateTime(1929, 5, 4, 0, 0), tags: ['cm2'])
+                def pupil4 = new Pupil(firstName: 'Garret', lastName: 'Fitzgerald', birthDay: new DateTime(1926, 5, 19, 0, 0), tags: ['cm2'])
+                def pupil5 = new Pupil(firstName: 'Joelle', lastName: 'Mogensen', birthDay: new DateTime(1953, 2, 3, 0, 0), tags: ['cm2'])
 
-            def evaluation21 = new Evaluation(tags: ['exercice'], pupil: pupil2, title: 'Récitation tables de multiplication', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[2])
-                    .addToSkills(teacher.skills.find {
-                it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
-            })
-            def evaluation22 = new Evaluation(tags: ['exercice'], pupil: pupil2, title: 'Récitation tables de multiplication', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[4])
-                    .addToSkills(teacher.skills.find {
-                it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
-            })
-            def evaluation23 = new Evaluation(tags: ['contrôle'], pupil: pupil2, title: 'Contrôle grands nombres', missing: true)
-                    .addToSkills(teacher.skills.find { it.title == 'Estimer l’ordre de grandeur d’un résultat' })
-            def evaluation24 = new Evaluation(tags: ['contrôle'], pupil: pupil2, title: 'Contrôle calcul', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[15])
-                    .addToSkills(teacher.skills.find { it.title == 'Utiliser une calculatrice' })
+                teacher
+                        .addToPupils(pupil1)
+                        .addToPupils(pupil2)
+                        .addToPupils(pupil3)
+                        .addToPupils(pupil4)
+                        .addToPupils(pupil5)
 
-            def evaluation31 = new Evaluation(tags: ['exercice'], pupil: pupil2, title: 'Récitation tables de multiplication', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[2])
-                    .addToSkills(teacher.skills.find {
-                it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
-            })
-            def evaluation32 = new Evaluation(tags: ['exercice'], pupil: pupil2, title: 'Récitation tables de multiplication', missing: true)
-                    .addToSkills(teacher.skills.find {
-                it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
-            })
-            def evaluation33 = new Evaluation(tags: ['contrôle'], pupil: pupil2, title: 'Contrôle grands nombres', missing: true)
-                    .addToSkills(teacher.skills.find { it.title == 'Estimer l’ordre de grandeur d’un résultat' })
-            def evaluation34 = new Evaluation(tags: ['contrôle'], pupil: pupil2, title: 'Contrôle calcul', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[4])
-                    .addToSkills(teacher.skills.find { it.title == 'Utiliser une calculatrice' })
+                def evaluationSkill1 = teacher.evaluationSkills.find {
+                    it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
+                }
 
-            def evaluation41 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[19])
-                    .addToSkills(teacher.skills.find {
-                it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
-            })
-            def evaluation42 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[20])
-                    .addToSkills(teacher.skills.find {
-                it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
-            })
-            def evaluation43 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[18])
-                    .addToSkills(teacher.skills.find { it.title == 'Estimer l’ordre de grandeur d’un résultat' })
-            def evaluation44 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[20])
-                    .addToSkills(teacher.skills.find { it.title == 'Utiliser une calculatrice' })
+                def evaluationSkill2 = teacher.evaluationSkills.find {
+                    it.title == 'Estimer l’ordre de grandeur d’un résultat'
+                }
 
-            def evaluation51 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[11])
-                    .addToSkills(teacher.skills.find {
-                it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
-            })
-            def evaluation52 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[10])
-                    .addToSkills(teacher.skills.find {
-                it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
-            })
-            def evaluation53 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[12])
-                    .addToSkills(teacher.skills.find { it.title == 'Estimer l’ordre de grandeur d’un résultat' })
-            def evaluation54 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', notationValue: NotationSystem.findByTitle('Note sur 20').notationValues[9])
-                    .addToSkills(teacher.skills.find { it.title == 'Utiliser une calculatrice' })
+                def evaluationSkill3 = teacher.evaluationSkills.find { it.title == 'Utiliser une calculatrice' }
 
-            teacher
-                    .addToEvaluations(evaluation11)
-                    .addToEvaluations(evaluation12)
-                    .addToEvaluations(evaluation13)
-                    .addToEvaluations(evaluation14)
-                    .addToEvaluations(evaluation21)
-                    .addToEvaluations(evaluation22)
-                    .addToEvaluations(evaluation23)
-                    .addToEvaluations(evaluation24)
-                    .addToEvaluations(evaluation31)
-                    .addToEvaluations(evaluation32)
-                    .addToEvaluations(evaluation33)
-                    .addToEvaluations(evaluation34)
-                    .addToEvaluations(evaluation41)
-                    .addToEvaluations(evaluation42)
-                    .addToEvaluations(evaluation43)
-                    .addToEvaluations(evaluation44)
-                    .addToEvaluations(evaluation51)
-                    .addToEvaluations(evaluation52)
-                    .addToEvaluations(evaluation53)
-                    .addToEvaluations(evaluation54)
+                def evaluation11 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill1, value: 0.6))
+                def evaluation12 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill1, value: 0.4))
+                def evaluation13 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill2, value: 0.75))
+                def evaluation14 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill3, missed: true))
 
-            if (!teacher.save()) {
-                log.error('Error saving teacher.')
+                def evaluation21 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill1, value: 0.1))
+                def evaluation22 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill1, value: 0.25))
+                def evaluation23 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill2, value: 0.05))
+                def evaluation24 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill3, value: 0.45))
+
+                def evaluation31 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill1, missed: true))
+                def evaluation32 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill1, value: 0.1))
+                def evaluation33 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill2, missed: true))
+                def evaluation34 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill3, missed: true))
+
+                def evaluation41 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill1, value: 0.5))
+                def evaluation42 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill1, value: 0.55))
+                def evaluation43 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill2, value: 0.45))
+                def evaluation44 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill3, value: 0.575))
+
+                def evaluation51 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill1, value: 0.95))
+                def evaluation52 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill1, value: 1))
+                def evaluation53 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill2, value: 1))
+                def evaluation54 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill3, value: 0, 9875))
+
+
+                pupil1
+                        .addToEvaluations(evaluation11)
+                        .addToEvaluations(evaluation12)
+                        .addToEvaluations(evaluation13)
+                        .addToEvaluations(evaluation14)
+                pupil2
+                        .addToEvaluations(evaluation21)
+                        .addToEvaluations(evaluation22)
+                        .addToEvaluations(evaluation23)
+                        .addToEvaluations(evaluation24)
+                pupil3
+                        .addToEvaluations(evaluation31)
+                        .addToEvaluations(evaluation32)
+                        .addToEvaluations(evaluation33)
+                        .addToEvaluations(evaluation34)
+                pupil4
+                        .addToEvaluations(evaluation41)
+                        .addToEvaluations(evaluation42)
+                        .addToEvaluations(evaluation43)
+                        .addToEvaluations(evaluation44)
+                pupil5
+                        .addToEvaluations(evaluation51)
+                        .addToEvaluations(evaluation52)
+                        .addToEvaluations(evaluation53)
+                        .addToEvaluations(evaluation54)
+
+                if (!teacher.save()) {
+                    log.error('Error saving teacher.')
+                }
             }
         } else {
             log.warn('Cannot insert demo data because no demo user found.')
@@ -254,13 +260,23 @@ class BootStrap {
         log.info('Data initializing done.')
     }
 
-    private void createNotationSystem(String title, List values) {
+    private static void createNotationSystem(String title, List values, int steps) {
         def notationSystem = NotationSystem.findByTitle(title)
         if (!notationSystem) {
             notationSystem = new NotationSystem(title: title)
+            BigDecimal value = 0
+            BigDecimal total = values.size() * steps - steps
             values.eachWithIndex { x, i ->
-                def notationValue = new NotationValue(displayValue: "${x}", decimalValue: i / values.size())
-                notationSystem.addToNotationValues(notationValue)
+                for (int j = 0; j < steps; j++) {
+                    if (value > total && j > 0) break
+                    def dec = j / steps
+                    def displayDec = "${dec}".substring(1).replace('.', '')
+                    def displayValue = displayDec.length() > 0 ? "${x},${displayDec}" : "${x}"
+                    BigDecimal decimalValue = value / total
+                    def notationValue = new NotationValue(displayValue: displayValue, decimalValue: decimalValue)
+                    notationSystem.values.add(notationValue)
+                    value++
+                }
             }
             notationSystem.save()
         }

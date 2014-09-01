@@ -1,6 +1,6 @@
 package educally
 
-class TeacherSkill {
+class EvaluationSkill {
 
     static constraints = {
         skill nullable: true
