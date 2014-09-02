@@ -6,7 +6,7 @@ import educally.EvaluatedSkill
 import educally.Evaluation
 import educally.Skill
 import educally.Pupil
-import educally.SkillLevel
+import educally.SkillGroup
 import educally.Teacher
 import educally.security.Role
 import educally.security.User
@@ -33,12 +33,12 @@ class BootStrap {
         }
 
         //2012-2013 Official Skills
-        log.info('Initializing last official skills...')
+        log.info('Initializing skill models...')
         //SkillLevel.findAllByRevision('2011-2012').each { it.delete() }
 
-        def level = SkillLevel.findByTitleAndRevision('Palier 2 CM2', '2012-2013')
+        def level = SkillGroup.findByTitleAndReference('LPC Palier 2 (CM2)', '2012')
         if (!level) {
-            new SkillLevel(title: 'Palier 2 CM2', revision: '2012-2013')
+            new SkillGroup(title: 'LPC Palier 2 (CM2)', reference: '2012')
 
             /* FRANCAIS */
                     .addToSkills(new Skill(title: 'La maîtrise de la langue française', path: ''))
@@ -220,7 +220,7 @@ class BootStrap {
                 def evaluation53 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
                         .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill2, value: 1))
                 def evaluation54 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill3, value: 0, 9875))
+                        .addToEvaluatedSkills(new EvaluatedSkill(evaluationSkill: evaluationSkill3, value: 0.9875))
 
 
                 pupil1

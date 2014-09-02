@@ -1,6 +1,6 @@
 package educally
 
-class SkillLevel {
+class SkillGroup {
 
     static constraints = {
         description nullable: true
@@ -9,7 +9,7 @@ class SkillLevel {
     static hasMany = [skills: Skill]
 
     String title
-    String revision
+    String reference
     String description
 
 }

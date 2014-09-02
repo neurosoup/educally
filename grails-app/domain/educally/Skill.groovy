@@ -6,7 +6,7 @@ class Skill {
         path nullable: true
     }
 
-    static belongsTo = [level: SkillLevel]
+    static belongsTo = [level: SkillGroup]
 
     String title
     String path
