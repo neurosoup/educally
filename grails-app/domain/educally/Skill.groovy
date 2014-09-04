@@ -9,6 +9,7 @@ class Skill {
     static belongsTo = [level: SkillGroup]
 
     String title
+    String normalizedTitle
     String path
 
 }
