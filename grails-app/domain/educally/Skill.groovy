@@ -3,13 +3,16 @@ package educally
 class Skill {
 
     static constraints = {
-        path nullable: true
+        name nullable: true //leaf
+        path nullable: true //root
+        basedOn nullable: true
     }
 
-    static belongsTo = [level: SkillGroup]
+    static belongsTo = [skillBook: SkillBook]
 
     String title
-    String normalizedTitle
+    String name
     String path
+    Skill basedOn
 
 }

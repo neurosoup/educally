@@ -1,18 +1,20 @@
 package educally
 
-class SkillGroup {
+class SkillBook {
 
     static constraints = {
         description nullable: true
-        basedOn nullable: true
+        teacher nullable: true
     }
 
     static hasMany = [skills: Skill]
 
-    static hasOne = [basedOn: SkillGroup]
+    static belongsTo = [teacher: Teacher]
 
     String title
     String reference
     String description
+
+    Teacher teacher
 
 }

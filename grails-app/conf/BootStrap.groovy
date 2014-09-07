@@ -1,12 +1,11 @@
 import educally.Account
-import educally.EvaluationSkill
 import educally.NotationSystem
 import educally.NotationValue
 import educally.EvaluatedSkill
 import educally.Evaluation
 import educally.Skill
 import educally.Pupil
-import educally.SkillGroup
+import educally.SkillBook
 import educally.Teacher
 import educally.security.Role
 import educally.security.User
@@ -33,87 +32,87 @@ class BootStrap {
         }
 
         //2012-2013 Official Skills
-        log.info('Initializing skill models...')
+        log.info('Initializing skill books...')
         //SkillLevel.findAllByRevision('2011-2012').each { it.delete() }
 
-        def level = SkillGroup.findByTitleAndReference('LPC Palier 2 (CM2)', '2012')
-        if (!level) {
-            new SkillGroup(title: 'LPC Palier 2 (CM2)', reference: '2012')
+        def skillBook = SkillBook.findByTitleAndReference('LPC TEST', '2012')
+        if (!skillBook) {
+            skillBook = new SkillBook(title: 'LPC TEST', reference: '2012')
 
             /* FRANCAIS */
-                    .addToSkills(new Skill(title: 'La maîtrise de la langue française', path: ''))
+                    .addToSkills(new Skill(name: 'la_maitrise_de_la_langue_francaise', title: 'La maîtrise de la langue française', path: ''))
 
-                    .addToSkills(new Skill(title: 'Dire', path: ',La_maitrise_de_la_langue_francaise,'))
-                    .addToSkills(new Skill(title: 'Communiquer, au besoin avec des pauses pour chercher ses mots', path: ',La_maitrise_de_la_langue_francaise,dire,'))
-                    .addToSkills(new Skill(title: 'Se présenter ; présenter quelqu’un ; demander à quelqu’un de ses nouvelles en utilisant les formes de politesse les plus élémentaires ; accueil et prise de congé', path: ',La_maitrise_de_la_langue_francaise,dire,'))
-                    .addToSkills(new Skill(title: 'Répondre à des questions et en poser (sujets familiers ou besoins immédiats)', path: ',La_maitrise_de_la_langue_francaise,dire,'))
-                    .addToSkills(new Skill(title: 'Epeler des mots familiers', path: ',La_maitrise_de_la_langue_francaise,dire,'))
+                    .addToSkills(new Skill(name: 'dire', title: 'Dire', path: ',La_maitrise_de_la_langue_francaise,'))
+                    .addToSkills(new Skill(name: null, title: 'Communiquer, au besoin avec des pauses pour chercher ses mots', path: ',La_maitrise_de_la_langue_francaise,dire,'))
+                    .addToSkills(new Skill(name: null, title: 'Se présenter ; présenter quelqu’un ; demander à quelqu’un de ses nouvelles en utilisant les formes de politesse les plus élémentaires ; accueil et prise de congé', path: ',La_maitrise_de_la_langue_francaise,dire,'))
+                    .addToSkills(new Skill(name: null, title: 'Répondre à des questions et en poser (sujets familiers ou besoins immédiats)', path: ',La_maitrise_de_la_langue_francaise,dire,'))
+                    .addToSkills(new Skill(name: null, title: 'Epeler des mots familiers', path: ',La_maitrise_de_la_langue_francaise,dire,'))
 
-                    .addToSkills(new Skill(title: 'Lire', path: ',La_maitrise_de_la_langue_francaise,'))
-                    .addToSkills(new Skill(title: 'Lire avec aisance (à haute voix, silencieusement) un texte', path: ',La_maitrise_de_la_langue_francaise,lire,'))
-                    .addToSkills(new Skill(title: 'Lire seul des textes du patrimoine et des œuvres intégrales de la littérature de jeunesse, adaptés à son âge', path: ',La_maitrise_de_la_langue_francaise,lire,'))
-                    .addToSkills(new Skill(title: 'Lire seul et comprendre un énoncé, une consigne', path: ',La_maitrise_de_la_langue_francaise,lire,'))
-                    .addToSkills(new Skill(title: 'Dégager le thème d’un texte', path: ',La_maitrise_de_la_langue_francaise,lire,'))
-                    .addToSkills(new Skill(title: 'Repérer dans un texte des informations explicites', path: ',La_maitrise_de_la_langue_francaise,lire,'))
-                    .addToSkills(new Skill(title: 'Inférer des informations nouvelles (implicites)', path: ',La_maitrise_de_la_langue_francaise,lire,'))
-                    .addToSkills(new Skill(title: 'Repérer les effets de choix formels (emploi de certains mots, utilisation d’un niveau de langue)', path: ',La_maitrise_de_la_langue_francaise,lire,'))
-                    .addToSkills(new Skill(title: 'Utiliser ses connaissances pour réfléchir sur un texte, mieux le comprendre', path: ',La_maitrise_de_la_langue_francaise,lire,'))
-                    .addToSkills(new Skill(title: 'Effectuer, seul, des recherches dans des ouvrages documentaires (livres, produits multimédia)', path: ',La_maitrise_de_la_langue_francaise,lire,'))
-                    .addToSkills(new Skill(title: 'Se repérer dans une bibliothèque, une médiathèque', path: ',La_maitrise_de_la_langue_francaise,lire,'))
+                    .addToSkills(new Skill(name: 'lire', title: 'Lire', path: ',La_maitrise_de_la_langue_francaise,'))
+                    .addToSkills(new Skill(name: null, title: 'Lire avec aisance (à haute voix, silencieusement) un texte', path: ',La_maitrise_de_la_langue_francaise,lire,'))
+                    .addToSkills(new Skill(name: null, title: 'Lire seul des textes du patrimoine et des œuvres intégrales de la littérature de jeunesse, adaptés à son âge', path: ',La_maitrise_de_la_langue_francaise,lire,'))
+                    .addToSkills(new Skill(name: null, title: 'Lire seul et comprendre un énoncé, une consigne', path: ',La_maitrise_de_la_langue_francaise,lire,'))
+                    .addToSkills(new Skill(name: null, title: 'Dégager le thème d’un texte', path: ',La_maitrise_de_la_langue_francaise,lire,'))
+                    .addToSkills(new Skill(name: null, title: 'Repérer dans un texte des informations explicites', path: ',La_maitrise_de_la_langue_francaise,lire,'))
+                    .addToSkills(new Skill(name: null, title: 'Inférer des informations nouvelles (implicites)', path: ',La_maitrise_de_la_langue_francaise,lire,'))
+                    .addToSkills(new Skill(name: null, title: 'Repérer les effets de choix formels (emploi de certains mots, utilisation d’un niveau de langue)', path: ',La_maitrise_de_la_langue_francaise,lire,'))
+                    .addToSkills(new Skill(name: null, title: 'Utiliser ses connaissances pour réfléchir sur un texte, mieux le comprendre', path: ',La_maitrise_de_la_langue_francaise,lire,'))
+                    .addToSkills(new Skill(name: null, title: 'Effectuer, seul, des recherches dans des ouvrages documentaires (livres, produits multimédia)', path: ',La_maitrise_de_la_langue_francaise,lire,'))
+                    .addToSkills(new Skill(name: null, title: 'Se repérer dans une bibliothèque, une médiathèque', path: ',La_maitrise_de_la_langue_francaise,lire,'))
 
-                    .addToSkills(new Skill(title: 'Ecrire', path: ',La_maitrise_de_la_langue_francaise,'))
-                    .addToSkills(new Skill(title: 'Copier sans erreur un texte d’au moins quinze lignes en lui donnant une présentation adaptée', path: ',La_maitrise_de_la_langue_francaise,ecrire,'))
-                    .addToSkills(new Skill(title: 'Utiliser ses connaissances pour réfléchir sur un texte, mieux l’écrire', path: ',La_maitrise_de_la_langue_francaise,ecrire,'))
-                    .addToSkills(new Skill(title: 'Répondre à une question par une phrase complète à l’écrit', path: ',La_maitrise_de_la_langue_francaise,ecrire,'))
-                    .addToSkills(new Skill(title: 'Rédiger un texte d’une quinzaine de lignes (récits, description, dialogue, texte poétique, compte rendu) en utilisant ses connaissances en vocabulaire et en grammaire', path: ',La_maitrise_de_la_langue_francaise,ecrire,'))
+                    .addToSkills(new Skill(name: 'ecrire', title: 'Ecrire', path: ',La_maitrise_de_la_langue_francaise,'))
+                    .addToSkills(new Skill(name: null, title: 'Copier sans erreur un texte d’au moins quinze lignes en lui donnant une présentation adaptée', path: ',La_maitrise_de_la_langue_francaise,ecrire,'))
+                    .addToSkills(new Skill(name: null, title: 'Utiliser ses connaissances pour réfléchir sur un texte, mieux l’écrire', path: ',La_maitrise_de_la_langue_francaise,ecrire,'))
+                    .addToSkills(new Skill(name: null, title: 'Répondre à une question par une phrase complète à l’écrit', path: ',La_maitrise_de_la_langue_francaise,ecrire,'))
+                    .addToSkills(new Skill(name: null, title: 'Rédiger un texte d’une quinzaine de lignes (récits, description, dialogue, texte poétique, compte rendu) en utilisant ses connaissances en vocabulaire et en grammaire', path: ',La_maitrise_de_la_langue_francaise,ecrire,'))
 
-                    .addToSkills(new Skill(title: 'Etude de la langue : vocabulaire', path: ',La_maitrise_de_la_langue_francaise,'))
-                    .addToSkills(new Skill(title: 'Comprendre des mots nouveaux et les utiliser à bon escient', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_vocabulaire,'))
-                    .addToSkills(new Skill(title: 'Maîtriser quelques relations de sens entre les mots', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_vocabulaire,'))
-                    .addToSkills(new Skill(title: 'Maîtriser quelques relations concernant la forme et le sens des mots', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_vocabulaire,'))
-                    .addToSkills(new Skill(title: 'Savoir utiliser un dictionnaire papier ou numérique', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_vocabulaire,'))
+                    .addToSkills(new Skill(name: 'etude_de_la_langue_:_vocabulaire', title: 'Etude de la langue : vocabulaire', path: ',La_maitrise_de_la_langue_francaise,'))
+                    .addToSkills(new Skill(name: null, title: 'Comprendre des mots nouveaux et les utiliser à bon escient', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_vocabulaire,'))
+                    .addToSkills(new Skill(name: null, title: 'Maîtriser quelques relations de sens entre les mots', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_vocabulaire,'))
+                    .addToSkills(new Skill(name: null, title: 'Maîtriser quelques relations concernant la forme et le sens des mots', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_vocabulaire,'))
+                    .addToSkills(new Skill(name: null, title: 'Savoir utiliser un dictionnaire papier ou numérique', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_vocabulaire,'))
 
-                    .addToSkills(new Skill(title: 'Etude de la langue : grammaire', path: ',La_maitrise_de_la_langue_francaise,'))
-                    .addToSkills(new Skill(title: 'Distinguer les mots selon leur nature', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_grammaire,'))
-                    .addToSkills(new Skill(title: 'Identifier les fonctions des mots dans la phrase', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_grammaire,'))
-                    .addToSkills(new Skill(title: 'Conjuguer les verbes, utiliser les temps à bon escient', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_grammaire,'))
+                    .addToSkills(new Skill(name: 'etude_de_la_langue_:_grammaire', title: 'Etude de la langue : grammaire', path: ',La_maitrise_de_la_langue_francaise,'))
+                    .addToSkills(new Skill(name: null, title: 'Distinguer les mots selon leur nature', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_grammaire,'))
+                    .addToSkills(new Skill(name: null, title: 'Identifier les fonctions des mots dans la phrase', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_grammaire,'))
+                    .addToSkills(new Skill(name: null, title: 'Conjuguer les verbes, utiliser les temps à bon escient', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_grammaire,'))
 
-                    .addToSkills(new Skill(title: 'Etude de la langue : orthographe', path: ',La_maitrise_de_la_langue_francaise,'))
-                    .addToSkills(new Skill(title: 'Maîtriser l’orthographe grammaticale', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_orthographe,'))
-                    .addToSkills(new Skill(title: 'Maîtriser l’orthographe lexicale', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_orthographe,'))
-                    .addToSkills(new Skill(title: 'Orthographier correctement un texte simple de dix lignes – lors de sa rédaction ou de sa dictée – en se référant aux règles connues d’orthographe et de grammaire ainsi qu’à la connaissance du vocabulaire', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_orthographe,'))
+                    .addToSkills(new Skill(name: 'etude_de_la_langue_:_orthographe', title: 'Etude de la langue : orthographe', path: ',La_maitrise_de_la_langue_francaise,'))
+                    .addToSkills(new Skill(name: null, title: 'Maîtriser l’orthographe grammaticale', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_orthographe,'))
+                    .addToSkills(new Skill(name: null, title: 'Maîtriser l’orthographe lexicale', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_orthographe,'))
+                    .addToSkills(new Skill(name: null, title: 'Orthographier correctement un texte simple de dix lignes – lors de sa rédaction ou de sa dictée – en se référant aux règles connues d’orthographe et de grammaire ainsi qu’à la connaissance du vocabulaire', path: ',La_maitrise_de_la_langue_francaise,etude_de_la_langue_:_orthographe,'))
 
             /* MATHEMATIQUES */
-                    .addToSkills(new Skill(title: 'Les principaux éléments de mathématiques et la culture scientifique et technologique', path: ''))
+                    .addToSkills(new Skill(name: 'les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique', title: 'Les principaux éléments de mathématiques et la culture scientifique et technologique', path: ''))
 
-                    .addToSkills(new Skill(title: 'Nombres et calcul', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,'))
-                    .addToSkills(new Skill(title: 'Ecrire, nommer, comparer et utiliser les nombres entiers, les nombres décimaux (jusqu’au centième) et quelques fractions simples', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
-                    .addToSkills(new Skill(title: 'Restituer les tables d’addition et de multiplication de 2 à 9', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
-                    .addToSkills(new Skill(title: 'Utiliser les techniques opératoires des quatre opérations sur les nombres entiers et décimaux (pour la division, le diviseur est un nombre entier)', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
-                    .addToSkills(new Skill(title: 'Ajouter deux fractions décimales ou deux fractions simples de même dénominateur', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
-                    .addToSkills(new Skill(title: 'Calculer mentalement en utilisant les quatre opérations', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
-                    .addToSkills(new Skill(title: 'Estimer l’ordre de grandeur d’un résultat', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
-                    .addToSkills(new Skill(title: 'Résoudre des problèmes relevant des quatre opérations', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
-                    .addToSkills(new Skill(title: 'Utiliser une calculatrice', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
+                    .addToSkills(new Skill(name: 'nombres_et_calcul', title: 'Nombres et calcul', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,'))
+                    .addToSkills(new Skill(name: null, title: 'Ecrire, nommer, comparer et utiliser les nombres entiers, les nombres décimaux (jusqu’au centième) et quelques fractions simples', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
+                    .addToSkills(new Skill(name: null, title: 'Restituer les tables d’addition et de multiplication de 2 à 9', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
+                    .addToSkills(new Skill(name: null, title: 'Utiliser les techniques opératoires des quatre opérations sur les nombres entiers et décimaux (pour la division, le diviseur est un nombre entier)', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
+                    .addToSkills(new Skill(name: null, title: 'Ajouter deux fractions décimales ou deux fractions simples de même dénominateur', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
+                    .addToSkills(new Skill(name: null, title: 'Calculer mentalement en utilisant les quatre opérations', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
+                    .addToSkills(new Skill(name: null, title: 'Estimer l’ordre de grandeur d’un résultat', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
+                    .addToSkills(new Skill(name: null, title: 'Résoudre des problèmes relevant des quatre opérations', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
+                    .addToSkills(new Skill(name: null, title: 'Utiliser une calculatrice', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,nombres_et_calcul'))
 
-                    .addToSkills(new Skill(title: 'Géométrie', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,'))
-                    .addToSkills(new Skill(title: 'Reconnaître, décrire et nommer les figures et solides usuels', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,geometrie'))
-                    .addToSkills(new Skill(title: 'Utiliser la règle, l’équerre et le compas pour vérifier la nature de figures planes usuelles et les construire avec soin et précision', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,geometrie'))
-                    .addToSkills(new Skill(title: 'Percevoir et reconnaître parallèles et perpendiculaires', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,geometrie'))
-                    .addToSkills(new Skill(title: 'Résoudre des problèmes de reproduction, de construction', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,geometrie'))
+                    .addToSkills(new Skill(name: 'geometrie', title: 'Géométrie', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,'))
+                    .addToSkills(new Skill(name: null, title: 'Reconnaître, décrire et nommer les figures et solides usuels', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,geometrie'))
+                    .addToSkills(new Skill(name: null, title: 'Utiliser la règle, l’équerre et le compas pour vérifier la nature de figures planes usuelles et les construire avec soin et précision', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,geometrie'))
+                    .addToSkills(new Skill(name: null, title: 'Percevoir et reconnaître parallèles et perpendiculaires', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,geometrie'))
+                    .addToSkills(new Skill(name: null, title: 'Résoudre des problèmes de reproduction, de construction', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,geometrie'))
 
-                    .addToSkills(new Skill(title: 'Grandeurs et mesures', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,'))
-                    .addToSkills(new Skill(title: 'Utiliser des instruments de mesure', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,grandeurs_et_mesures'))
-                    .addToSkills(new Skill(title: 'Connaître et utiliser les formules du périmètre et de l’aire d’un carré, d’un rectangle et d’un triangle', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,grandeurs_et_mesures'))
-                    .addToSkills(new Skill(title: 'Utiliser les unités de mesures usuelles', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,grandeurs_et_mesures'))
-                    .addToSkills(new Skill(title: 'Résoudre des problèmes dont la résolution implique des conversions', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,grandeurs_et_mesures'))
+                    .addToSkills(new Skill(name: 'grandeurs_et_mesures', title: 'Grandeurs et mesures', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,'))
+                    .addToSkills(new Skill(name: null, title: 'Utiliser des instruments de mesure', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,grandeurs_et_mesures'))
+                    .addToSkills(new Skill(name: null, title: 'Connaître et utiliser les formules du périmètre et de l’aire d’un carré, d’un rectangle et d’un triangle', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,grandeurs_et_mesures'))
+                    .addToSkills(new Skill(name: null, title: 'Utiliser les unités de mesures usuelles', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,grandeurs_et_mesures'))
+                    .addToSkills(new Skill(name: null, title: 'Résoudre des problèmes dont la résolution implique des conversions', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,grandeurs_et_mesures'))
 
-                    .addToSkills(new Skill(title: 'Organisation et gestion de données', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,'))
-                    .addToSkills(new Skill(title: 'Lire, interpréter et construire quelques représentations simples : tableaux, graphiques', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,organisation_et_gestion_de_donnees'))
-                    .addToSkills(new Skill(title: 'Savoir organiser des informations numériques ou géométriques, justifier et apprécier la vraisemblance d’un résultat', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,organisation_et_gestion_de_donnees'))
-                    .addToSkills(new Skill(title: 'Résoudre un problème mettant en jeu une situation de proportionnalité', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,organisation_et_gestion_de_donnees'))
+                    .addToSkills(new Skill(name: 'organisation_et_gestion_de_donnees', title: 'Organisation et gestion de données', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,'))
+                    .addToSkills(new Skill(name: null, title: 'Lire, interpréter et construire quelques représentations simples : tableaux, graphiques', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,organisation_et_gestion_de_donnees'))
+                    .addToSkills(new Skill(name: null, title: 'Savoir organiser des informations numériques ou géométriques, justifier et apprécier la vraisemblance d’un résultat', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,organisation_et_gestion_de_donnees'))
+                    .addToSkills(new Skill(name: null, title: 'Résoudre un problème mettant en jeu une situation de proportionnalité', path: ',les_principaux_elements_de_mathematiques_et_la_culture_scientifique_et_technologique,organisation_et_gestion_de_donnees'))
 
-                    .save()
+            skillBook.save()
         }
 
         //Notation systems
@@ -141,19 +140,25 @@ class BootStrap {
                 teacher.delete()
             }
 
-            def removeDemoData = true
+            def removeDemoData = false
 
             if (!removeDemoData) {
 
                 teacher = new Teacher(account: account)
 
-                Skill.list().each {
-                    teacher.addToEvaluationSkills(new EvaluationSkill(skill: it, title: it.title))
+                def teacherSkillBook = new SkillBook(title: 'Mon livret bleu', reference: '2012')
+                skillBook.skills.each {
+                    teacherSkillBook.addToSkills(new Skill(basedOn: it, title: it.title, name: it.name, path: it.path))
                 }
+                teacher.addToSkillBooks(teacherSkillBook)
 
                 teacher.evaluationTags.add('exercice')
                 teacher.evaluationTags.add('contrôle')
                 teacher.pupilTags.add('cm2')
+
+                if (!teacher.save()) {
+                    log.error('Error saving teacher world.')
+                }
 
                 def pupil1 = new Pupil(firstName: 'Michel', lastName: 'Constantin', birthDay: new DateTime(1924, 7, 13, 0, 0), tags: ['cm2'])
                 def pupil2 = new Pupil(firstName: 'Alain', lastName: 'Peters', birthDay: new DateTime(1962, 3, 10, 0, 0), tags: ['cm2'])
@@ -168,60 +173,64 @@ class BootStrap {
                         .addToPupils(pupil4)
                         .addToPupils(pupil5)
 
-                def evaluationSkill1 = teacher.evaluationSkills.find {
+                def skill1 = teacher.skillBooks.find { it.title = 'Mon livret bleu' }.skills.find {
                     it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
                 }
 
-                def evaluationSkill2 = teacher.evaluationSkills.find {
+                def skill2 = teacher.skillBooks.find { it.title = 'Mon livret bleu' }.skills.find {
                     it.title == 'Estimer l’ordre de grandeur d’un résultat'
                 }
 
-                def evaluationSkill3 = teacher.evaluationSkills.find { it.title == 'Utiliser une calculatrice' }
+                def skill3 = teacher.skillBooks.find { it.title = 'Mon livret bleu' }.skills.find {
+                    it.title == 'Utiliser une calculatrice'
+                }
 
-                def evaluation11 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill1, value: 0.6))
-                def evaluation12 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill1, value: 0.4))
-                def evaluation13 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill2, value: 0.75))
-                def evaluation14 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill3, missed: true))
+                def preferredNotationSystem = NotationSystem.findByTitle('Note sur 20')                
 
-                def evaluation21 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill1, value: 0.1))
-                def evaluation22 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill1, value: 0.25))
-                def evaluation23 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill2, value: 0.05))
-                def evaluation24 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill3, value: 0.45))
+                def evaluation11 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation11.values.add(new EvaluatedSkill(skill: skill1, value: 0.6))
+                def evaluation12 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation12.values.add(new EvaluatedSkill(skill: skill1, value: 0.4))
+                def evaluation13 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation13.values.add(new EvaluatedSkill(skill: skill2, value: 0.75))
+                def evaluation14 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation14.values.add(new EvaluatedSkill(skill: skill3, missed: true))
 
-                def evaluation31 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill1, missed: true))
-                def evaluation32 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill1, value: 0.1))
-                def evaluation33 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill2, missed: true))
-                def evaluation34 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill3, missed: true))
+                def evaluation21 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation21.values.add(new EvaluatedSkill(skill: skill1, value: 0.1))
+                def evaluation22 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation22.values.add(new EvaluatedSkill(skill: skill1, value: 0.25))
+                def evaluation23 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation23.values.add(new EvaluatedSkill(skill: skill2, value: 0.05))
+                def evaluation24 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation24.values.add(new EvaluatedSkill(skill: skill3, value: 0.45))
 
-                def evaluation41 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill1, value: 0.5))
-                def evaluation42 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill1, value: 0.55))
-                def evaluation43 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill2, value: 0.45))
-                def evaluation44 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill3, value: 0.575))
+                def evaluation31 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation31.values.add(new EvaluatedSkill(skill: skill1, missed: true))
+                def evaluation32 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation32.values.add(new EvaluatedSkill(skill: skill1, value: 0.1))
+                def evaluation33 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation33.values.add(new EvaluatedSkill(skill: skill2, missed: true))
+                def evaluation34 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation34.values.add(new EvaluatedSkill(skill: skill3, missed: true))
 
-                def evaluation51 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill1, value: 0.95))
-                def evaluation52 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill1, value: 1))
-                def evaluation53 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill2, value: 1))
-                def evaluation54 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul', preferredNotationSystem: NotationSystem.findByTitle('Note sur 20'))
-                        .addToEvaluatedSkills(new EvaluatedSkill(skill: evaluationSkill3, value: 0.9875))
+                def evaluation41 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation41.values.add(new EvaluatedSkill(skill: skill1, value: 0.5))
+                def evaluation42 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation42.values.add(new EvaluatedSkill(skill: skill1, value: 0.55))
+                def evaluation43 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation43.values.add(new EvaluatedSkill(skill: skill2, value: 0.45))
+                def evaluation44 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation44.values.add(new EvaluatedSkill(skill: skill3, value: 0.575))
+
+                def evaluation51 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation51.values.add(new EvaluatedSkill(skill: skill1, value: 0.95))
+                def evaluation52 = new Evaluation(tags: ['exercice'], pupil: pupil1, title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation52.values.add(new EvaluatedSkill(skill: skill1, value: 1))
+                def evaluation53 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle grands nombres').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation53.values.add(new EvaluatedSkill(skill: skill2, value: 1))
+                def evaluation54 = new Evaluation(tags: ['contrôle'], pupil: pupil1, title: 'Contrôle calcul').addToPreferredNotationSystems(preferredNotationSystem)
+                evaluation54.values.add(new EvaluatedSkill(skill: skill3, value: 0.9875))
 
 
                 pupil1
@@ -251,7 +260,7 @@ class BootStrap {
                         .addToEvaluations(evaluation54)
 
                 if (!teacher.save()) {
-                    log.error('Error saving teacher.')
+                    log.error('Error saving pupils world.')
                 }
             }
         } else {

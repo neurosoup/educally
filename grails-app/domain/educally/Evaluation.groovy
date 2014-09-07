@@ -3,15 +3,17 @@ package educally
 class Evaluation {
 
     static constraints = {
+
     }
 
     static belongsTo = [pupil: Pupil]
 
-    static hasMany = [evaluatedSkills: EvaluatedSkill]
+    static hasMany = [preferredNotationSystems: NotationSystem]
 
-    static hasOne = [preferredNotationSystem: NotationSystem]
+    static embedded = ['values']
 
     String title
     List<String> tags = []
+    List<EvaluatedSkill> values = []
 
 }
