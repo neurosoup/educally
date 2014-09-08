@@ -10,9 +10,12 @@ class Skill {
 
     static belongsTo = [skillBook: SkillBook]
 
+    static hasMany = [evaluations: Evaluation]
+
     String title
     String name
     String path
     Skill basedOn
+
 
 }
