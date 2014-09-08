@@ -230,7 +230,6 @@ class AppController {
 
                 ev = evaluationService.createEvaluationForPupil(['exercice'], pupil5, 'Récitation tables de multiplication', preferredNotationSystem, skill1, 0.95)
                 evaluationService.addEvaluationValue(ev, skill1, 0.1)
-                evaluationService.createEvaluationForPupil(['exercice'], pupil5, 'Récitation tables de multiplication', preferredNotationSystem, skill1, 1)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil5, 'Contrôle grands nombres', preferredNotationSystem, skill2, 1)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil5, 'Contrôle calcul', preferredNotationSystem, skill3, 0.9875)
 
