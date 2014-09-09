@@ -13,11 +13,16 @@ class AppController {
     def evaluationService
 
     def index() {
-        initializeData(false)
+
     }
 
-    def dashboard() {
+    def demodata() {
 
+    }
+
+    def resetdata() {
+        initializeData(true)
+        initializeData(false)
     }
 
     def logout = {
@@ -32,33 +37,24 @@ class AppController {
     }
 
     def initializeData(Boolean removeDemoData) {
-        log.info('Data initialization.')
+        log.info('Demo data initialization.')
 
-        //Initial admin user
-        log.info('Initializing admin user...')
-        def adminUser = User.findByUsername('admin')
-        if (!adminUser) {
-            def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
-            //def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
 
-            adminUser = new User(username: 'admin', password: 'admin')
-            adminUser.save(flush: true)
-
-            UserRole.create adminUser, adminRole, true
-        }
-
-        //2012-2013 Official Skills
-        log.info('Initializing skill books...')
-        //SkillLevel.findAllByRevision('2011-2012').each { it.delete() }
-
+        log.info('Initializing school year...')
         def schoolYear = SchoolYear.findByTitle('2012-2013')
-        if (!schoolYear) {
+        if (removeDemoData) {
+            if (schoolYear) schoolYear.delete()
+        } else if (!schoolYear) {
             schoolYear = new SchoolYear(title: '2012-2013', start: new DateTime(2012, 9, 2, 0, 0), end: new DateTime(2013, 7, 2, 0, 0))
             schoolYear.save()
         }
 
+        //Skill books
+        log.info('Initializing skill books...')
         def skillBook = SkillBook.findByTitle('LPC TEST')
-        if (!skillBook) {
+        if (removeDemoData) {
+            if (skillBook) skillBook.delete()
+        } else if (!skillBook) {
             skillBook = new SkillBook(title: 'LPC TEST', schoolYear: SchoolYear.findByTitle('2012-2013'))
 
             /* FRANCAIS */
@@ -137,36 +133,25 @@ class AppController {
             skillBook.save()
         }
 
-        //Notation systems
-        log.info('Initializing notation systems...')
-        createNotationSystem('Note sur 40', (0..40), 4)
-        createNotationSystem('Note sur 20', (0..20), 4)
-        createNotationSystem('Note sur 10', (0..10), 4)
-        createNotationSystem('Note sur 5', (0..5), 1)
-        createNotationSystem('Lettres de E à A', ('E'..'A'), 1)
-        createNotationSystem('Lettres de E à A avec signes + et -', ['E-', 'E', 'E+', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A', 'A+'], 1)
-        createNotationSystem('Rouge, Orange, Jaune, Vert', ['Rouge', 'Orange', 'Jaune', 'Vert'], 1)
-        createNotationSystem("Non acquis, En cours d'acquisition, Acquis", ["Non acquis", "En cours d'acquisition", "Acquis"], 1)
-
-        //Initial demo data
-        log.info('Initializing demo data...')
-
         //Teacher pupils and evaluations
         def user = User.findByEmail('demo.educally@gmail.com')
         if (user) {
             def account = Account.findByUser(user)
 
+            log.info('Initializing teacher...')
             def teacher = Teacher.findByAccount(account)
-            if (teacher) {
-                teacher.pupils.each { it.delete() }
-                teacher.delete()
-            }
 
-            if (!removeDemoData) {
+            if (removeDemoData) {
+                if (teacher) {
+                    teacher.pupils?.each { it.delete() }
+                    teacher.skillBooks?.each { it.delete() }
+                    teacher.delete()
+                }
+            } else if (!teacher) {
 
                 teacher = new Teacher(account: account)
 
-                def teacherSkillBook = new SkillBook(title: 'Mon livret bleu', reference: '2012')
+                def teacherSkillBook = new SkillBook(title: 'Mon livret bleu', schoolYear: SchoolYear.findByTitle('2012-2013'))
                 skillBook.skills.each {
                     teacherSkillBook.addToSkills(new Skill(basedOn: it, title: it.title, name: it.name, path: it.path))
                 }
@@ -180,6 +165,7 @@ class AppController {
                     log.error('Error saving teacher world.')
                 }
 
+                log.info('Initializing pupils...')
                 def pupil1 = new Pupil(firstName: 'Michel', lastName: 'Constantin', birthDay: new DateTime(1924, 7, 13, 0, 0), tags: ['cm2'])
                 def pupil2 = new Pupil(firstName: 'Alain', lastName: 'Peters', birthDay: new DateTime(1962, 3, 10, 0, 0), tags: ['cm2'])
                 def pupil3 = new Pupil(firstName: 'Audrey', lastName: 'Hepburn', birthDay: new DateTime(1929, 5, 4, 0, 0), tags: ['cm2'])
@@ -193,6 +179,7 @@ class AppController {
                         .addToPupils(pupil4)
                         .addToPupils(pupil5)
 
+                log.info('Initializing evaluations...')
                 def skill1 = teacher.skillBooks.find { it.title = 'Mon livret bleu' }.skills.find {
                     it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
                 }
@@ -205,31 +192,35 @@ class AppController {
                     it.title == 'Utiliser une calculatrice'
                 }
 
+                def skill4 = teacher.skillBooks.find { it.title = 'Mon livret bleu' }.skills.find {
+                    it.title == 'Lire, interpréter et construire quelques représentations simples : tableaux, graphiques'
+                }
+
                 def preferredNotationSystem = NotationSystem.findByTitle('Note sur 20')
 
                 def ev = evaluationService.createEvaluationForPupil(['exercice'], pupil1, 'Récitation tables de multiplication', preferredNotationSystem, skill1, 0.6)
-                evaluationService.addEvaluationValue(ev, skill1, 0.4)
+                evaluationService.addEvaluationValue(ev, skill4, 0.4)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil1, 'Contrôle grands nombres', preferredNotationSystem, skill2, 0.75)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil1, 'Contrôle calcul', preferredNotationSystem, skill3)
 
                 ev = evaluationService.createEvaluationForPupil(['exercice'], pupil2, 'Récitation tables de multiplication', preferredNotationSystem, skill1, 0.1)
-                evaluationService.addEvaluationValue(ev, skill1, 0.25)
+                evaluationService.addEvaluationValue(ev, skill4, 0.25)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil2, 'Contrôle grands nombres', preferredNotationSystem, skill2, 0.05)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil2, 'Contrôle calcul', preferredNotationSystem, skill3, 0.45)
 
 
                 ev = evaluationService.createEvaluationForPupil(['exercice'], pupil3, 'Récitation tables de multiplication', preferredNotationSystem, skill1)
-                evaluationService.addEvaluationValue(ev, skill1, 0.1)
+                evaluationService.addEvaluationValue(ev, skill4, 0.1)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil3, 'Contrôle grands nombres', preferredNotationSystem, skill2)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil3, 'Contrôle calcul', preferredNotationSystem, skill3)
 
                 ev = evaluationService.createEvaluationForPupil(['exercice'], pupil4, 'Récitation tables de multiplication', preferredNotationSystem, skill1, 0.5)
-                evaluationService.addEvaluationValue(ev, skill1, 0.55)
+                evaluationService.addEvaluationValue(ev, skill4, 0.55)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil4, 'Contrôle grands nombres', preferredNotationSystem, skill2, 0.45)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil4, 'Contrôle calcul', preferredNotationSystem, skill3, 0.575)
 
                 ev = evaluationService.createEvaluationForPupil(['exercice'], pupil5, 'Récitation tables de multiplication', preferredNotationSystem, skill1, 0.95)
-                evaluationService.addEvaluationValue(ev, skill1, 0.1)
+                evaluationService.addEvaluationValue(ev, skill4, 0.1)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil5, 'Contrôle grands nombres', preferredNotationSystem, skill2, 1)
                 evaluationService.createEvaluationForPupil(['contrôle'], pupil5, 'Contrôle calcul', preferredNotationSystem, skill3, 0.9875)
 
@@ -242,29 +233,8 @@ class AppController {
             log.warn('Cannot insert demo data because no demo user found.')
         }
 
-        log.info('Data initializing done.')
+        log.info('Data initialization done.')
     }
 
-    private void createNotationSystem(String title, List values, int steps) {
-        def notationSystem = NotationSystem.findByTitle(title)
-        if (!notationSystem) {
-            notationSystem = new NotationSystem(title: title)
-            BigDecimal value = 0
-            BigDecimal total = values.size() * steps - steps
-            values.eachWithIndex { x, i ->
-                for (int j = 0; j < steps; j++) {
-                    if (value > total && j > 0) break
-                    def dec = j / steps
-                    def displayDec = "${dec}".substring(1).replace('.', '')
-                    def displayValue = displayDec.length() > 0 ? "${x},${displayDec}" : "${x}"
-                    BigDecimal decimalValue = value / total
-                    def notationValue = new NotationValue(displayValue: displayValue, decimalValue: decimalValue)
-                    notationSystem.values.add(notationValue)
-                    value++
-                }
-            }
-            notationSystem.save()
-        }
-    }
 
 }

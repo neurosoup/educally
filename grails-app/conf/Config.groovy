@@ -160,7 +160,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     '/role*//**':                     ['ROLE_ADMIN'],
     '/registrationCode*//**':         ['ROLE_ADMIN'],
     '/securityInfo*//**':             ['ROLE_ADMIN'],
-    '/dashboard*//**':                ['IS_AUTHENTICATED_FULLY'],
+    '/data*//**':                ['IS_AUTHENTICATED_FULLY'],
     '/app*//**':                ['IS_AUTHENTICATED_FULLY']
 ]
 

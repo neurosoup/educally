@@ -41,8 +41,8 @@
 
         <ul>
             <li class="">
-                <a href="${createLink(controller: 'app', action: 'dashboard')}" title="Dashboard"><i
-                        class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
+                <a href="${createLink(controller: 'app', action: 'demodata')}" title="Données"><i
+                        class="fa fa-lg fa-fw fa-database"></i> <span class="menu-item-parent">Données</span></a>
             </li>
         </ul>
     </nav>

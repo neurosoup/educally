@@ -158,7 +158,7 @@
 	 		
 		var commands = {
 					
-			'show dashboard' : function() { $('nav a[href="ajax/dashboard.html"]').trigger("click"); },
+			'show dashboard' : function() { $('nav a[href="ajax/data.html"]').trigger("click"); },
 			'show inbox' : function() { $('nav a[href="ajax/inbox.html"]').trigger("click"); },
 			'show graphs' : function() { $('nav a[href="ajax/flot.html"]').trigger("click"); },
 			'show flotchart' : function() { $('nav a[href="ajax/flot.html"]').trigger("click"); },
