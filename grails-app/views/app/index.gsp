@@ -40,10 +40,19 @@
 				-->
 
         <ul>
-            <li class="">
-                <a href="${createLink(controller: 'app', action: 'demodata')}" title="Données"><i
-                        class="fa fa-lg fa-fw fa-database"></i> <span class="menu-item-parent">Données</span></a>
+            <li>
+                <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span
+                        class="menu-item-parent">Administration</span></a>
+                <ul>
+                    <li>
+                        <a href="${createLink(controller: 'app', action: 'administration')}">Général</a>
+                    </li>
+                    <li>
+                        <a href="${createLink(controller: 'pupil', action: 'index')}">Elèves</a>
+                    </li>
+                </ul>
             </li>
+
         </ul>
     </nav>
     <span class="minifyme" data-action="minifyMenu"><i class="fa fa-arrow-circle-left hit"></i></span>

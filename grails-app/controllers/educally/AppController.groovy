@@ -16,7 +16,7 @@ class AppController {
 
     }
 
-    def demodata() {
+    def administration() {
 
     }
 

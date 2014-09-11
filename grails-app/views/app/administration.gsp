@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <asset:stylesheet src="dashboard.cs"/>
+    <asset:stylesheet src="page.administration.cs"/>
 </head>
 
 <body>
 <div class="row">
     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
         <h1 class="page-title txt-color-blueDark"><i
-                class="fa-fw fa fa-database"></i> Données <span>> Données de test</span>
+                class="fa-fw fa fa-database"></i> Administration <span>> Général</span>
         </h1>
     </div>
 
@@ -48,7 +48,7 @@
                 <header>
                     <span class="widget-icon"><i class="fa fa-gears txt-color-white"></i></span>
 
-                    <h2>Actions sur les données de test</h2>
+                    <h2>Démo</h2>
                 </header>
 
                 <!-- widget div-->
@@ -87,7 +87,7 @@
 </section>
 <!-- end widget grid -->
 
-<asset:javascript src="page.demodata.js"/>
+<asset:javascript src="page.administration.js"/>
 
 </body>
 </html>
