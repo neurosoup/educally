@@ -1531,7 +1531,7 @@ if ($.navAsAjax) {
         checkURL();
     }
 
-    $(document).on('click', 'nav a[href!="#"]', function (e) {
+    $(document).on('click', 'nav a[href!="#"], th a[href!="#"], .nav a[href!="#"]', function (e) {
         e.preventDefault();
         var $this = $(e.currentTarget);
 
