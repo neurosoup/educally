@@ -92,7 +92,7 @@
     </div>
 </div>
 
-<asset:javascript src="page.reset-password.js"/>
+<asset:javascript src="security.reset-password.js"/>
 
 </body>
 </html>

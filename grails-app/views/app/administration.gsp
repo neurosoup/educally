@@ -87,7 +87,7 @@
 </section>
 <!-- end widget grid -->
 
-<asset:javascript src="page.administration.js"/>
+<asset:javascript src="app.administration.js"/>
 
 </body>
 </html>

@@ -35,8 +35,8 @@
           media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
     <link rel="apple-touch-startup-image" href="${assetPath(src: 'splash/iphone.png')}"
           media="screen and (max-device-width: 320px)">
-    <asset:stylesheet src="application.css"/>
-    <asset:javascript src="application.header.js"/>
+    <asset:stylesheet src="educally.css"/>
+    <asset:javascript src="app.header.js"/>
     <g:layoutHead/>
 </head>
 
@@ -82,7 +82,7 @@
 		* 'fixed-footer'      - Fixes footer
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
-<body class="">
+<body class="fixed-navigation">
 
 <!-- #HEADER -->
 <header id="header">
@@ -382,9 +382,10 @@
 
 <!--================================================== -->
 
-%{--<script data-pace-options='{ "restartOnRequestAfter": true }' src="${assetPath(src: 'plugin/pace/pace.min.js')}"></script>--}%
+%{--<script data-pace-options='{ "restartOnRequestAfter": false }' src="${assetPath(src: 'plugin/pace/pace.js')}"></script>--}%
 
-<asset:javascript src="application.js"/>
+
+<asset:javascript src="educally.js"/>
 
 <!--[if IE 8]>
 			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>

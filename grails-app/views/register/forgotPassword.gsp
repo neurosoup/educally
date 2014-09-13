@@ -89,7 +89,7 @@
     </div>
 </div>
 
-<asset:javascript src="page.forgot-password.js"/>
+<asset:javascript src="security.forgot-password.js"/>
 
 </body>
 </html>

@@ -188,7 +188,7 @@
     </div>
 </div>
 
-<asset:javascript src="page.register.js"/>
+<asset:javascript src="security.register.js"/>
 
 </body>
 </html>

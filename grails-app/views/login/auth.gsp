@@ -126,7 +126,7 @@
     </div>
 </div>
 
-<asset:javascript src="page.login.js"/>
+<asset:javascript src="security.login.js"/>
 
 </body>
 </html>
