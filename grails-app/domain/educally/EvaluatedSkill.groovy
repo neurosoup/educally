@@ -1,5 +1,7 @@
 package educally
 
+import org.joda.time.LocalDateTime
+
 class EvaluatedSkill {
 
     static constraints = {
@@ -10,6 +12,6 @@ class EvaluatedSkill {
 
     BigDecimal value
     Boolean missed = false
-
+    LocalDateTime dateTime
 
 }

@@ -79,6 +79,7 @@ grails.project.dependency.resolution = {
         compile ":spring-security-ui:1.0-RC2"
         compile ':mongodb:3.0.2'
         compile ":joda-time:1.5"
+        compile ":mongo-jodatime:0.1.4"
         compile ":mail:1.0.7"
         compile ":famfamfam:1.0.1"
     }

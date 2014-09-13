@@ -4,6 +4,7 @@ import educally.security.Role
 import educally.security.User
 import educally.security.UserRole
 import org.joda.time.DateTime
+import org.joda.time.LocalDate
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 
@@ -13,6 +14,10 @@ class AppController {
     def evaluationService
 
     def index() {
+
+    }
+
+    def undefined() {
 
     }
 
@@ -45,7 +50,7 @@ class AppController {
         if (removeDemoData) {
             if (schoolYear) schoolYear.delete()
         } else if (!schoolYear) {
-            schoolYear = new SchoolYear(title: '2012-2013', start: new DateTime(2012, 9, 2, 0, 0), end: new DateTime(2013, 7, 2, 0, 0))
+            schoolYear = new SchoolYear(title: '2012-2013', start: new LocalDate(2012, 9, 2), end: new LocalDate(2013, 7, 2))
             schoolYear.save()
         }
 
@@ -166,11 +171,11 @@ class AppController {
                 }
 
                 log.info('Initializing pupils...')
-                def pupil1 = new Pupil(firstName: 'Michel', lastName: 'Constantin', birthDay: new DateTime(1924, 7, 13, 0, 0), tags: ['cm2'])
-                def pupil2 = new Pupil(firstName: 'Alain', lastName: 'Peters', birthDay: new DateTime(1962, 3, 10, 0, 0), tags: ['cm2'])
-                def pupil3 = new Pupil(firstName: 'Audrey', lastName: 'Hepburn', birthDay: new DateTime(1929, 5, 4, 0, 0), tags: ['cm2'])
-                def pupil4 = new Pupil(firstName: 'Garret', lastName: 'Fitzgerald', birthDay: new DateTime(1926, 5, 19, 0, 0), tags: ['cm2'])
-                def pupil5 = new Pupil(firstName: 'Joelle', lastName: 'Mogensen', birthDay: new DateTime(1953, 2, 3, 0, 0), tags: ['cm2'])
+                def pupil1 = new Pupil(firstName: 'Michel', lastName: 'Constantin', birthDay: new LocalDate(1924, 7, 13), tags: ['cm2'])
+                def pupil2 = new Pupil(firstName: 'Alain', lastName: 'Peters', birthDay: new LocalDate(1962, 3, 10), tags: ['cm2'])
+                def pupil3 = new Pupil(firstName: 'Audrey', lastName: 'Hepburn', birthDay: new LocalDate(1929, 5, 4), tags: ['cm2'])
+                def pupil4 = new Pupil(firstName: 'Garret', lastName: 'Fitzgerald', birthDay: new LocalDate(1926, 5, 19), tags: ['cm2'])
+                def pupil5 = new Pupil(firstName: 'Joelle', lastName: 'Mogensen', birthDay: new LocalDate(1953, 2, 3), tags: ['cm2'])
 
                 teacher
                         .addToPupils(pupil1)

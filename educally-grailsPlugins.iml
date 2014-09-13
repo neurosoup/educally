@@ -67,6 +67,9 @@
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.7/grails-app/services" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.7/grails-app/taglib" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/target/work/plugins/mongo-jodatime-0.1.4">
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/mongo-jodatime-0.1.4/src/groovy" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/mongodb-3.0.2" />
     <content url="file://$MODULE_DIR$/target/work/plugins/scaffolding-2.1.2">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/scaffolding-2.1.2/src/java" isTestSource="false" />
@@ -96,6 +99,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="grails-2.4.3" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="grails-2.4.3" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="grails-2.4.3" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="grails-2.4.3" level="application" />
     <orderEntry type="module-library" exported="">

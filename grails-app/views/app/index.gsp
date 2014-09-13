@@ -41,16 +41,21 @@
 
         <ul>
             <li>
-                <a href="#"><i class="fa fa-lg fa-fw fa-bar-chart-o"></i> <span
-                        class="menu-item-parent">Administration</span></a>
+                <a href="#">
+                    <i class="fa fa-lg fa-fw fa-gear"></i>
+                    <span class="menu-item-parent">Administration</span>
+                </a>
                 <ul>
                     <li>
                         <a href="${createLink(controller: 'app', action: 'administration')}">Général</a>
                     </li>
-                    <li>
-                        <a href="${createLink(controller: 'pupil', action: 'index')}">Elèves</a>
-                    </li>
                 </ul>
+            </li>
+            <li>
+                <a href="${createLink(controller: 'evaluation', action: 'dashboard')}">
+                    <i class="fa fa-lg fa-fw fa-tachometer"></i>
+                    <span class="menu-item-parent">Evaluations</span>
+                </a>
             </li>
 
         </ul>

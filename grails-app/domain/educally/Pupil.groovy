@@ -1,6 +1,6 @@
 package educally
 
-import org.joda.time.DateTime
+import org.joda.time.LocalDate
 
 class Pupil {
 
@@ -12,7 +12,7 @@ class Pupil {
 
     String firstName
     String lastName
-    DateTime birthDay
+    LocalDate birthDay
     List<String> tags = []
 
 }

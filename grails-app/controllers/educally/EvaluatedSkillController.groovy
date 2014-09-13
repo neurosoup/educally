@@ -1,7 +1,7 @@
 package educally
 
 
-class PupilController {
+class EvaluatedSkillController {
     static scaffold = true
 
 }

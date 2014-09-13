@@ -160,8 +160,18 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     '/role*//**':                     ['ROLE_ADMIN'],
     '/registrationCode*//**':         ['ROLE_ADMIN'],
     '/securityInfo*//**':             ['ROLE_ADMIN'],
-    '/data*//**':                ['IS_AUTHENTICATED_FULLY'],
-    '/app*//**':                ['IS_AUTHENTICATED_FULLY'],
-    '/pupil*//**':                ['IS_AUTHENTICATED_FULLY']
+    '/data*//**':                     ['IS_AUTHENTICATED_FULLY'],
+    '/app*//**':                      ['IS_AUTHENTICATED_FULLY'],
+    '/pupil*//**':                    ['IS_AUTHENTICATED_FULLY'],
+    '/account*//**':                  ['IS_AUTHENTICATED_FULLY'],
+    '/evaluatedSkill*//**':           ['IS_AUTHENTICATED_FULLY'],
+    '/evaluation*//**':               ['IS_AUTHENTICATED_FULLY'],
+    '/notationSystem*//**':           ['IS_AUTHENTICATED_FULLY'],
+    '/notationValue*//**':            ['IS_AUTHENTICATED_FULLY'],
+    '/schoolYear*//**':               ['IS_AUTHENTICATED_FULLY'],
+    '/skill*//**':                    ['IS_AUTHENTICATED_FULLY'],
+    '/skillBook*//**':                ['IS_AUTHENTICATED_FULLY'],
+    '/teacher*//**':                  ['IS_AUTHENTICATED_FULLY']
 ]
 
+grails.plugin.fields.disableLookupCache = true

@@ -1,6 +1,6 @@
 package educally
 
-import org.joda.time.DateTime
+import org.joda.time.LocalDate
 
 class SchoolYear {
 
@@ -8,6 +8,6 @@ class SchoolYear {
     }
 
     String title
-    DateTime start
-    DateTime end
+    LocalDate start
+    LocalDate end
 }
