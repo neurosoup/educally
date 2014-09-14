@@ -80,292 +80,195 @@
 <!-- widget div-->
 <div>
 
-<!-- widget edit box -->
-<div class="jarviswidget-editbox">
-    <!-- This area used as dropdown edit box -->
+    <!-- widget edit box -->
+    <div class="jarviswidget-editbox">
+        <!-- This area used as dropdown edit box -->
 
-</div>
-<!-- end widget edit box -->
-
-<!-- widget content -->
-<div class="widget-body">
-
-<div id="nestable-menu">
-    <button type="button" class="btn btn-default" data-action="expand-all">
-        Expand All
-    </button>
-    <button type="button" class="btn btn-default" data-action="collapse-all">
-        Collapse All
-    </button>
-</div>
-
-<div class="row">
-
-<div class="col-sm-6 col-lg-4">
-
-    <h6>Nestable List #1</h6>
-
-    <div class="dd" id="nestable">
-        <ol class="dd-list">
-            <li class="dd-item" data-id="1">
-                <div class="dd-handle">
-                    Item 1 <span>- Description Field</span>
-                </div>
-            </li>
-            <li class="dd-item" data-id="2">
-                <div class="dd-handle">
-                    <h4><span class="semi-bold">Item 2</span> - Big Header</h4>
-                    <span>Description with piechart</span>
-                    <span class="air air-top-right padding-7">
-                        <div class="easy-pie-chart text-danger easyPieChart" data-percent="33" data-pie-size="40"
-                             data-pie-track-color="rgba(169, 3, 41,0.07)">
-                            <span class="percent percent-sign txt-color-red font-xs"></span>
-                        </div>
-                    </span>
-
-                </div>
-                <ol class="dd-list">
-                    <li class="dd-item" data-id="3">
-                        <div class="dd-handle">
-                            Item 3
-                        </div>
-                    </li>
-                    <li class="dd-item" data-id="4">
-                        <div class="dd-handle">
-                            Item 4
-                            <em class="label pull-right label-primary">
-                                Label ID
-                            </em>
-                        </div>
-                    </li>
-                    <li class="dd-item" data-id="5">
-                        <div class="dd-handle">
-                            Item 5
-
-                        </div>
-                        <ol class="dd-list">
-                            <li class="dd-item" data-id="6">
-                                <div class="dd-handle bg-color-blue txt-color-white">
-                                    <i>Item 6 (italic)</i>
-                                </div>
-                            </li>
-                            <li class="dd-item" data-id="7">
-                                <div class="dd-handle bg-color-pink txt-color-white">
-                                    <strong>Item 7 (bold)</strong>
-                                </div>
-                            </li>
-                            <li class="dd-item" data-id="8">
-                                <div class="dd-handle bg-color-greenLight txt-color-white">
-                                    <strong><i>Item 8 (Bold + Italic)</i></strong>
-                                </div>
-                            </li>
-                        </ol>
-                    </li>
-                    <li class="dd-item" data-id="9">
-                        <div class="dd-handle">
-                            Item 9
-
-                            <em class="badge pull-right bg-color-purple">
-                                99
-                            </em>
-                        </div>
-                    </li>
-                    <li class="dd-item" data-id="10">
-                        <div class="dd-handle">
-                            Item 10
-                        </div>
-                    </li>
-                </ol>
-            </li>
-            <li class="dd-item" data-id="11">
-                <div class="dd-handle">
-
-                    <div class="row">
-                        <div class="col-xs-8">
-                            Item 11
-                            <span class="font-xs text-muted">
-                                - with progress bar
-                            </span>
-                        </div>
-
-                        <div class="col-xs-4">
-                            <div class="progress progress-striped active no-margin">
-                                <div class="progress-bar progress-bar-primary" role="progressbar"
-                                     style="width: 37%">37%</div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </li>
-            <li class="dd-item" data-id="12">
-                <div class="dd-handle">
-
-                    <div class="row">
-                        <div class="col-xs-8 text-success">
-                            <strong>Item 12</strong>
-                            <span class="font-xs text-muted">
-                                - success text
-                            </span>
-                        </div>
-
-                        <div class="col-xs-4">
-                            <div class="progress progress-striped active no-margin">
-                                <div class="progress-bar progress-bar-success" role="progressbar"
-                                     style="width: 85%">85%</div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </li>
-        </ol>
     </div>
+    <!-- end widget edit box -->
 
-</div>
+    <!-- widget content -->
+    <div class="widget-body">
 
-<div class="col-sm-6 col-lg-4">
+        <hr class="simple">
 
-    <h6>Nestable List #2</h6>
-
-    <div class="dd" id="nestable2">
-        <ol class="dd-list">
-            <li class="dd-item" data-id="13">
-                <div class="dd-handle">
-                    Item 13
-
-                    <em class="pull-right badge bg-color-orange padding-5" rel="tooltip" title="" data-placement="left"
-                        data-original-title="Warning Icon Text"><i class="fa fa-warning fa-lg txt-color-white"></i></em>
-                </div>
+        <ul id="myTab1" class="nav nav-tabs bordered">
+            <li class="active">
+                <a href="#s1" data-toggle="tab">Left Tab <span class="badge bg-color-blue txt-color-white">12</span></a>
             </li>
-            <li class="dd-item" data-id="14">
-                <div class="dd-handle">
-                    Item 14
-                </div>
+            <li>
+                <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Tab Item 2</a>
             </li>
-            <li class="dd-item" data-id="15">
-                <div class="dd-handle">
-                    Item 15
-                </div>
-                <ol class="dd-list">
-                    <li class="dd-item" data-id="16">
-                        <div class="dd-handle">
-                            Item 16
-                        </div>
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b
+                        class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#s3" data-toggle="tab">@fat</a>
                     </li>
-                    <li class="dd-item" data-id="17">
-                        <div class="dd-handle text-right">
-                            Item 17 (text-right)
-                        </div>
+                    <li>
+                        <a href="#s4" data-toggle="tab">@mdo</a>
                     </li>
-                    <li class="dd-item" data-id="18">
-                        <div class="dd-handle">
-                            <i class="fa fa-check text-success"></i> Item 18 <br>
-
-                        </div>
-                    </li>
-                </ol>
+                </ul>
             </li>
-        </ol>
-    </div>
+            <li class="pull-right">
+                <a href="javascript:void(0);">
+                    <div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px"
+                         data-sparkline-width="90px" data-sparkline-barwidth="7">
+                        5,10,6,7,4,3
+                    </div></a>
+            </li>
+        </ul>
 
-</div>
+        <div id="myTabContent1" class="tab-content padding-10">
+            <div class="tab-pane fade in active" id="s1">
+                <div class="row">
 
-<div class="col-sm-6 col-lg-4">
+                    <div class="col-sm-6 col-lg-4">
 
-    <h6>Nestable List #3 (with drag handle)</h6>
+                        <h6>Nestable List #1</h6>
 
-    <div class="dd" id="nestable3">
-        <ol class="dd-list">
-            <li class="dd-item dd3-item" data-id="13">
-                <div class="dd-handle dd3-handle">
-                    Drag
-                </div>
+                        <div class="dd" id="nestable">
+                            <ol class="dd-list">
+                                <li class="dd-item" data-id="1">
+                                    <div class="dd-handle">
+                                        Item 1 <span>- Description Field</span>
+                                    </div>
+                                </li>
+                                <li class="dd-item" data-id="2">
+                                    <div class="dd-handle">
+                                        <h4><span class="semi-bold">Item 2</span> - Big Header</h4>
+                                        <span>Description with piechart</span>
+                                        <span class="air air-top-right padding-7">
+                                            <div class="easy-pie-chart text-danger easyPieChart" data-percent="33"
+                                                 data-pie-size="40"
+                                                 data-pie-track-color="rgba(169, 3, 41,0.07)">
+                                                <span class="percent percent-sign txt-color-red font-xs"></span>
+                                            </div>
+                                        </span>
 
-                <div class="dd3-content">
-                    Item 13
+                                    </div>
+                                    <ol class="dd-list">
+                                        <li class="dd-item" data-id="3">
+                                            <div class="dd-handle">
+                                                Item 3
+                                            </div>
+                                        </li>
+                                        <li class="dd-item" data-id="4">
+                                            <div class="dd-handle">
+                                                Item 4
+                                                <em class="label pull-right label-primary">
+                                                    Label ID
+                                                </em>
+                                            </div>
+                                        </li>
+                                        <li class="dd-item" data-id="5">
+                                            <div class="dd-handle">
+                                                Item 5
 
-                    <div class="pull-right">
-                        <div class="checkbox no-margin">
-                            <label>
-                                <input type="checkbox" class="checkbox style-0" checked="checked">
-                                <span class="font-xs">Checkbox 1</span>
-                            </label>
+                                            </div>
+                                            <ol class="dd-list">
+                                                <li class="dd-item" data-id="6">
+                                                    <div class="dd-handle bg-color-blue txt-color-white">
+                                                        <i>Item 6 (italic)</i>
+                                                    </div>
+                                                </li>
+                                                <li class="dd-item" data-id="7">
+                                                    <div class="dd-handle bg-color-pink txt-color-white">
+                                                        <strong>Item 7 (bold)</strong>
+                                                    </div>
+                                                </li>
+                                                <li class="dd-item" data-id="8">
+                                                    <div class="dd-handle bg-color-greenLight txt-color-white">
+                                                        <strong><i>Item 8 (Bold + Italic)</i></strong>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                        <li class="dd-item" data-id="9">
+                                            <div class="dd-handle">
+                                                Item 9
+
+                                                <em class="badge pull-right bg-color-purple">
+                                                    99
+                                                </em>
+                                            </div>
+                                        </li>
+                                        <li class="dd-item" data-id="10">
+                                            <div class="dd-handle">
+                                                Item 10
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class="dd-item" data-id="11">
+                                    <div class="dd-handle">
+
+                                        <div class="row">
+                                            <div class="col-xs-8">
+                                                Item 11
+                                                <span class="font-xs text-muted">
+                                                    - with progress bar
+                                                </span>
+                                            </div>
+
+                                            <div class="col-xs-4">
+                                                <div class="progress progress-striped active no-margin">
+                                                    <div class="progress-bar progress-bar-primary" role="progressbar"
+                                                         style="width: 37%">37%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li class="dd-item" data-id="12">
+                                    <div class="dd-handle">
+
+                                        <div class="row">
+                                            <div class="col-xs-8 text-success">
+                                                <strong>Item 12</strong>
+                                                <span class="font-xs text-muted">
+                                                    - success text
+                                                </span>
+                                            </div>
+
+                                            <div class="col-xs-4">
+                                                <div class="progress progress-striped active no-margin">
+                                                    <div class="progress-bar progress-bar-success" role="progressbar"
+                                                         style="width: 85%">85%</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ol>
                         </div>
+
                     </div>
-
                 </div>
-            </li>
-            <li class="dd-item dd3-item" data-id="14">
-                <div class="dd-handle dd3-handle">
-                    Drag
-                </div>
+            </div>
 
-                <div class="dd3-content">
-                    Item 14
-                </div>
-            </li>
-            <li class="dd-item dd3-item" data-id="15">
-                <div class="dd-handle dd3-handle">
-                    Drag
-                </div>
+            <div class="tab-pane fade" id="s2">
+                <p>
+                    Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
+                </p>
+            </div>
 
-                <div class="dd3-content">
-                    With a switch
+        </div>
 
-                    <span class="pull-right">
+        <div id="nestable-menu">
+            <button type="button" class="btn btn-default" data-action="expand-all">
+                Expand All
+            </button>
+            <button type="button" class="btn btn-default" data-action="collapse-all">
+                Collapse All
+            </button>
+        </div>
 
-                        <span class="onoffswitch">
-                            <input type="checkbox" name="start_interval" class="onoffswitch-checkbox"
-                                   id="start_interval">
-                            <label class="onoffswitch-label" for="start_interval">
-                                <div class="onoffswitch-inner" data-swchon-text="ON" data-swchoff-text="OFF"></div>
-
-                                <div class="onoffswitch-switch"></div>
-                            </label>
-                        </span>
-                    </span>
-
-                </div>
-                <ol class="dd-list">
-                    <li class="dd-item dd3-item" data-id="16">
-                        <div class="dd-handle dd3-handle">
-                            Drag
-                        </div>
-
-                        <div class="dd3-content">
-                            Item 16
-                        </div>
-                    </li>
-                    <li class="dd-item dd3-item" data-id="17">
-                        <div class="dd-handle dd3-handle">
-                            Drag
-                        </div>
-
-                        <div class="dd3-content">
-                            Item 17
-                        </div>
-                    </li>
-                    <li class="dd-item dd3-item" data-id="18">
-                        <div class="dd-handle dd3-handle">
-                            Drag
-                        </div>
-
-                        <div class="dd3-content">
-                            Item 18
-                        </div>
-                    </li>
-                </ol>
-            </li>
-        </ol>
     </div>
-
-</div>
-
-</div>
-
-</div>
-<!-- end widget content -->
+    <!-- end widget content -->
 
 </div>
 <!-- end widget div -->
