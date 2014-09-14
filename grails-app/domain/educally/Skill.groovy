@@ -8,6 +8,10 @@ class Skill {
         basedOn nullable: true
     }
 
+    static mapping = {
+        path index: true
+    }
+
     static belongsTo = [skillBook: SkillBook]
 
     static hasMany = [evaluations: Evaluation]
