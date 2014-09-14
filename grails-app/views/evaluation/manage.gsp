@@ -124,10 +124,17 @@
 
                     <div class="col-sm-12 col-lg-8">
 
-                        <h6>Nestable List #1</h6>
+
 
                         <div class="dd" id="nestable">
                             <ol class="dd-list">
+                                <g:each in="${skillInstanceSet}">
+                                    <li class="dd-item" data-id="1">
+                                        <div class="dd-handle">
+                                            ${it.title} <span>${it.path}</span>
+                                        </div>
+                                    </li>
+                                </g:each>
                                 <li class="dd-item" data-id="1">
                                     <div class="dd-handle">
                                         Item 1 <span>- Description Field</span>
