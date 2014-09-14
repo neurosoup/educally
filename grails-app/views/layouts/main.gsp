@@ -82,7 +82,7 @@
 		* 'fixed-footer'      - Fixes footer
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
-<body class="fixed-navigation">
+<body class="fixed-navigation fixed-header fixed-ribbon">
 
 <!-- #HEADER -->
 <header id="header">

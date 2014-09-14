@@ -18,27 +18,19 @@ class EvaluationService {
     }
 
     def addEvaluationValue(Evaluation evaluation, Skill skill, BigDecimal value) {
-        def toto = []
-        toto.each {}
         evaluation.values.add(new EvaluatedSkill(skill: skill, value: value, missed: !value, dateTime: LocalDateTime.now()))
         evaluation.save()
     }
 
-    def BigDecimal calculateSkillCoverageByTeacherAndSchoolYear(Teacher teacher, SchoolYear schoolYear) {
+    def Integer calculateSkillCoverage(Teacher teacher, SkillBook skillBook) {
 
-        def pupils = teacher.pupils
-        def skills = teacher.skillBooks.find { it.schoolYear == schoolYear }?.skills
-        if (skills) {
-            def evaluatedSkills = skills.findAll {
-                it.any {
-                    it.evaluations.any {
-                        pupils.contains(it.pupil)
-                    }
-                }
-            }
-            evaluatedSkills.count / skills.count
+        BigDecimal skillCount = Skill.countBySkillBook(skillBook)
+        BigDecimal evaluatedCount = teacher.pupils.evaluations.values.skill.flatten().collect { it.id }.unique().size().toBigDecimal()
+
+        if (skillCount > 0) {
+            Math.round(evaluatedCount / skillCount * 100)
         } else {
-            0.0
+            0
         }
 
     }

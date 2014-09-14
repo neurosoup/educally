@@ -57,10 +57,10 @@
                     <span class="menu-item-parent">Evaluations</span>
                 </a>
                 <ul>
-                    <g:each in="${schoolYearInstanceList}">
+                    <g:each in="${skillBookInstanceSet}">
                         <g:set var="schoolYear" value="${it}"/>
                         <li>
-                            <a href="${createLink(controller: 'evaluation', action: 'manage', params: [schoolYearId: it.id])}">${it.title}</a>
+                            <a href="${createLink(controller: 'evaluation', action: 'manage', params: [skillBookId: it.id])}">${it.title}</a>
                         </li>
                     </g:each>
                 </ul>

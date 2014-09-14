@@ -8,9 +8,8 @@ class SkillBook {
 
     static hasMany = [skills: Skill]
 
-    static hasOne = [schoolYear: SchoolYear]
-
     String title
     String description
+    SchoolYear schoolYear
 
 }

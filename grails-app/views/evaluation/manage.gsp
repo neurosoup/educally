@@ -11,7 +11,7 @@
         <h1 class="page-title txt-color-blueDark"><i class="fa fa-tachometer fa-fw "></i>
             Evaluations
             <span>>
-            Nestable Lists
+            ${skillBookTitle}
             </span>
         </h1>
     </div>
@@ -21,7 +21,7 @@
             <li class="sparks-info">
                 <h5>Couverture <span class="txt-color-blue"><i class="fa fa-check-circle"></i>&nbsp;${skillCoverage}%</span></h5>
             </li>
-            <li class="sparks-info">
+            %{--<li class="sparks-info">
                 <h5>Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up"
                                                                    data-rel="bootstrap-tooltip"
                                                                    title="Increased"></i>&nbsp;45%</span></h5>
@@ -37,7 +37,7 @@
                 <div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
                     110,150,300,130,400,240,220,310,220,300, 270, 210
                 </div>
-            </li>
+            </li>--}%
         </ul>
     </div>
 </div>
@@ -88,16 +88,17 @@
 
         <hr class="simple">
 
-        <ul id="myTab1" class="nav nav-tabs tabs-pull-right bordered">
+        <ul id="myTab1" class="nav nav-tabs bordered">
             <li class="active">
                 <a href="#s1" data-toggle="tab">Toutes les évaluations <span
                         class="badge bg-color-blue txt-color-white">${evaluationCount}</span></a>
             </li>
-            <li>
+            %{--<li>
                 <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Tab Item 2</a>
-            </li>
-            <li class="dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b
+            </li>--}%
+           %{-- <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Toutes les évaluations <span
+                        class="badge bg-color-blue txt-color-white">${evaluationCount}</span> <b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
@@ -107,14 +108,14 @@
                         <a href="#s4" data-toggle="tab">@mdo</a>
                     </li>
                 </ul>
-            </li>
-            <li class="pull-right">
+            </li>--}%
+            %{--<li class="pull-right">
                 <a href="javascript:void(0);">
                     <div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px"
                          data-sparkline-width="90px" data-sparkline-barwidth="7">
                         5,10,6,7,4,3
                     </div></a>
-            </li>
+            </li>--}%
         </ul>
 
         <div id="myTabContent1" class="tab-content padding-10">
@@ -288,7 +289,7 @@
 
         <div class="well well-sm well-light">
             <p>
-                <strong>Serialised Output (per list)</strong>
+                <strong>Debug</strong>
             </p>
 
             <p class="alert alert-info">
@@ -296,7 +297,7 @@
             </p>
             <textarea id="nestable-output" rows="3" class="form-control font-md"></textarea>
             <br>
-            <textarea id="nestable2-output" rows="3" class="form-control font-md"></textarea>
+
 
         </div>
 

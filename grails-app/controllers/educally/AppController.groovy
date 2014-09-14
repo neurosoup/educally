@@ -15,13 +15,14 @@ class AppController {
     def teacherService
 
     def index() {
-        def teacher = teacherService.currentTeacher
 
-        SchoolYear.async.task {
+        respond teacherService.currentTeacher.skillBooks
+
+        /*SchoolYear.async.task {
             [schoolYearList: list(params), count: count() ]
         }.then { result ->
             respond result.schoolYearList, model:[schoolYearCount: result.count]
-        }
+        }*/
     }
 
     def undefined() {

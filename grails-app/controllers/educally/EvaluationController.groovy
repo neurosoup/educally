@@ -1,22 +1,22 @@
 package educally
 
+import grails.async.Promise
+
 
 class EvaluationController {
 
     static scaffold = true
 
     def evaluationService
+    def asyncEvaluationService
     def teacherService
 
     def manage() {
         Teacher teacher = teacherService.currentTeacher
-        SchoolYear schoolYear = SchoolYear.get(params.schoolYearId)
+        SkillBook skillBook = SkillBook.get(params.int('skillBookId'))
 
-        Evaluation.async.task {
-            [evaluationList: list(params), count: count()]
-        }.then { result ->
-            respond result.evaluationList,
-                    model: [evaluationCount: result.count, skillCoverage: evaluationService.calculateSkillCoverageByTeacherAndSchoolYear(teacher, schoolYear)]
-        }
+        def skillCoverage = evaluationService.calculateSkillCoverage(teacher, skillBook)
+        respond skillBook.skills, model: [skillBookTitle: skillBook.title, evaluationCount: 15, skillCoverage: skillCoverage]
+
     }
 }
