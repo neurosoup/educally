@@ -20110,6 +20110,7 @@ img.away {
 }
 .easy-pie-chart {
   display: inline-block;
+    height: auto !important;
 }
 .easy-pie-chart .percent {
   color: #444;

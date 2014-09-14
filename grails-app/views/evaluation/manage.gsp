@@ -19,11 +19,7 @@
     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
         <ul id="sparks" class="">
             <li class="sparks-info">
-                <h5>My Income <span class="txt-color-blue">$47,171</span></h5>
-
-                <div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
-                    1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
-                </div>
+                <h5>Couverture <span class="txt-color-blue"><i class="fa fa-check-circle"></i>&nbsp;${skillCoverage}%</span></h5>
             </li>
             <li class="sparks-info">
                 <h5>Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up"
@@ -92,9 +88,10 @@
 
         <hr class="simple">
 
-        <ul id="myTab1" class="nav nav-tabs bordered">
+        <ul id="myTab1" class="nav nav-tabs tabs-pull-right bordered">
             <li class="active">
-                <a href="#s1" data-toggle="tab">Left Tab <span class="badge bg-color-blue txt-color-white">12</span></a>
+                <a href="#s1" data-toggle="tab">Toutes les évaluations <span
+                        class="badge bg-color-blue txt-color-white">${evaluationCount}</span></a>
             </li>
             <li>
                 <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Tab Item 2</a>
@@ -124,7 +121,7 @@
             <div class="tab-pane fade in active" id="s1">
                 <div class="row">
 
-                    <div class="col-sm-6 col-lg-4">
+                    <div class="col-sm-12 col-lg-8">
 
                         <h6>Nestable List #1</h6>
 
@@ -312,7 +309,7 @@
 </section>
 <!-- end widget grid -->
 
-<asset:javascript src="evaluation.dashboard.js"/>
+<asset:javascript src="evaluation.manage.js"/>
 
 </body>
 </html>

@@ -52,10 +52,18 @@
                 </ul>
             </li>
             <li>
-                <a href="${createLink(controller: 'evaluation', action: 'dashboard')}">
+                <a href="#">
                     <i class="fa fa-lg fa-fw fa-tachometer"></i>
                     <span class="menu-item-parent">Evaluations</span>
                 </a>
+                <ul>
+                    <g:each in="${schoolYearInstanceList}">
+                        <g:set var="schoolYear" value="${it}"/>
+                        <li>
+                            <a href="${createLink(controller: 'evaluation', action: 'manage', params: [schoolYearId: it.id])}">${it.title}</a>
+                        </li>
+                    </g:each>
+                </ul>
             </li>
 
         </ul>

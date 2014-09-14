@@ -10,4 +10,5 @@ class SchoolYear {
     String title
     LocalDate start
     LocalDate end
+    Boolean isArchived = false
 }

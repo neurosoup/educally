@@ -12,9 +12,16 @@ class AppController {
 
     def logoutHandlers
     def evaluationService
+    def teacherService
 
     def index() {
+        def teacher = teacherService.currentTeacher
 
+        SchoolYear.async.task {
+            [schoolYearList: list(params), count: count() ]
+        }.then { result ->
+            respond result.schoolYearList, model:[schoolYearCount: result.count]
+        }
     }
 
     def undefined() {
