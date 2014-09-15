@@ -20,7 +20,7 @@ class EvaluationController {
         def skillCoverage = evaluationService.calculateSkillCoverage(teacher, skillBook)
         def skills = skillBook.skills.sort { it.path }
 
-        respond skills, model: [skillBookTitle: skillBook.title, evaluationCount: evaluationCount, skillCoverage: skillCoverage]
+        respond skills, model: [skillBookId: skillBook.id, skillBookTitle: skillBook.title, evaluationCount: evaluationCount, skillCoverage: skillCoverage]
 
     }
 

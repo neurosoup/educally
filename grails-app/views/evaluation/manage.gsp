@@ -321,9 +321,9 @@
 <asset:javascript src="evaluation.manage.js"/>
 
 <script>
-    console.log("test ${skillInstanceList}");
+
     $(document).ready(function () {
-        console.log("ready! ${skillInstanceList}");
+        console.log("test ${skillBookId} ${skillInstanceList.size()}");
 
     });
 </script>
