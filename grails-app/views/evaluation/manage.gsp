@@ -324,6 +324,7 @@
 
     $(document).ready(function () {
         console.log("test ${skillBookId} ${skillInstanceList.size()}");
+        build(${skillInstanceList}, "")
 
     });
 </script>
