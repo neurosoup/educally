@@ -23,4 +23,9 @@ class EvaluationController {
         respond skills, model: [skillBookTitle: skillBook.title, evaluationCount: evaluationCount, skillCoverage: skillCoverage]
 
     }
+
+    def sortSkills() {
+        SkillBook skillBook = SkillBook.get(params.int('skillBookId'))
+        skillBook.skills.sort { it.path }
+    }
 }

@@ -8,35 +8,48 @@ pageSetUp();
  * PAGE RELATED SCRIPTS
  */
 
-function buildTree(skills, rootDiv) {
-    console.log(skills);
+function buildTree(skillsUrl, rootElement, skillBookId) {
 
-    /*var skillTemplate = $("#skill-template");
-
-    for (var i = 0, len = skills.length; i < len; i++) {
-
-        var skill = skills[i];
-        var template = skillTemplate.clone();
-        var content = template.find("#skill-content");
-        var idElement = template.find("li");
-
-        if (skill.name) {
-            idElement.data("id", skill.name);
-        } else {
-            idElement.data("id", skill.id)
+    $.ajax({
+        type: 'POST',
+        data: skillBookId,
+        url: skillsUrl,
+        success: function(data,textStatus){
+            build(data, rootElement);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
         }
+    });
 
-        content.html(skill.name);
+    var build = function (skills, rootElement) {
+        var skillTemplate = $("#skill-template");
 
-        if (skill.path) {
-            var path = skill.path.split(",");
-            var parentName = path[path.length - 1];
-            var parent = $("li").find("[data-id='" + parentName + "']");
-            parent.append(template.html());
-        } else {
-            rootDiv.append(template.html());
+        for (var i = 0, len = skills.length; i < len; i++) {
+
+            var skill = skills[i];
+            var template = skillTemplate.clone();
+            var content = template.find("#skill-content");
+            var idElement = template.find("li");
+
+            if (skill.name) {
+                idElement.data("id", skill.name);
+            } else {
+                idElement.data("id", skill.id)
+            }
+
+            content.html(skill.name);
+
+            if (skill.path) {
+                var path = skill.path.split(",");
+                var parentName = path[path.length - 1];
+                var parent = $("li").find("[data-id='" + parentName + "']");
+                parent.append(template.html());
+            } else {
+                rootElement.append(template.html());
+            }
         }
-    }*/
+    }
+
 };
 
 var pagefunction = function () {
