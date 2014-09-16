@@ -1,11 +1,12 @@
 package educally
 
-import grails.async.Promise
-
+import grails.converters.JSON
 
 class EvaluationController {
 
     static scaffold = true
+
+    static allowedMethods = [sortSkills: 'POST']
 
     def evaluationService
     def skillService
@@ -25,7 +26,9 @@ class EvaluationController {
     }
 
     def sortSkills() {
-        SkillBook skillBook = SkillBook.get(params.int('skillBookId'))
-        skillBook.skills.sort { it.path }
+        def skillBookId = params.int('skillBookId')
+        SkillBook skillBook = SkillBook.get(skillBookId)
+        def sortedSkills = skillBook.skills.sort { it.path }
+        render sortedSkills as JSON
     }
 }

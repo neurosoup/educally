@@ -8,81 +8,63 @@ pageSetUp();
  * PAGE RELATED SCRIPTS
  */
 
-var buildSkillTree = function (skills, rootElement) {
-
-    console.log("buildSkillTree", skills.count());
-
-    var skillTemplate = $("#skill-template");
-
-    for (var i = 0, len = skills.length; i < len; i++) {
-
-        var skill = skills[i];
-        var template = skillTemplate.clone();
-        var content = template.find("#skill-content");
-        var idElement = template.find("li");
-
-        if (skill.name) {
-            idElement.data("id", skill.name);
-        } else {
-            idElement.data("id", skill.id)
-        }
-
-        content.html(skill.name);
-
-        if (skill.path) {
-            var path = skill.path.split(",");
-            var parentName = path[path.length - 1];
-            var parent = $("li").find("[data-id='" + parentName + "']");
-            parent.append(template.html());
-        } else {
-            rootElement.append(template.html());
-        }
-    }
-};
-
-/*function buildTree(skillsUrl, rootElement, skillBookId) {
+function buildSkillTree(url, root) {
 
     $.ajax({
         type: 'POST',
-        data: skillBookId,
-        url: skillsUrl,
-        success: function(data,textStatus){
-            build(data, rootElement);
+        //data: null,
+        url: url,
+        success: function (data, textStatus) {
+            build(data, root);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log("Erreur lors de la construction de l'arbre du livret de compétence : " + errorThrown);
         }
     });
 
-    var build = function (skills, rootElement) {
+    var build = function (data, root) {
+
         var skillTemplate = $("#skill-template");
+        var rootElement = $(root);
 
-        for (var i = 0, len = skills.length; i < len; i++) {
+        console.log(data);
 
-            var skill = skills[i];
+        for (var i = 0, len = data.length; i < len; i++) {
+
+            var skill = data[i];
+
             var template = skillTemplate.clone();
             var content = template.find("#skill-content");
             var idElement = template.find("li");
 
+            console.log("name="+skill.name+" path="+skill.path);
+
             if (skill.name) {
-                idElement.data("id", skill.name);
+                idElement.attr("data-id", skill.name);
             } else {
-                idElement.data("id", skill.id)
+                idElement.attr("data-id", skill.id)
             }
 
-            content.html(skill.name);
+            content.html(skill.title);
+
+            console.log(template.html());
 
             if (skill.path) {
                 var path = skill.path.split(",");
-                var parentName = path[path.length - 1];
-                var parent = $("li").find("[data-id='" + parentName + "']");
+                var parentName = path[path.length - 2];
+                var parent = rootElement.find("[data-id='" + parentName + "']");
+
+                console.log(parent);
+
                 parent.append(template.html());
             } else {
-                rootElement.append(template.html());
+
+                rootElement.append("<ol class='dd-list'></o>").append(template.html());
             }
         }
-    }
+    };
 
-};*/
+}
 
 var pagefunction = function () {
 
