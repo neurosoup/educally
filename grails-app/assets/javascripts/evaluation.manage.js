@@ -8,7 +8,10 @@ pageSetUp();
  * PAGE RELATED SCRIPTS
  */
 
-var build = function (skills, rootElement) {
+var buildSkillTree = function (skills, rootElement) {
+
+    console.log("buildSkillTree", skills.count());
+
     var skillTemplate = $("#skill-template");
 
     for (var i = 0, len = skills.length; i < len; i++) {
@@ -35,7 +38,7 @@ var build = function (skills, rootElement) {
             rootElement.append(template.html());
         }
     }
-}
+};
 
 /*function buildTree(skillsUrl, rootElement, skillBookId) {
 

@@ -136,7 +136,7 @@
                                 </li>
                             </ol>
                         </div>
-                        <ol class="dd-list">
+                        %{--<ol class="dd-list">
                             <li class="dd-item" data-id="1">
                                 <div class="dd-handle">
                                     Item 1 <span>- Description Field</span>
@@ -250,7 +250,7 @@
 
                                 </div>
                             </li>
-                        </ol>
+                        </ol>--}%
                     </div>
 
                 </div>
@@ -321,13 +321,14 @@
 <asset:javascript src="evaluation.manage.js"/>
 
 <script>
-
     $(document).ready(function () {
         console.log("test ${skillBookId} ${skillInstanceList.size()}");
-        build(${skillInstanceList}, "")
+        //buildSkillTree(${skillInstanceList}, "#nestable");
 
     });
 </script>
+
+
 
 </body>
 </html>
