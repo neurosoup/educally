@@ -126,16 +126,8 @@
                 <div class="col-sm-12 col-lg-8">
 
                     <div class="dd" id="nestable">
-                        <div id="skill-template" class="hidden">
-                            <ol class="dd-list">
-                                <li class="dd-item">
-                                    <div class="dd-handle">
-                                        <div id="skill-content">
-                                        </div>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
+                        <ol class="dd-list" id="root-list">
+                        </ol>
                         %{--<ol class="dd-list">
                             <li class="dd-item" data-id="1">
                                 <div class="dd-handle">
@@ -320,11 +312,7 @@
 
 <asset:javascript src="evaluation.manage.js"/>
 
-<g:javascript>
-        buildSkillTree("${raw(skills)}", "#nestable");
-</g:javascript>
-
-
+<g:javascript>buildSkillTree("${raw(skills)}", "#root-list");</g:javascript>
 
 </body>
 </html>
