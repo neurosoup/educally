@@ -320,13 +320,11 @@
 
 <asset:javascript src="evaluation.manage.js"/>
 
-<script>
-    $(document).ready(function () {
-        var url = '${createLink(controller: "evaluation", action: "sortSkills", params: [skillBookId: "${skillBookId}"])}';
-        buildSkillTree(url, "#nestable");
+<g:javascript>
+        buildSkillTree("${raw(skills)}", "#nestable");
+</g:javascript>
 
-    });
-</script>
+
 
 </body>
 </html>

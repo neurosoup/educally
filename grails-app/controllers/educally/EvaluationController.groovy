@@ -1,6 +1,7 @@
 package educally
 
 import grails.converters.JSON
+import grails.converters.XML
 
 class EvaluationController {
 
@@ -21,7 +22,7 @@ class EvaluationController {
         def skillCoverage = evaluationService.calculateSkillCoverage(teacher, skillBook)
         def skills = skillBook.skills.sort { it.path }
 
-        respond skills, model: [skillBookId: skillBook.id, skillBookTitle: skillBook.title, evaluationCount: evaluationCount, skillCoverage: skillCoverage]
+        [skills: skills as JSON, skillBookId: skillBook.id, skillBookTitle: skillBook.title, evaluationCount: evaluationCount, skillCoverage: skillCoverage]
 
     }
 

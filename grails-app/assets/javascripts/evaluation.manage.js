@@ -8,56 +8,47 @@ pageSetUp();
  * PAGE RELATED SCRIPTS
  */
 
-function buildSkillTree(url, root) {
+var buildSkillTree = function (data, root) {
 
-    $.ajax({
-        type: 'POST',
-        //data: null,
-        url: url,
-        success: function (data, textStatus) {
-            build(data, root);
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log("Erreur lors de la construction du livret de compétence : " + errorThrown);
+    var skillTemplate = $("#skill-template");
+    var rootElement = $(root);
+    var skills = JSON.parse(data);
+
+    console.log(skills);
+
+    for (var i = 0, len = skills.length; i < len; i++) {
+
+        var template = skillTemplate.clone();
+
+        var skill = skills[i];
+        console.log("name=" + skill.name + " path=" + skill.path);
+
+        var dataElement = template.find("ol");
+
+        dataElement.attr("data-id", skill.id);
+        template.find("#skill-content").html(skill.title);
+
+        if (skill.name) {
+            dataElement.attr("data-name", skill.name)
         }
-    });
 
-    var build = function (data, root) {
+        if (skill.path) {
+            var path = skill.path.split(",");
+            var parentName = path[path.length - 2];
+            var parent = rootElement.find("[data-name='" + parentName + "']").children().first();
 
-        var skillTemplate = $("#skill-template");
-        var rootElement = $(root);
+            parent.append(template.html());
 
-        var knownParents = [];
+            //console.log("name=" + skill.name + " parent=" + parentName + "\n parent=" + parent+ " html=" + parent.html());
 
-        for (var i = 0, len = data.length; i < len; i++) {
 
-            var template = skillTemplate.clone();
-
-            var skill = data[i];
-            template.find("li").attr("data-id", skill.id)
-            template.find("#skill-content").html(skill.title);
-
-            if (skill.path) {
-                var path = skill.path.split(",");
-                var parentName = path[path.length - 2];
-                var parent = rootElement.find("[data-name='" + parentName + "']");
-
-                if (knownParents.indexOf(parentName) == -1) {
-                    knownParents.push(parentName);
-                    parent.append("<ol data-name='" + skill.name + "' class='dd-list'></o>").append(template.html());
-                } else {
-                    parent.append(template.html());
-                }
-
-                console.log(knownParents);
-
-            } else {
-                rootElement.append("<ol data-name='" + skill.name + "' class='dd-list'></o>").append(template.html());
-            }
+        } else {
+            rootElement.append(template.html());
+            //console.log("name=" + skill.name + " parent=root");
         }
-    };
+    }
 
-}
+};
 
 var pagefunction = function () {
 
