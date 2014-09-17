@@ -18,7 +18,7 @@ function buildSkillTree(url, root) {
             build(data, root);
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
-            console.log("Erreur lors de la construction de l'arbre du livret de compétence : " + errorThrown);
+            console.log("Erreur lors de la construction du livret de compétence : " + errorThrown);
         }
     });
 
@@ -27,39 +27,32 @@ function buildSkillTree(url, root) {
         var skillTemplate = $("#skill-template");
         var rootElement = $(root);
 
-        console.log(data);
+        var knownParents = [];
 
         for (var i = 0, len = data.length; i < len; i++) {
 
-            var skill = data[i];
-
             var template = skillTemplate.clone();
-            var content = template.find("#skill-content");
-            var idElement = template.find("li");
 
-            console.log("name="+skill.name+" path="+skill.path);
-
-            if (skill.name) {
-                idElement.attr("data-id", skill.name);
-            } else {
-                idElement.attr("data-id", skill.id)
-            }
-
-            content.html(skill.title);
-
-            console.log(template.html());
+            var skill = data[i];
+            template.find("li").attr("data-id", skill.id)
+            template.find("#skill-content").html(skill.title);
 
             if (skill.path) {
                 var path = skill.path.split(",");
                 var parentName = path[path.length - 2];
-                var parent = rootElement.find("[data-id='" + parentName + "']");
+                var parent = rootElement.find("[data-name='" + parentName + "']");
 
-                console.log(parent);
+                if (knownParents.indexOf(parentName) == -1) {
+                    knownParents.push(parentName);
+                    parent.append("<ol data-name='" + skill.name + "' class='dd-list'></o>").append(template.html());
+                } else {
+                    parent.append(template.html());
+                }
 
-                parent.append(template.html());
+                console.log(knownParents);
+
             } else {
-
-                rootElement.append("<ol class='dd-list'></o>").append(template.html());
+                rootElement.append("<ol data-name='" + skill.name + "' class='dd-list'></o>").append(template.html());
             }
         }
     };
