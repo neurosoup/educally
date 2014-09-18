@@ -10,52 +10,39 @@ pageSetUp();
 
 var buildSkillTree = function (data, root) {
 
-
     var rootElement = $(root);
     var skills = JSON.parse(data);
 
-    var itemHtml = "<li class='dd-item'><div class='dd-handle'></div></li>";
-    var listHtml = "<ol class='dd-list'></ol>";
-    var itemTemplate = $("<div/>").html(itemHtml);
-    var listTemplate = $("<div/>").html(rootHtml);
-
-    //console.log(skills);
+    var html = "<li class='dd-item'><div class='dd-handle dd3-handle'></div><div class='dd3-content></div>' <ol class='dd-list'></ol></li>";
+    var template = $("<div/>").html(html);
 
     for (var i = 0, len = skills.length; i < len; i++) {
 
-        var itemElement = itemTemplate.clone();
-        var listElement = listTemplate.clone();
-        var itemDataElement = itemElement.find("li");
-        var listDataElement = itemElement.find("ol");
+        var item = template.clone();
+        var name = item.find("ol");
+        var id = item.find("id");
 
         var skill = skills[i];
 
-        itemDataElement.attr("data-id", skill.id);
-        itemElement.find(".dd-handle").html(skill.title);
+        id.attr("data-id", skill.id);
+        item.find(".dd3-content").html(skill.title);
         if (skill.name) {
-            itemDataElement.attr("data-name", skill.name);
-            listDataElement.attr("data-name", skill.name);
+            name.attr("data-name", skill.name);
+        } else
+        {
+            name.remove();
         }
 
         //Determine parent name
-        var parentName = "";
-        var parent = null;
+        var parentName = "root";
         if (skill.path) {
             var path = skill.path.split(",");
             parentName = path[path.length - 2];
-        } else {
-            parentName = "root-list";
         }
 
         //Find parent and insert item element
-        parent = rootElement.find("li[data-name='" + parentName + "']");
-        if (!parent) {
-            parent = rootElement.append(listElement.html());
-        }
-        parent.append(itemElement.html());
-
-
-        //console.log("name=" + skill.name + " parent=" + parentName + "\n parent=" + parent+ " html=" + parent.html());
+        var parent = rootElement.find("ol[data-name='" + parentName + "']");
+        parent.append(item.html());
     }
 
     $('#nestable').nestable();
