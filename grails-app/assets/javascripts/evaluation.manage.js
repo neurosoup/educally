@@ -13,7 +13,7 @@ var buildSkillTree = function (data, root) {
     var rootElement = $(root);
     var skills = JSON.parse(data);
 
-    var html = "<li class='dd-item dd3-item'><div class='dd-handle dd3-handle'></div><div class='dd3-content'></div>' <ol class='dd-list'></ol></li>";
+    var html = "<li class='dd-item dd3-item'><div class='dd3-content'></div><ol class='dd-list'></ol></li>";
     var template = $("<div/>").html(html);
 
     for (var i = 0, len = skills.length; i < len; i++) {
