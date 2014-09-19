@@ -18965,7 +18965,7 @@ textarea.clone {
 .dd3-content {
     display: block;
     margin: 3px 0px 0px 20px;
-    padding: 6px 10px 8px 40px;
+    padding: 6px 10px 8px 10px;
     font-size: 15px;
     color: #333333;
     text-decoration: none;
@@ -18976,6 +18976,7 @@ textarea.clone {
 .dd3-content:hover {
     color: #2ea8e5;
     background: #ffffff;
+    cursor: hand;
 }
 
 .dd-dragel > .dd3-item > .dd3-content {
@@ -18983,7 +18984,7 @@ textarea.clone {
 }
 
 .dd3-item > button {
-    margin-left: 38px;
+    margin-left: 26px;
 }
 
 .dd3-handle {

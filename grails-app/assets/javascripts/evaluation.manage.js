@@ -25,7 +25,7 @@ var buildSkillTree = function (data, root) {
         var skill = skills[i];
 
         id.attr("data-id", skill.id);
-        item.find(".dd3-content").html(skill.title);
+        item.find(".dd3-content").html(skill.name + '<g:render template="displaybook" bean="${book}" />');
         if (skill.name) {
             name.attr("data-name", skill.name);
         } else

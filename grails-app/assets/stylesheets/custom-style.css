@@ -14,3 +14,14 @@
 .smart-form .input input, .smart-form .select select, .smart-form .textarea textarea {
     padding: 7px 10px;
 }
+
+.dd3-like {
+    display: block;
+    margin: 3px 0px 0px 20px;
+    padding: 6px 10px 8px 10px;
+    font-size: 15px;
+    color: #333333;
+    text-decoration: none;
+    border: 1px solid #cfcfcf;
+    background: #fbfbfb;
+}

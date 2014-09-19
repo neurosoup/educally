@@ -46,15 +46,15 @@
 <!-- widget grid -->
 <section id="widget-grid" class="">
 
-<!-- row -->
-<div class="row">
+    <!-- row -->
+    <div class="row">
 
-<!-- NEW WIDGET START -->
-<article class="col-sm-12">
+        <!-- NEW WIDGET START -->
+        <article class="col-sm-12">
 
-<!-- Widget ID (each widget will need unique ID)-->
-<div class="jarviswidget well" id="wid-id-0">
-<!-- widget options:
+            <!-- Widget ID (each widget will need unique ID)-->
+            <div class="jarviswidget well" id="wid-id-0">
+                <!-- widget options:
 				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
 				data-widget-colorbutton="false"
@@ -67,130 +67,139 @@
 				data-widget-sortable="false"
 
 				-->
-<header>
-    <span class="widget-icon"><i class="fa fa-comments"></i></span>
+                <header>
+                    <span class="widget-icon"><i class="fa fa-comments"></i></span>
 
-    <h2>My Data</h2>
+                    <h2>My Data</h2>
 
-</header>
+                </header>
 
-<!-- widget div-->
-<div>
+                <!-- widget div-->
+                <div>
 
-<!-- widget edit box -->
-<div class="jarviswidget-editbox">
-    <!-- This area used as dropdown edit box -->
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
 
-</div>
-<!-- end widget edit box -->
-
-<!-- widget content -->
-<div class="widget-body">
-
-    <hr class="simple">
-
-    <ul id="myTab1" class="nav nav-tabs bordered">
-        <li class="active">
-            <a href="#s1" data-toggle="tab">Toutes les évaluations <span
-                    class="badge bg-color-blue txt-color-white">${evaluationCount}</span></a>
-        </li>
-        %{--<li>
-            <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Tab Item 2</a>
-        </li>--}%
-        %{-- <li class="dropdown">
-             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Toutes les évaluations <span
-                     class="badge bg-color-blue txt-color-white">${evaluationCount}</span> <b
-                     class="caret"></b></a>
-             <ul class="dropdown-menu">
-                 <li>
-                     <a href="#s3" data-toggle="tab">@fat</a>
-                 </li>
-                 <li>
-                     <a href="#s4" data-toggle="tab">@mdo</a>
-                 </li>
-             </ul>
-         </li>--}%
-        %{--<li class="pull-right">
-            <a href="javascript:void(0);">
-                <div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px"
-                     data-sparkline-width="90px" data-sparkline-barwidth="7">
-                    5,10,6,7,4,3
-                </div></a>
-        </li>--}%
-    </ul>
-
-    <div id="myTabContent1" class="tab-content padding-10">
-        <div class="tab-pane fade in active" id="s1">
-            <div class="row">
-
-                <div class="col-sm-12 col-lg-8">
-
-                    <div class="dd" id="nestable">
-                        <ol class="dd-list" data-name="root">
-                        </ol>
                     </div>
+                    <!-- end widget edit box -->
+
+                    <!-- widget content -->
+                    <div class="widget-body">
+
+                        <hr class="simple">
+
+                        <ul id="myTab1" class="nav nav-tabs bordered">
+                            <li class="active">
+                                <a href="#s1" data-toggle="tab">Toutes les évaluations <span
+                                        class="badge bg-color-blue txt-color-white">${evaluationCount}</span></a>
+                            </li>
+                            %{--<li>
+                                <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Tab Item 2</a>
+                            </li>--}%
+                            %{-- <li class="dropdown">
+                                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Toutes les évaluations <span
+                                         class="badge bg-color-blue txt-color-white">${evaluationCount}</span> <b
+                                         class="caret"></b></a>
+                                 <ul class="dropdown-menu">
+                                     <li>
+                                         <a href="#s3" data-toggle="tab">@fat</a>
+                                     </li>
+                                     <li>
+                                         <a href="#s4" data-toggle="tab">@mdo</a>
+                                     </li>
+                                 </ul>
+                             </li>--}%
+                            %{--<li class="pull-right">
+                                <a href="javascript:void(0);">
+                                    <div class="sparkline txt-color-pinkDark text-align-right" data-sparkline-height="18px"
+                                         data-sparkline-width="90px" data-sparkline-barwidth="7">
+                                        5,10,6,7,4,3
+                                    </div></a>
+                            </li>--}%
+                        </ul>
+
+                        <div id="myTabContent1" class="tab-content padding-10">
+                            <div class="tab-pane fade in active" id="s1">
+                                <div class="row">
+
+                                    <div class="col-sm-6 col-lg-6">
+
+                                        <div class="dd" id="nestable">
+                                            <ol class="dd-list" data-name="root">
+                                            </ol>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-6 col-lg-6">
+
+                                        <div class="dd3-like">
+                                            <p>
+                                                test
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="s2">
+                                <p>
+                                    Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div id="nestable-menu">
+                            <button type="button" class="btn btn-default" data-action="expand-all">
+                                Expand All
+                            </button>
+                            <button type="button" class="btn btn-default" data-action="collapse-all">
+                                Collapse All
+                            </button>
+                        </div>
+
+                    </div>
+                    <!-- end widget content -->
 
                 </div>
+                <!-- end widget div -->
+
             </div>
-        </div>
+            <!-- end widget -->
 
-        <div class="tab-pane fade" id="s2">
-            <p>
-                Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee.
-            </p>
-        </div>
+        </article>
+        <!-- WIDGET END -->
 
     </div>
 
-    <div id="nestable-menu">
-        <button type="button" class="btn btn-default" data-action="expand-all">
-            Expand All
-        </button>
-        <button type="button" class="btn btn-default" data-action="collapse-all">
-            Collapse All
-        </button>
-    </div>
+    <!-- end row -->
 
-</div>
-<!-- end widget content -->
+    <!-- row -->
 
-</div>
-<!-- end widget div -->
+    <div class="row">
 
-</div>
-<!-- end widget -->
+        <div class="col-sm-12">
 
-</article>
-<!-- WIDGET END -->
+            <div class="well well-sm well-light">
+                <p>
+                    <strong>Debug</strong>
+                </p>
 
-</div>
+                <p class="alert alert-info">
+                    Preview of the lists update DB input.
+                </p>
+                <textarea id="nestable-output" rows="3" class="form-control font-md"></textarea>
+                <br>
 
-<!-- end row -->
-
-<!-- row -->
-
-<div class="row">
-
-    <div class="col-sm-12">
-
-        <div class="well well-sm well-light">
-            <p>
-                <strong>Debug</strong>
-            </p>
-
-            <p class="alert alert-info">
-                Preview of the lists update DB input.
-            </p>
-            <textarea id="nestable-output" rows="3" class="form-control font-md"></textarea>
-            <br>
+            </div>
 
         </div>
 
     </div>
 
-</div>
-
-<!-- end row -->
+    <!-- end row -->
 
 </section>
 <!-- end widget grid -->
