@@ -9,6 +9,7 @@
 *
 *= require bootstrap
 *= require font-awesome
+*= require jquery.mCustomScrollbar
 *= require smartadmin-production
 *= require smartadmin-skins
 *= require custom-style

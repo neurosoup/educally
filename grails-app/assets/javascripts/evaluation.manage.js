@@ -8,29 +8,35 @@ pageSetUp();
  * PAGE RELATED SCRIPTS
  */
 
-var buildSkillTree = function (data, root) {
+var buildSkillTree = function (data, root, nodeTemplate) {
 
-    var rootElement = $(root);
     var skills = JSON.parse(data);
 
-    var html = "<li class='dd-item dd3-item'><div class='dd3-content'></div><ol class='dd-list'></ol></li>";
-    var template = $("<div/>").html(html);
+    console.log(skills)
+
+    var nodeElement = $("<div/>").html(nodeTemplate);
+    var rootElement = $(root);
 
     for (var i = 0, len = skills.length; i < len; i++) {
 
-        var item = template.clone();
-        var name = item.find("ol");
-        var id = item.find("id");
+        var node = nodeElement.clone();
+        var nameHolder = node.find("ol");
+        var idHolder = node.find("li");
+        var contentHolder = node.find(".inner-content");
 
         var skill = skills[i];
 
-        id.attr("data-id", skill.id);
-        item.find(".dd3-content").html(skill.name + '<g:render template="displaybook" bean="${book}" />');
+        idHolder.attr("data-id", skill.id);
+        contentHolder.html(skill.title);
+
+        contentHolder.popover({
+            container: 'body'
+        });
+
         if (skill.name) {
-            name.attr("data-name", skill.name);
-        } else
-        {
-            name.remove();
+            nameHolder.attr("data-name", skill.name);
+        } else {
+            nameHolder.remove();
         }
 
         //Determine parent name
@@ -42,11 +48,40 @@ var buildSkillTree = function (data, root) {
 
         //Find parent and insert item element
         var parent = rootElement.find("ol[data-name='" + parentName + "']");
-        parent.append(item.html());
+        parent.append(node.html());
     }
 
-    $('#nestable').nestable();
-    $('.dd').nestable('collapseAll');
+    //Initialize nestable
+    var nestable = $('#nestable');
+
+    nestable.nestable();
+
+    $('.inner-content').each(function () {
+        var $element = $(this);
+
+        $element.truncate({
+            lines: 1,
+            lineHeight: 20
+        });
+    });
+
+    nestable.nestable('collapseAll');
+
+    nestable.mCustomScrollbar({
+        axis: "y",
+        theme: "dark-3"
+    });
+
+    resizeContent();
+
+};
+
+var resizeContent = function () {
+
+    var height = $(window).height();
+    var nestable = $('#nestable');
+
+    nestable.css('height', height / 3);
 };
 
 var pagefunction = function () {
@@ -82,6 +117,8 @@ var pagefunction = function () {
 // end pagefunction
 
 pagefunction();
+
+$(window).resize(resizeContent);
 
 
 

@@ -6,7 +6,7 @@
 
 <body>
 
-<div class="row">
+<div id="page-title" class="row">
     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
         <h1 class="page-title txt-color-blueDark"><i class="fa fa-tachometer fa-fw "></i>
             Evaluations
@@ -52,25 +52,11 @@
         <!-- NEW WIDGET START -->
         <article class="col-sm-12">
 
-            <!-- Widget ID (each widget will need unique ID)-->
             <div class="jarviswidget well" id="wid-id-0">
-                <!-- widget options:
-				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-				data-widget-colorbutton="false"
-				data-widget-editbutton="false"
-				data-widget-togglebutton="false"
-				data-widget-deletebutton="false"
-				data-widget-fullscreenbutton="false"
-				data-widget-custombutton="false"
-				data-widget-collapsed="true"
-				data-widget-sortable="false"
-
-				-->
                 <header>
                     <span class="widget-icon"><i class="fa fa-comments"></i></span>
 
-                    <h2>My Data</h2>
+                    <h2>Compétences</h2>
 
                 </header>
 
@@ -121,9 +107,10 @@
 
                         <div id="myTabContent1" class="tab-content padding-10">
                             <div class="tab-pane fade in active" id="s1">
+
                                 <div class="row">
 
-                                    <div class="col-sm-6 col-lg-6">
+                                    <div class="col-xs-6 col-sm-6 col-lg-6">
 
                                         <div class="dd" id="nestable">
                                             <ol class="dd-list" data-name="root">
@@ -132,7 +119,7 @@
 
                                     </div>
 
-                                    <div class="col-sm-6 col-lg-6">
+                                    <div class="col-xs-6 col-sm-6 col-lg-6">
 
                                         <div class="dd3-like">
                                             <p>
@@ -206,7 +193,11 @@
 
 <asset:javascript src="evaluation.manage.js"/>
 
-<g:javascript>buildSkillTree("${raw(skills)}", "#nestable");</g:javascript>
+<g:javascript>
+
+    buildSkillTree("${raw(skills)}", "#nestable", "${g.render(template: 'skillNode')}");
+
+</g:javascript>
 
 </body>
 </html>
