@@ -239,6 +239,7 @@
          * Returns nothing.
          */
         update: function (html) {
+
             var wasExpanded = !this.isCollapsed;
 
             // Update HTML if provided, otherwise use the current html and restore
@@ -246,6 +247,7 @@
             if (html) {
                 this.original = this.element.innerHTML = html;
             } else if (this.isCollapsed && this.element.innerHTML === this.cached) {
+                console.log("this.isCollapsed="+this.isCollapsed+" this.cached="+this.cached);
                 this.element.innerHTML = this.original;
             }
 

@@ -20,6 +20,7 @@
  */
 .dd3-content {
     font-size: 13px;
+    white-space: nowrap;
 }
 
 .dd {

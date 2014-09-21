@@ -8,7 +8,7 @@
 //= require plugin/msie-fix/jquery.mb.browser
 //= require plugin/fastclick/fastclick
 //= require plugin/customscrollbar/jquery.mCustomScrollbar
-//= require plugin/truncate/truncate
+//= require plugin/succinct/jQuery.succinct
 
 
 //= require speech/voicecommand

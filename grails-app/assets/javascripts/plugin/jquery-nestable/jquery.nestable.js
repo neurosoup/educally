@@ -199,6 +199,7 @@
             li.children('[data-action="expand"]').hide();
             li.children('[data-action="collapse"]').show();
             li.children(this.options.listNodeName).show();
+            li.trigger('change');
         },
 
         collapseItem: function(li)

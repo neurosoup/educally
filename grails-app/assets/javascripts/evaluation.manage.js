@@ -29,10 +29,6 @@ var buildSkillTree = function (data, root, nodeTemplate) {
         idHolder.attr("data-id", skill.id);
         contentHolder.html(skill.title);
 
-        contentHolder.popover({
-            container: 'body'
-        });
-
         if (skill.name) {
             nameHolder.attr("data-name", skill.name);
         } else {
@@ -49,39 +45,61 @@ var buildSkillTree = function (data, root, nodeTemplate) {
         //Find parent and insert item element
         var parent = rootElement.find("ol[data-name='" + parentName + "']");
         parent.append(node.html());
+
     }
 
     //Initialize nestable
     var nestable = $('#nestable');
-
     nestable.nestable();
-
-    $('.inner-content').each(function () {
-        var $element = $(this);
-
-        $element.truncate({
-            lines: 1,
-            lineHeight: 20
-        });
-    });
-
     nestable.nestable('collapseAll');
-
     nestable.mCustomScrollbar({
         axis: "y",
         theme: "dark-3"
     });
 
-    resizeContent();
+    /* $("[data-action='expand']").click(function (e) {
+     truncNestable($(e.target).siblings("ol:first"));
+     });*/
 
+    $(".dd-item").on('change', function (e) {
+        truncNestable($(e.target).children("ol.dd-list"));
+    });
+
+    truncNestable($("[data-name=root]"));
+
+    resizeNestable();
 };
 
-var resizeContent = function () {
+var truncNestable = function (ol) {
+    console.log("truncNestable called");
 
-    var height = $(window).height();
+    var li = ol.children("li");
+    console.log(li);
+
+    var maxWidth = $('.dd3-item:first').width();
+    li.each(function (index, item) {
+
+        var element = $(item);
+
+        if (element.width() > 100) {
+
+            /*while (element.width() > (maxWidth - 100)) {
+                var text = element.text() + '...';
+                var last = text.lastIndexOf(" ")
+                text = text.substring(0, last) + '...';
+                element.text(text);
+            }*/
+        }
+
+    });
+}
+
+var resizeNestable = function () {
+
     var nestable = $('#nestable');
-
-    nestable.css('height', height / 3);
+    var height = $(window).height();
+    nestable.css('max-height', height / 2);
+    //truncNestable($("[data-name=root]"));
 };
 
 var pagefunction = function () {
@@ -118,7 +136,7 @@ var pagefunction = function () {
 
 pagefunction();
 
-$(window).resize(resizeContent);
+$(window).resize(resizeNestable);
 
 
 
