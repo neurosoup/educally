@@ -32,6 +32,7 @@ var buildSkillTree = function (data, root, nodeTemplate) {
         if (skill.name) {
             nameHolder.attr("data-name", skill.name);
         } else {
+            idHolder.addClass("leaf");
             nameHolder.remove();
         }
 
@@ -54,14 +55,15 @@ var buildSkillTree = function (data, root, nodeTemplate) {
     nestable.nestable('collapseAll');
     nestable.mCustomScrollbar({
         axis: "y",
-        theme: "dark-3"
+        theme: "dark-thin"
     });
 
     /* $("[data-action='expand']").click(function (e) {
      truncNestable($(e.target).siblings("ol:first"));
      });*/
 
-    $(".dd-item").on('change', function (e) {
+    $(".dd-item").on('change', function (e, data) {
+        if (data.action == 'expand')
         truncNestable($(e.target).children("ol.dd-list"));
     });
 
@@ -81,7 +83,9 @@ var truncNestable = function (ol) {
 
         var element = $(item);
 
-        if (element.width() > 100) {
+        console.log("element height="+element.height());
+
+        if (element.height() > 60) {
 
             /*while (element.width() > (maxWidth - 100)) {
                 var text = element.text() + '...';
