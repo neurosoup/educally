@@ -78,25 +78,25 @@ var truncNestable = function (ol) {
     var li = ol.children("li");
     console.log(li);
 
-    var maxWidth = $('.dd3-item:first').width();
+    var maxHeight = 40;
     li.each(function (index, item) {
 
         var element = $(item);
 
-        console.log("element height="+element.height());
+        if (element.height() > maxHeight) {
 
-        if (element.height() > 60) {
+            var content = element.find(".inner-content");
 
-            /*while (element.width() > (maxWidth - 100)) {
-                var text = element.text() + '...';
+            while (element.height() > maxHeight) {
+                var text = content.text() + '...';
                 var last = text.lastIndexOf(" ")
                 text = text.substring(0, last) + '...';
-                element.text(text);
-            }*/
+                content.text(text);
+            }
         }
 
     });
-}
+};
 
 var resizeNestable = function () {
 
