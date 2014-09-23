@@ -64,7 +64,7 @@ var buildSkillTree = function (data, root, nodeTemplate) {
 
     $(".dd-item").on('change', function (e, data) {
         if (data.action == 'expand')
-        truncNestable($(e.target).children("ol.dd-list"));
+            truncNestable($(e.target).children("ol.dd-list"));
     });
 
     truncNestable($("[data-name=root]"));
@@ -87,14 +87,12 @@ var truncNestable = function (ol) {
 
             var content = element.find(".inner-content:first");
 
-            console.log(content);
-
-            /*while (element.height() > maxHeight) {
+            while (element.height() > maxHeight) {
                 var text = content.text() + '...';
                 var last = text.lastIndexOf(" ")
                 text = text.substring(0, last) + '...';
                 content.text(text);
-            }*/
+            }
         }
 
     });
