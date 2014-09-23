@@ -85,14 +85,16 @@ var truncNestable = function (ol) {
 
         if (element.height() > maxHeight) {
 
-            var content = element.find(".inner-content");
+            var content = element.find(".inner-content:first");
 
-            while (element.height() > maxHeight) {
+            console.log(content);
+
+            /*while (element.height() > maxHeight) {
                 var text = content.text() + '...';
                 var last = text.lastIndexOf(" ")
                 text = text.substring(0, last) + '...';
                 content.text(text);
-            }
+            }*/
         }
 
     });
