@@ -50,9 +50,9 @@
     <div class="row">
 
         <!-- NEW WIDGET START -->
-        <article class="col-sm-12">
+        <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
-            <div class="jarviswidget well" id="wid-id-0">
+            <div class="jarviswidget" id="wid-id-0">
                 <header>
                     <span class="widget-icon"><i class="fa fa-comments"></i></span>
 
@@ -71,9 +71,80 @@
                     <!-- end widget edit box -->
 
                     <!-- widget content -->
-                    <div class="widget-body">
+                    <div class="widget-body no-padding">
+                        <div class="widget-body-toolbar">
 
-                        <hr class="simple">
+                            <div class="row">
+
+                                <div class="col-xs-9 col-sm-5 col-md-5 col-lg-5">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                        <input class="form-control" id="prepend" placeholder="Filter" type="text">
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="dd" id="nestable">
+                            <ol class="dd-list" data-name="root">
+                            </ol>
+                        </div>
+
+                    </div>
+                    <!-- end widget content -->
+
+                </div>
+                <!-- end widget div -->
+
+            </div>
+            <!-- end widget -->
+
+        </article>
+        <!-- WIDGET END -->
+
+        <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+            <div class="jarviswidget" id="wid-id-1">
+                <header>
+                    <span class="widget-icon"><i class="fa fa-comments"></i></span>
+
+                    <h2>Evaluations</h2>
+
+                </header>
+
+                <!-- widget div-->
+                <div>
+
+                    <!-- widget edit box -->
+                    <div class="jarviswidget-editbox">
+                        <!-- This area used as dropdown edit box -->
+
+                    </div>
+                    <!-- end widget edit box -->
+
+                <div class="widget-body-toolbar">
+
+                    <div class="row">
+
+
+                        <div class="pull-right col-xs-3 col-sm-7 col-md-7 col-lg-7 text-right">
+
+                            <button class="btn btn-success">
+                                <i class="fa fa-plus"></i> <span class="hidden-mobile">Add New Row</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                    <!-- widget content -->
+                    <div class="widget-body no-padding">
 
                         <ul id="myTab1" class="nav nav-tabs bordered">
                             <li class="active">
@@ -110,23 +181,10 @@
 
                                 <div class="row">
 
-                                    <div class="col-xs-6 col-sm-6 col-lg-6">
+                                    <p>
+                                        test
+                                    </p>
 
-                                        <div class="dd" id="nestable">
-                                            <ol class="dd-list" data-name="root">
-                                            </ol>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-xs-6 col-sm-6 col-lg-6">
-
-                                        <div class="dd3-like">
-                                            <p>
-                                                test
-                                            </p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -136,15 +194,6 @@
                                 </p>
                             </div>
 
-                        </div>
-
-                        <div id="nestable-menu">
-                            <button type="button" class="btn btn-default" data-action="expand-all">
-                                Expand All
-                            </button>
-                            <button type="button" class="btn btn-default" data-action="collapse-all">
-                                Collapse All
-                            </button>
                         </div>
 
                     </div>
@@ -158,31 +207,6 @@
 
         </article>
         <!-- WIDGET END -->
-
-    </div>
-
-    <!-- end row -->
-
-    <!-- row -->
-
-    <div class="row">
-
-        <div class="col-sm-12">
-
-            <div class="well well-sm well-light">
-                <p>
-                    <strong>Debug</strong>
-                </p>
-
-                <p class="alert alert-info">
-                    Preview of the lists update DB input.
-                </p>
-                <textarea id="nestable-output" rows="3" class="form-control font-md"></textarea>
-                <br>
-
-            </div>
-
-        </div>
 
     </div>
 

@@ -55,12 +55,23 @@ var buildSkillTree = function (data, root, nodeTemplate) {
     nestable.nestable('collapseAll');
     nestable.mCustomScrollbar({
         axis: "y",
-        theme: "dark-thin"
+        theme: "dark-thin",
+        scrollButtons:{
+            enable:true
+        },
+        scrollbarPosition: 'inside',
+        alwaysShowScrollbar: 1
     });
 
     $(".dd-item").on('change', function (e, data) {
-        if (data.action == 'expand')
+        if (data.action == 'expand') {
             truncNestable($(e.target).children("ol.dd-list"));
+        }
+    });
+
+    $(".dd-item").on('click', function () {
+        $(this).siblings('.item-selected').removeClass('item-selected');
+        $(this).addClass('item-selected');
     });
 
     truncNestable($("[data-name=root]"));
@@ -78,10 +89,14 @@ var truncNestable = function (ol) {
     li.each(function (index, item) {
 
         var element = $(item);
+        var content = element.find(".inner-content:first");
+
+        var originalText = content.attr("data-original");
+        if (!originalText) {
+            content.attr("data-original", content.text());
+        }
 
         if (element.height() > maxHeight) {
-
-            var content = element.find(".inner-content:first");
 
             while (element.height() > maxHeight) {
                 var text = content.text() + '...';
