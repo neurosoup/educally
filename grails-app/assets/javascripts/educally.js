@@ -11,6 +11,7 @@
 //= require plugin/succinct/jQuery.succinct
 
 
+
 //= require speech/voicecommand
 
 
@@ -19,3 +20,4 @@
 // require plugin/jquery-validate/jquery.validate
 // require plugin/masked-input/jquery.maskedinput
 // require plugin/select2/select2.min
+// require plugin/slimscroll/jquery.slimscroll

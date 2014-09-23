@@ -20,7 +20,21 @@
  */
 .dd3-content {
     font-size: 13px;
-    /*white-space: nowrap;*/
+ }
+
+.dd3-content:hover {
+    color: inherit;
+    background: inherit;
+}
+
+.dd3-item.leaf .dd3-content:hover {
+    color: #ffffff;
+    background: #2ea8e5;
+    /*-webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -ms-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;*/
+    transition: all 0.2s ease-in;
 }
 
 .dd {

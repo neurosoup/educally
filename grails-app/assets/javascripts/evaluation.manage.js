@@ -58,10 +58,6 @@ var buildSkillTree = function (data, root, nodeTemplate) {
         theme: "dark-thin"
     });
 
-    /* $("[data-action='expand']").click(function (e) {
-     truncNestable($(e.target).siblings("ol:first"));
-     });*/
-
     $(".dd-item").on('change', function (e, data) {
         if (data.action == 'expand')
             truncNestable($(e.target).children("ol.dd-list"));
@@ -75,10 +71,10 @@ var buildSkillTree = function (data, root, nodeTemplate) {
 var truncNestable = function (ol) {
     console.log("truncNestable called");
 
-    var li = ol.children("li");
+    var li = ol.children("li.leaf");
     console.log(li);
 
-    var maxHeight = 40;
+    var maxHeight = 50;
     li.each(function (index, item) {
 
         var element = $(item);
@@ -102,7 +98,9 @@ var resizeNestable = function () {
 
     var nestable = $('#nestable');
     var height = $(window).height();
-    nestable.css('max-height', height / 2);
+    var newHeight = height / 2;
+    nestable.css('height', newHeight);
+    nestable.css('max-height', newHeight);
     //truncNestable($("[data-name=root]"));
 };
 
