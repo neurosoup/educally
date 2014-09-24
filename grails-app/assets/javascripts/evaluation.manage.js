@@ -12,7 +12,7 @@ var buildSkillTree = function (data, root, nodeTemplate) {
 
     var skills = JSON.parse(data);
 
-    console.log(skills)
+    //console.log(skills)
 
     var nodeElement = $("<div/>").html(nodeTemplate);
     var rootElement = $(root);
@@ -70,8 +70,14 @@ var buildSkillTree = function (data, root, nodeTemplate) {
     });
 
     $(".dd-item").on('click', function () {
-        $(this).siblings('.item-selected').removeClass('item-selected');
+        var element = $(this);
+        var id = element.attr('data-id');
         $(this).addClass('item-selected');
+
+        console.log('id='+id);
+        console.log($('.dd3-item.leaf.item-selected:not([data-id=id])'));
+        //$('.dd3-item.leaf.item-selected:not([data-id=id])').removeClass('item-selected');
+
     });
 
     truncNestable($("[data-name=root]"));
@@ -80,10 +86,8 @@ var buildSkillTree = function (data, root, nodeTemplate) {
 };
 
 var truncNestable = function (ol) {
-    console.log("truncNestable called");
 
     var li = ol.children("li.leaf");
-    console.log(li);
 
     var maxHeight = 50;
     li.each(function (index, item) {
