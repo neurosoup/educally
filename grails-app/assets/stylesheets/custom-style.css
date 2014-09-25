@@ -5,7 +5,7 @@
 
 .smart-form fieldset {
     padding: 25px 20px 5px;
- }
+}
 
 .has-feedback {
     position: initial;
@@ -36,7 +36,6 @@
     background: rgba(0, 145, 217, 0.34);
 }
 
-
 .dd3-item.leaf.item-selected .inner-selected {
     visibility: visible;
 }
@@ -53,7 +52,7 @@
 .dd3-content {
     font-size: 13px;
     margin: -1px 0px 0px -1px;
- }
+}
 
 .dd3-content:hover {
     color: inherit;
@@ -78,3 +77,44 @@
 .mCSB_inside > .mCSB_container {
     margin-right: 16px;
 }
+
+.skills-nav {
+    position: absolute;
+    width: 0px;
+}
+
+.skills-nav.activate {
+    width: 50%;
+}
+
+.skills-nav > .dd {
+    border-right: 1px solid #7A7A7A;
+}
+
+.skills-nav > span {
+    border-radius: 0px 5px 5px 0px;
+    padding: 2px;
+    text-align: center;
+    line-height: 28px;
+    cursor: pointer;
+    display: block;
+    width: 30px;
+    background: none repeat scroll 0% 0% #7A7A7A;
+    height: 30px;
+    position: absolute;
+    top: 0px;
+    right: -30px;
+}
+
+.evaluations-nav {
+    margin-left: 0px;
+}
+
+.evaluations-nav.activate {
+    margin-left: 50%;
+}
+
+
+
+
+

@@ -8,7 +8,7 @@ pageSetUp();
  * PAGE RELATED SCRIPTS
  */
 
-var buildSkillTree = function (data, root, nodeTemplate) {
+var initializeSkillExplorer = function (data, root, nodeTemplate) {
 
     var skills = JSON.parse(data);
 
@@ -49,15 +49,14 @@ var buildSkillTree = function (data, root, nodeTemplate) {
 
     }
 
-    //Initialize nestable
     var nestable = $('#nestable');
     nestable.nestable();
     nestable.nestable('collapseAll');
     nestable.mCustomScrollbar({
         axis: "y",
         theme: "dark-thin",
-        scrollButtons:{
-            enable:true
+        scrollButtons: {
+            enable: true
         },
         scrollbarPosition: 'inside',
         alwaysShowScrollbar: 1
@@ -65,7 +64,7 @@ var buildSkillTree = function (data, root, nodeTemplate) {
 
     $(".dd-item").on('change', function (e, data) {
         if (data.action == 'expand') {
-            truncNestable($(e.target).children("ol.dd-list"));
+            truncSkillsTitle($(e.target).children("ol.dd-list"));
         }
     });
 
@@ -74,18 +73,17 @@ var buildSkillTree = function (data, root, nodeTemplate) {
         var id = element.attr('data-id');
         $(this).addClass('item-selected');
 
-        console.log('id='+id);
-        console.log($('.dd3-item.leaf.item-selected:not([data-id=id])'));
+        //console.log('id='+id);
+        //console.log($('.dd3-item.leaf.item-selected:not([data-id=id])'));
         //$('.dd3-item.leaf.item-selected:not([data-id=id])').removeClass('item-selected');
 
     });
 
-    truncNestable($("[data-name=root]"));
+    truncSkillsTitle($("[data-name=root]"));
 
-    resizeNestable();
 };
 
-var truncNestable = function (ol) {
+var truncSkillsTitle = function (ol) {
 
     var li = ol.children("li.leaf");
 
@@ -113,43 +111,28 @@ var truncNestable = function (ol) {
     });
 };
 
-var resizeNestable = function () {
-
-    var nestable = $('#nestable');
-    var height = $(window).height();
-    var newHeight = height / 2;
-    nestable.css('height', newHeight);
-    nestable.css('max-height', newHeight);
-    //truncNestable($("[data-name=root]"));
-};
-
 var pagefunction = function () {
 
-    var updateOutput = function (e) {
-        var list = e.length ? e : $(e.target), output = list.data('output');
-        if (window.JSON) {
-            output.val(window.JSON.stringify(list.nestable('serialize')));
-            //, null, 2));
-        } else {
-            output.val('JSON browser support required.');
-        }
-    };
+    var parent = $('#wid-id-0');
+    var nestable = $('#nestable');
+    var maxHeight = parent.height();
 
-    // activate Nestable for list 1
-    /*  $('#nestable').nestable().on('change', updateOutput);
+    console.log("parent height=" + parent.height());
 
-     // output initial serialised data
-     updateOutput($('#nestable').data('output', $('#nestable-output')));*/
+    nestable.height(maxHeight);
 
-    $('#nestable-menu').on('click', function (e) {
-        var target = $(e.target), action = target.data('action');
-        if (action === 'expand-all') {
-            $('.dd').nestable('expandAll');
-        }
-        if (action === 'collapse-all') {
-            $('.dd').nestable('collapseAll');
-        }
-    });
+    parent.resize(function () {
+        var nestable = $('#nestable');
+        var parent = $(this);
+        var maxHeight = parent.height();
+
+        console.log("widget height=" + maxHeight);
+
+        /*nestable.css('height', newHeight);
+        nestable.css('max-height', newHeight);*/
+        nestable.height(maxHeight);
+    })
+
 
 };
 
@@ -157,7 +140,6 @@ var pagefunction = function () {
 
 pagefunction();
 
-$(window).resize(resizeNestable);
 
 
 
