@@ -111,27 +111,41 @@ var truncSkillsTitle = function (ol) {
     });
 };
 
+function evaluationsHeightSize() {
+
+    var element = $('#wid-content-0');
+
+    if ($('body').hasClass('menu-on-top')) {
+        var menuHeight = 68;
+        // nav height
+
+        var tableHeight = ($(window).height() - 224) - menuHeight;
+        if (tableHeight < (320 - menuHeight)) {
+            element.css('height', (320 - menuHeight) + 'px');
+        } else {
+            element.css('height', tableHeight + 'px');
+        }
+
+    } else {
+        var tableHeight = $(window).height() - 224;
+        if (tableHeight < 320) {
+            element.css('height', 320 + 'px');
+        } else {
+            element.css('height', tableHeight + 'px');
+        }
+
+    }
+
+}
+
+
 var pagefunction = function () {
 
-    var parent = $('#wid-id-0');
-    var nestable = $('#nestable');
-    var maxHeight = parent.height();
+    evaluationsHeightSize();
 
-    console.log("parent height=" + parent.height());
-
-    nestable.height(maxHeight);
-
-    parent.resize(function () {
-        var nestable = $('#nestable');
-        var parent = $(this);
-        var maxHeight = parent.height();
-
-        console.log("widget height=" + maxHeight);
-
-        /*nestable.css('height', newHeight);
-        nestable.css('max-height', newHeight);*/
-        nestable.height(maxHeight);
-    })
+    $(window).resize(function() {
+        evaluationsHeightSize()
+    });
 
 
 };
