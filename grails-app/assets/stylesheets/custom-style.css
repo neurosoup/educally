@@ -72,6 +72,7 @@
 .dd {
     overflow-y: visible;
     min-height: 300px;
+    background: linear-gradient(to right, rgba(251, 238, 229, 1) 93%, rgba(219, 205, 196, 1) 100%) repeat scroll 0% 0% transparent;
 }
 
 .mCSB_inside > .mCSB_container {
@@ -84,26 +85,26 @@
 }
 
 .skills-nav.activate {
-    width: 50%;
+    width: 33%;
 }
 
 .skills-nav > .dd {
     border-right: 1px solid #7A7A7A;
 }
 
-.skills-nav > span {
-    border-radius: 0px 5px 5px 0px;
-    padding: 2px;
-    text-align: center;
-    line-height: 28px;
-    cursor: pointer;
-    display: block;
-    width: 30px;
-    background: none repeat scroll 0% 0% #7A7A7A;
-    height: 30px;
-    position: absolute;
-    top: 0px;
-    right: -30px;
+.skills-nav > span.minifyme {
+    margin-top: 20px;
+    right: 0px;
+    border-bottom: 1px solid #302F2F;
+    background: none repeat scroll 0% 0% #454545;
+    color: #A8A8A8;
+}
+
+.skills-nav > span.minifyme:hover {
+    padding-right: 3px;
+    width: 39px;
+    background: none repeat scroll 0% 0% #646464;
+    color: #E4E4E4;
 }
 
 .evaluations-nav {
@@ -111,7 +112,7 @@
 }
 
 .evaluations-nav.activate {
-    margin-left: 50%;
+    margin-left: 33%;
 }
 
 

@@ -111,42 +111,55 @@ var truncSkillsTitle = function (ol) {
     });
 };
 
-function evaluationsHeightSize() {
+function fitHeight(selector) {
 
-    var element = $('#wid-content-0');
+    var resizedElement = $(selector).find('div[role=content]');
 
     if ($('body').hasClass('menu-on-top')) {
         var menuHeight = 68;
         // nav height
 
-        var tableHeight = ($(window).height() - 224) - menuHeight;
-        if (tableHeight < (320 - menuHeight)) {
-            element.css('height', (320 - menuHeight) + 'px');
+        var maxHeight = ($(window).height() - 224) - menuHeight;
+        if (maxHeight < (320 - menuHeight)) {
+            resizedElement.css('height', (320 - menuHeight) + 'px');
         } else {
-            element.css('height', tableHeight + 'px');
+            resizedElement.css('height', maxHeight + 'px');
         }
 
     } else {
-        var tableHeight = $(window).height() - 224;
-        if (tableHeight < 320) {
-            element.css('height', 320 + 'px');
+        var maxHeight = $(window).height() - 224;
+        if (maxHeight < 320) {
+            resizedElement.css('height', 320 + 'px');
         } else {
-            element.css('height', tableHeight + 'px');
+            resizedElement.css('height', maxHeight + 'px');
         }
 
     }
+}
 
+function fitNestable(selector) {
+
+    var parent = $(selector).find('div[role=content]');
+
+    var toolBar = parent.find('.widget-body-toolbar');
+    var nestable = parent.find('#nestable');
+
+    var maxHeight = parent.height() - toolBar.height() - 4;
+    nestable.height(maxHeight);
 }
 
 
 var pagefunction = function () {
 
-    evaluationsHeightSize();
+    var selector = '#wid-id-0';
 
-    $(window).resize(function() {
-        evaluationsHeightSize()
+    fitHeight(selector);
+    fitNestable(selector);
+
+    $(window).resize(function () {
+        fitHeight(selector);
+        fitNestable(selector);
     });
-
 
 };
 

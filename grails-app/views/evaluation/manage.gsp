@@ -95,7 +95,8 @@
                             <ol class="dd-list" data-name="root">
                             </ol>
                         </div>
-                        <span id="skills-toggle"><i class="fa fa-cog txt-color-white"></i></span>
+                        <span class="minifyme" data-action="minifyMenu"><i class="fa fa-arrow-circle-left hit"></i></span>
+                        %{--<span id="skills-toggle"><i class="fa fa-cog txt-color-white"></i></span>--}%
                     </div>
 
                     %{--Evaluations--}%
@@ -103,9 +104,10 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2"
-                                                           href="#collapseOne-1"><i
-                                            class="fa fa-fw fa-plus-circle txt-color-green"></i> <i
-                                            class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #1
+                                                           href="#collapseOne-1">
+                                    <i class="fa fa-lg fa-angle-down pull-right"></i>
+                                    <i class="fa fa-lg fa-angle-up pull-right"></i>
+                                    Collapsible Group Item #1
                                 </a></h4>
                             </div>
 
@@ -119,9 +121,9 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2"
-                                                           href="#collapseTwo-1" class="collapsed"><i
-                                            class="fa fa-fw fa-plus-circle txt-color-green"></i> <i
-                                            class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #2
+                                                           href="#collapseTwo-1" class="collapsed">
+                                    <i class="fa fa-lg fa-angle-down pull-right"></i>
+                                    <i class="fa fa-lg fa-angle-up pull-right"></i> Collapsible Group Item #2
                                 </a></h4>
                             </div>
 
@@ -135,9 +137,9 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion-2"
-                                                           href="#collapseThree-1" class="collapsed"><i
-                                            class="fa fa-fw fa-plus-circle txt-color-green"></i> <i
-                                            class="fa fa-fw fa-minus-circle txt-color-red"></i> Collapsible Group Item #3
+                                                           href="#collapseThree-1" class="collapsed">
+                                    <i class="fa fa-lg fa-angle-down pull-right"></i>
+                                    <i class="fa fa-lg fa-angle-up pull-right"></i> Collapsible Group Item #3
                                 </a></h4>
                             </div>
 
