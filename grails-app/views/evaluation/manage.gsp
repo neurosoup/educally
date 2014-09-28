@@ -52,7 +52,7 @@
 <!-- NEW WIDGET START -->
 <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-    <div class="jarviswidget" id="wid-id-0">
+    <div class="jarviswidget well" id="wid-id-0">
         <header>
             <span class="widget-icon"><i class="fa fa-comments"></i></span>
 
