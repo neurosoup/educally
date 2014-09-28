@@ -71,8 +71,9 @@
 
 .dd {
     overflow-y: visible;
-    min-height: 300px;
-    background: linear-gradient(to right, rgba(251, 238, 229, 1) 93%, rgba(219, 205, 196, 1) 100%) repeat scroll 0% 0% transparent;
+    position: absolute;
+    width: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 93%, rgba(242, 242, 242, 1) 100%) repeat scroll 0% 0% transparent;
 }
 
 .mCSB_inside > .mCSB_container {
@@ -84,27 +85,56 @@
     width: 0px;
 }
 
+@media (min-width: 700px) {
+
+    .skills-nav {
+        position: absolute;
+        width: 11%;
+    }
+}
+
+
 .skills-nav.activate {
     width: 33%;
+    min-width: 145px;
 }
 
 .skills-nav > .dd {
     border-right: 1px solid #7A7A7A;
 }
 
-.skills-nav > span.minifyme {
-    margin-top: 20px;
-    right: 0px;
+.skills-nav > .minifyskills {
     border-bottom: 1px solid #302F2F;
-    background: none repeat scroll 0% 0% #454545;
+    background: #454545;
     color: #A8A8A8;
+    text-align: center;
+    padding: 0;
+    width: 36px;
+    height: 28px;
+    display: block;
+    position: absolute;
+    right: -3px;
+    border-radius: 5px 0px 0px 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 19px;
+    transition: all 0.1s linear 0s;
 }
 
-.skills-nav > span.minifyme:hover {
-    padding-right: 3px;
+.skills-nav > span.minifyskills {
+    margin-top: 0px;
+    right: -35px;
+    border-bottom: 1px solid #7A7A7A;
+    background: #F2F2F2;
+    color: #353535;
+    border-radius: 0px 5px 5px 0px;
+}
+
+.skills-nav > span.minifyskills:hover {
+    margin-right: -3px;
     width: 39px;
-    background: none repeat scroll 0% 0% #646464;
-    color: #E4E4E4;
+    background: #f6f6f6;
+    color: #666666;
 }
 
 .evaluations-nav {

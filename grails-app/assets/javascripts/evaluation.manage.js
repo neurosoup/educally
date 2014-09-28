@@ -161,6 +161,35 @@ var pagefunction = function () {
         fitNestable(selector);
     });
 
+    $('.dd').on('click', function () {
+        var $this = $(this);
+
+        var skillsPanel = $this.closest('.skills-nav');
+
+        skillsPanel.addClass('activate');
+        skillsPanel.css('white-space', 'normal');
+
+    });
+
+    $(selector).on('click', '[data-action="minifySkills"]', function (e) {
+        var $this = $(this);
+
+        var skillsPanel = $this.closest('.skills-nav');
+
+        skillsPanel.toggleClass('activate');
+
+        if (skillsPanel.hasClass('activate')) {
+            skillsPanel.css('white-space', 'normal');
+        } else {
+            skillsPanel.css('white-space', 'nowrap');
+        }
+
+        e.preventDefault();
+
+        //clear memory reference
+        $this = null;
+    });
+
 };
 
 // end pagefunction
