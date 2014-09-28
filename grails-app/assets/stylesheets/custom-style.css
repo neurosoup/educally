@@ -103,25 +103,7 @@
     border-right: 1px solid #7A7A7A;
 }
 
-.skills-nav > .minifyskills {
-    border-bottom: 1px solid #302F2F;
-    background: #454545;
-    color: #A8A8A8;
-    text-align: center;
-    padding: 0;
-    width: 36px;
-    height: 28px;
-    display: block;
-    position: absolute;
-    right: -3px;
-    border-radius: 5px 0px 0px 5px;
-    cursor: pointer;
-    margin-top: 5px;
-    font-size: 19px;
-    transition: all 0.1s linear 0s;
-}
-
-.skills-nav > span.minifyskills {
+.skills-nav > span.minifyme {
     margin-top: 0px;
     right: -35px;
     border-bottom: 1px solid #7A7A7A;
@@ -130,7 +112,7 @@
     border-radius: 0px 5px 5px 0px;
 }
 
-.skills-nav > span.minifyskills:hover {
+.skills-nav > span.minifyme:hover {
     margin-right: -3px;
     width: 39px;
     background: #f6f6f6;
@@ -141,10 +123,16 @@
     margin-left: 0px;
 }
 
+@media (min-width: 700px) {
+
+    .evaluations-nav {
+        margin-left: 11%;
+    }
+}
+
 .evaluations-nav.activate {
     margin-left: 33%;
 }
-
 
 
 

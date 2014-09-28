@@ -165,9 +165,12 @@ var pagefunction = function () {
         var $this = $(this);
 
         var skillsPanel = $this.closest('.skills-nav');
+        var evaluationsPanel = $this.parent().siblings('.evaluations-nav');
 
         skillsPanel.addClass('activate');
         skillsPanel.css('white-space', 'normal');
+
+        evaluationsPanel.addClass('activate');
 
     });
 
@@ -175,8 +178,12 @@ var pagefunction = function () {
         var $this = $(this);
 
         var skillsPanel = $this.closest('.skills-nav');
+        var evaluationsPanel = $this.parent().siblings('.evaluations-nav');
+
+        console.log(evaluationsPanel);
 
         skillsPanel.toggleClass('activate');
+        evaluationsPanel.toggleClass('activate');
 
         if (skillsPanel.hasClass('activate')) {
             skillsPanel.css('white-space', 'normal');

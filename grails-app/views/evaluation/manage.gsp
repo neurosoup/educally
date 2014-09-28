@@ -95,7 +95,7 @@
                             <ol class="dd-list" data-name="root">
                             </ol>
                         </div>
-                        <span class="minifyskills" data-action="minifySkills"><i class="fa fa-book hit"></i></span>
+                        <span class="minifyme" data-action="minifySkills"><i class="fa fa-book hit"></i></span>
                         %{--<span id="skills-toggle"><i class="fa fa-cog txt-color-white"></i></span>--}%
                     </div>
 
