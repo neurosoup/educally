@@ -180,8 +180,6 @@ var pagefunction = function () {
         var skillsPanel = $this.closest('.skills-nav');
         var evaluationsPanel = $this.parent().siblings('.evaluations-nav');
 
-        console.log(evaluationsPanel);
-
         skillsPanel.toggleClass('activate');
         evaluationsPanel.toggleClass('activate');
 
