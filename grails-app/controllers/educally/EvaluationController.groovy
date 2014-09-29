@@ -26,10 +26,4 @@ class EvaluationController {
 
     }
 
-    def sortSkills() {
-        def skillBookId = params.int('skillBookId')
-        SkillBook skillBook = SkillBook.get(skillBookId)
-        def sortedSkills = skillBook.skills.sort { it.path }
-        render sortedSkills as JSON
-    }
 }

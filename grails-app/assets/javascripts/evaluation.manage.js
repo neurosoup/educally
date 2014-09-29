@@ -12,7 +12,7 @@ var initializeSkillExplorer = function (data, root, nodeTemplate) {
 
     var skills = JSON.parse(data);
 
-    //console.log(skills)
+    console.log(skills)
 
     var nodeElement = $("<div/>").html(nodeTemplate);
     var rootElement = $(root);
@@ -68,15 +68,10 @@ var initializeSkillExplorer = function (data, root, nodeTemplate) {
         }
     });
 
-    $(".dd-item").on('click', function () {
-        var element = $(this);
-        var id = element.attr('data-id');
-        $(this).addClass('item-selected');
-
-        //console.log('id='+id);
-        //console.log($('.dd3-item.leaf.item-selected:not([data-id=id])'));
-        //$('.dd3-item.leaf.item-selected:not([data-id=id])').removeClass('item-selected');
-
+    $(".inner-content").on('click', function (e) {
+        var $this = $(this);
+        $this.parents('[data-name=root]').find('li.leaf').removeClass('item-selected');
+        $(this).parents('.dd-item:first').addClass('item-selected');
     });
 
     truncSkillsTitle($("[data-name=root]"));
