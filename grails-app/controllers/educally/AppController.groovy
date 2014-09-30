@@ -16,13 +16,11 @@ class AppController {
 
     def index() {
 
-        respond teacherService.currentTeacher.skillBooks
+        if (!teacherService.currentTeacher) {
+            initializeData(false)
+        }
 
-        /*SchoolYear.async.task {
-            [schoolYearList: list(params), count: count() ]
-        }.then { result ->
-            respond result.schoolYearList, model:[schoolYearCount: result.count]
-        }*/
+        respond teacherService.currentTeacher.skillBooks
     }
 
     def undefined() {
@@ -51,7 +49,6 @@ class AppController {
 
     def initializeData(Boolean removeDemoData) {
         log.info('Demo data initialization.')
-
 
         log.info('Initializing school year...')
         def schoolYear = SchoolYear.findByTitle('2012-2013')
@@ -193,21 +190,10 @@ class AppController {
                         .addToPupils(pupil5)
 
                 log.info('Initializing evaluations...')
-                def skill1 = teacher.skillBooks.find { it.title = 'Mon livret bleu' }.skills.find {
-                    it.title == 'Restituer les tables d’addition et de multiplication de 2 à 9'
-                }
-
-                def skill2 = teacher.skillBooks.find { it.title = 'Mon livret bleu' }.skills.find {
-                    it.title == 'Estimer l’ordre de grandeur d’un résultat'
-                }
-
-                def skill3 = teacher.skillBooks.find { it.title = 'Mon livret bleu' }.skills.find {
-                    it.title == 'Utiliser une calculatrice'
-                }
-
-                def skill4 = teacher.skillBooks.find { it.title = 'Mon livret bleu' }.skills.find {
-                    it.title == 'Lire, interpréter et construire quelques représentations simples : tableaux, graphiques'
-                }
+                def skill1 = Skill.findBySkillBookAndTitle(teacherSkillBook, 'Restituer les tables d’addition et de multiplication de 2 à 9')
+                def skill2 = Skill.findBySkillBookAndTitle(teacherSkillBook, 'Estimer l’ordre de grandeur d’un résultat')
+                def skill3 = Skill.findBySkillBookAndTitle(teacherSkillBook, 'Utiliser une calculatrice')
+                def skill4 = Skill.findBySkillBookAndTitle(teacherSkillBook, 'Lire, interpréter et construire quelques représentations simples : tableaux, graphiques')
 
                 def preferredNotationSystem = NotationSystem.findByTitle('Note sur 20')
 

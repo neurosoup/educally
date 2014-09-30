@@ -8,10 +8,11 @@ class EvaluatedSkill {
         value nullable: true
     }
 
-    static belongsTo = [skill: Skill]
+    static belongsTo = [evaluation: Evaluation]
 
     BigDecimal value
     Boolean missed = false
     LocalDateTime dateTime
+    Skill skill
 
 }

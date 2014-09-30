@@ -8,12 +8,12 @@ class Evaluation {
 
     static belongsTo = [pupil: Pupil]
 
-    static hasMany = [preferredNotationSystems: NotationSystem]
+    static hasMany = [preferredNotationSystems: NotationSystem, values: EvaluatedSkill]
 
-    static embedded = ['values']
+    //static embedded = ['values']
 
     String title
     List<String> tags = []
-    List<EvaluatedSkill> values = []
+    //List<EvaluatedSkill> values = []
 
 }
