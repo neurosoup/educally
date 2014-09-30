@@ -83,13 +83,12 @@
                             %{--Evaluations--}%
                             <div class="evaluations-nav activate">
 
-                                <ul id="myTab1" class="nav nav-tabs bordered tabs-pull-right hidden">
-                                    <li class="active">
-                                        <a href="#s1" data-toggle="tab">Compétence sélectionnée</a>
-                                    </li>
-                                    <li class="">
-                                        <a href="#s2" data-toggle="tab">Compétence pas sélectionnée</a>
-                                    </li>
+                                <ul id="myTab1" class="nav nav-tabs bordered tabs-pull-right">
+                                    <g:each in="${evaluatedSkills}" var="evaluatedSkill">
+                                        <li>
+                                            <a href="#skill-${evaluatedSkill.key}" data-toggle="tab">${evaluatedSkill.value.skill.title}</a>
+                                        </li>
+                                    </g:each>
                                 </ul>
 
                                 <div id="myTabContent1" class="tab-content padding-10">

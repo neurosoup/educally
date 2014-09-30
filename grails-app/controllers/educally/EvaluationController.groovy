@@ -25,6 +25,7 @@ class EvaluationController {
         def evaluatedSkills = evaluations.values.flatten().groupBy { it.skillId }
 
 
+
         [skills: skills as JSON, evaluatedSkills: evaluatedSkills, skillBookId: skillBook.id, skillBookTitle: skillBook.title, evaluationCount: evaluations.size(), skillCoverage: skillCoverage]
 
     }
