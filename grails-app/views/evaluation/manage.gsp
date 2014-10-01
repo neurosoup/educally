@@ -85,9 +85,10 @@
 
                                 <ul id="myTab1" class="nav nav-tabs bordered tabs-pull-right">
                                     <g:each in="${evaluatedSkills}" var="evaluatedSkill">
-                                        <li>
-                                            <a href="#skill-${evaluatedSkill.key}" data-toggle="tab">${evaluatedSkill.value.skill.title}</a>
-                                        </li>
+                                            <li>
+                                                <a href="#skill-${evaluatedSkill.key}"
+                                                   data-toggle="tab">${evaluatedSkill.value.skill.title}</a>
+                                            </li>
                                     </g:each>
                                 </ul>
 
