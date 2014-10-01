@@ -22,15 +22,13 @@ class EvaluationController {
         def skillCoverage = evaluationService.calculateSkillCoverage(teacher, skillBook)
         def skills = skillBook.skills.sort { it.path }
 
-        def groupedEvaluations = evaluations.values.flatten().groupBy { it.skillId }
-
         def evaluatedSkills = []
 
-        groupedEvaluations.each { x ->
+        evaluations.values.flatten().groupBy { it.skillId }.each { x ->
             evaluatedSkills.add([skill: skills.find { y -> y.id == x.key }, evaluations: x.value])
         }
 
-        [skills: skills as JSON, evaluatedSkills: evaluations, skillBookId: skillBook.id, skillBookTitle: skillBook.title, evaluationCount: evaluations.size(), skillCoverage: skillCoverage]
+        [skills: skills as JSON, evaluatedSkills: evaluatedSkills, skillBookId: skillBook.id, skillBookTitle: skillBook.title, evaluationCount: evaluations.size(), skillCoverage: skillCoverage]
     }
 
 }

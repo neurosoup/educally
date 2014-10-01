@@ -85,19 +85,19 @@
 
                                 <ul id="myTab1" class="nav nav-tabs bordered tabs-pull-right">
                                     <g:each in="${evaluatedSkills}" var="evaluatedSkill">
-                                            <li>
-                                                <a href="#skill-${evaluatedSkill.key}"
-                                                   data-toggle="tab">${evaluatedSkill.value.skill.title}</a>
-                                            </li>
+                                        <li>
+                                            <a href="#skill-${evaluatedSkill.skill.id}"
+                                               data-toggle="tab">${evaluatedSkill.skill.title}</a>
+                                        </li>
                                     </g:each>
                                 </ul>
 
                                 <div id="myTabContent1" class="tab-content padding-10">
-                                    <div class="tab-pane fade in active" id="s1">
-                                        <g:render template="evaluationProperties"/>
-                                    </div>
-
-                                    <div class="tab-pane fade in active" id="s2"/>
+                                    <g:each in="${evaluatedSkills}" var="evaluatedSkill">
+                                        <div class="tab-pane fade in active" id="skill-${evaluatedSkill.skill.id}">
+                                            <g:render template="evaluationProperties" model="[evaluatedSkill:${evaluatedSkill}]"/>
+                                        </div>
+                                    </g:each>
                                 </div>
 
                             </div>
