@@ -12,7 +12,7 @@ var initializeSkillExplorer = function (data, root, nodeTemplate) {
 
     var skills = JSON.parse(data);
 
-    console.log(skills)
+    console.log(skills);
 
     var nodeElement = $("<div/>").html(nodeTemplate);
     var rootElement = $(root);
@@ -68,10 +68,16 @@ var initializeSkillExplorer = function (data, root, nodeTemplate) {
         }
     });
 
-    $(".inner-content").on('click', function (e) {
+    $(".inner-content").on('click', function () {
         var $this = $(this);
         $this.parents('[data-name=root]').find('li.leaf').removeClass('item-selected');
-        $(this).parents('.dd-item:first').addClass('item-selected');
+
+        var parent = $(this).parents('.dd-item:first');
+        var id = parent.data('id');
+
+        parent.addClass('item-selected');
+        $("#evaluationTabs").find("a[href='#skill-" + id + "']").tab('show');
+
     });
 
     truncSkillsTitle($("[data-name=root]"));
@@ -97,7 +103,7 @@ var truncSkillsTitle = function (ol) {
 
             while (element.height() > maxHeight) {
                 var text = content.text() + '...';
-                var last = text.lastIndexOf(" ")
+                var last = text.lastIndexOf(" ");
                 text = text.substring(0, last) + '...';
                 content.text(text);
             }
@@ -109,12 +115,13 @@ var truncSkillsTitle = function (ol) {
 function fitHeight(selector) {
 
     var resizedElement = $(selector).find('div[role=content]');
+    var maxHeight = 0;
 
     if ($('body').hasClass('menu-on-top')) {
         var menuHeight = 68;
         // nav height
 
-        var maxHeight = ($(window).height() - 224) - menuHeight;
+        maxHeight = ($(window).height() - 224) - menuHeight;
         if (maxHeight < (320 - menuHeight)) {
             resizedElement.css('height', (320 - menuHeight) + 'px');
         } else {
@@ -122,7 +129,7 @@ function fitHeight(selector) {
         }
 
     } else {
-        var maxHeight = $(window).height() - 224;
+        maxHeight = $(window).height() - 224;
         if (maxHeight < 320) {
             resizedElement.css('height', 320 + 'px');
         } else {

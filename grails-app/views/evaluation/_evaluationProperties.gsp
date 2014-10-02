@@ -1,4 +1,4 @@
-<h1>${evaluatedSkill.skill.title}</h1>
+
 <div class="panel-group smart-accordion-default" id="accordion-2">
 
     <div class="panel panel-default">
