@@ -25,25 +25,26 @@ class EvaluationController {
         BigDecimal evaluatedCount = evaluations.values().flatten().size()
         def skillCoverage = skillCount > 0 ? Math.round(evaluatedCount / skillCount * 100) : 0
 
-        List<SkillModel> skillModels
-        sortedSkills.each { x ->
-            skillModels.add(new SkillModel(skill: x))
-        }
-        evaluations.each { k, v ->
-            k.each { skillId ->
+        List<SkillModel> skillModels = []
+        sortedSkills.each { x -> skillModels.add(new SkillModel(skill: x)) }
+
+        for (entry in evaluations) {
+            for (skillId in entry.key) {
                 def skillModel = skillModels.find { it.skill.id == skillId }
-                v.each {evaluation ->
+
+                for (evaluation in entry.value) {
                     def linkedSkills = skillModel.evaluations.put(evaluation, [])
-                    evaluation.values.each {evaluatedSkill ->
+                    for (evaluatedSkill in evaluation.values) {
                         def skill = sortedSkills.find { it.id == evaluatedSkill.skill.id }
                         linkedSkills.add(skill)
                     }
                 }
-                skillModel.stats << [count: v.size()]
+
+                skillModel.stats.put('count', evaluations.size())
             }
         }
 
-        respond skillsAndEvaluations, model: [sortedSkills: sortedSkills as JSON, skillBook: skillBook, skillCoverage: skillCoverage]
+        respond skillModel, model: [sortedSkills: sortedSkills as JSON, skillBook: skillBook, skillCoverage: skillCoverage]
     }
 
 }
