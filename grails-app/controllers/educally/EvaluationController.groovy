@@ -19,19 +19,31 @@ class EvaluationController {
         SkillBook skillBook = SkillBook.get(params.int('skillBookId'))
 
         def evaluations = teacher.pupils.flatten().evaluations.flatten().groupBy { x -> x.values.sort { y -> y.skillId }.skillId }
-        def skills = skillBook.skills.sort { it.path }
-        BigDecimal skillCount = skills.findAll { !it.name }.size()
+        def sortedSkills = skillBook.skills.sort { it.path }
+
+        BigDecimal skillCount = sortedSkills.findAll { !it.name }.size()
         BigDecimal evaluatedCount = evaluations.values().flatten().size()
         def skillCoverage = skillCount > 0 ? Math.round(evaluatedCount / skillCount * 100) : 0
 
-        def evaluatedSkills = []
+        List<SkillModel> skillModels
+        sortedSkills.each { x ->
+            skillModels.add(new SkillModel(skill: x))
+        }
         evaluations.each { k, v ->
-            k.each {x ->
-                evaluatedSkills.add([skill: skills.find { y -> y.id == x }, evaluations: v])
+            k.each { skillId ->
+                def skillModel = skillModels.find { it.skill.id == skillId }
+                v.each {evaluation ->
+                    def linkedSkills = skillModel.evaluations.put(evaluation, [])
+                    evaluation.values.each {evaluatedSkill ->
+                        def skill = sortedSkills.find { it.id == evaluatedSkill.skill.id }
+                        linkedSkills.add(skill)
+                    }
+                }
+                skillModel.stats << [count: v.size()]
             }
         }
 
-        [skills: skills as JSON, evaluatedSkills: evaluatedSkills, skillBookId: skillBook.id, skillBookTitle: skillBook.title, evaluationCount: evaluations.size(), skillCoverage: skillCoverage]
+        respond skillsAndEvaluations, model: [sortedSkills: sortedSkills as JSON, skillBook: skillBook, skillCoverage: skillCoverage]
     }
 
 }
