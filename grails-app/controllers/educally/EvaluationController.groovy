@@ -33,9 +33,10 @@ class EvaluationController {
                 def skillModel = skillModels.find { it.skill.id == skillId }
 
                 for (evaluation in entry.value) {
-                    def linkedSkills = skillModel.evaluations.put(evaluation, [])
-                    for (evaluatedSkill in evaluation.values) {
-                        def skill = sortedSkills.find { it.id == evaluatedSkill.skill.id }
+                    def values = [] << evaluation.values
+                    skillModel.evaluations.put(evaluation, values)
+                    for (value in values) {
+                        def skill = sortedSkills.find { it.id == value.skill.id }
                         linkedSkills.add(skill)
                     }
                 }

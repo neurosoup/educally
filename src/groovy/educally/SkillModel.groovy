@@ -8,6 +8,6 @@ import educally.Skill
  */
 class SkillModel {
     Skill skill
-    def evaluations = []
+    def evaluations = [:]
     def stats = [:]
 }
