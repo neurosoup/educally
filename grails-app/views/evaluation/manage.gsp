@@ -1,3 +1,4 @@
+<%@ page import="grails.converters.JSON" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,7 +151,16 @@
 
 <g:javascript>
 
-    initializeSkillExplorer("${raw(skills)}", "#nestable", "${g.render(template: 'skillNode')}");
+    var skills = "";
+
+    if ($.localStorage.isSet('skills')) {
+        skills = $.localStorage.get('skills')
+    } else {
+        skills = "${raw(expandoInstanceList.domainInstance as JSON)}";
+        $.localStorage.set('skills', skills)
+    }
+
+    initializeSkillExplorer(skills, "#nestable", "${g.render(template: 'skillNode')}");
 
 </g:javascript>
 

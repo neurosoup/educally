@@ -60,7 +60,7 @@
                     <g:each in="${skillBookInstanceSet}">
                         <g:set var="schoolYear" value="${it}"/>
                         <li>
-                            <a href="${createLink(controller: 'evaluation', action: 'manage', params: [skillBookId: it.id])}">${it.title}</a>
+                            <a id="evaluations-manage" href="${createLink(controller: 'evaluation', action: 'manage', params: [skillBookId: it.id])}">${it.title}</a>
                         </li>
                     </g:each>
                 </ul>
@@ -116,6 +116,8 @@
 
 </div>
 <!-- END #MAIN PANEL -->
+
+<asset:javascript src="app.index.js"/>
 
 </body>
 </html>

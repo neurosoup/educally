@@ -103,6 +103,21 @@
     border-right: 1px solid #7A7A7A;
 }
 
+.skills-nav .minified .minifyme .fa:before {
+    content: "\f09a";
+}
+
+.skills-nav .minifyme {
+    font-size: 19px;
+    transition: all 0.1s linear 0s;
+    cursor: pointer;
+    width: 36px;
+    height: 28px;
+    display: block;
+    position: absolute;
+    text-align: center;
+}
+
 .skills-nav > span.minifyme {
     margin-top: 0px;
     right: -35px;

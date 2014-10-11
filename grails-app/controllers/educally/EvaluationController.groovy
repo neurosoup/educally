@@ -9,8 +9,6 @@ class EvaluationController {
 
     static allowedMethods = [sortSkills: 'POST']
 
-    def evaluationService
-    def skillService
     def teacherService
 
     def manage() {
@@ -25,27 +23,37 @@ class EvaluationController {
         BigDecimal evaluatedCount = evaluations.values().flatten().size()
         def skillCoverage = skillCount > 0 ? Math.round(evaluatedCount / skillCount * 100) : 0
 
-        List<SkillModel> skillModels = []
-        sortedSkills.each { x -> skillModels.add(new SkillModel(skill: x)) }
+        def skillModel = []
+
+        sortedSkills.each { x ->
+            def skill = new Expando()
+            skill.stats = [:]
+            skill.domainInstance = x
+            skillModel.add(skill)
+        }
 
         for (entry in evaluations) {
             for (skillId in entry.key) {
-                def skillModel = skillModels.find { it.skill.id == skillId }
-
+                def skill = skillModel.find { it.domainInstance.id == skillId }
+                skill.evaluations = []
+                skill.linkedSkills = []
                 for (evaluation in entry.value) {
-                    def values = [] << evaluation.values
-                    skillModel.evaluations.put(evaluation, values)
-                    for (value in values) {
-                        def skill = sortedSkills.find { it.id == value.skill.id }
-                        linkedSkills.add(skill)
+                    skill.evaluations.add(evaluation)
+                    for (value in evaluation.values) {
+                        def s = sortedSkills.find { it.id == value.skill.id }
+                        def linkedSkill = new Expando()
+                        if (s.id != skillId && !skill.linkedSkills.any { y -> y.id == s.id }) {
+                            linkedSkill.id = s.id
+                            linkedSkill.title = s.title
+                            skill.linkedSkills.add(linkedSkill)
+                        }
                     }
                 }
-
-                skillModel.stats.put('count', evaluations.size())
+                skill.stats.put('count', skill.evaluations.size())
             }
         }
 
-        respond skillModel, model: [sortedSkills: sortedSkills as JSON, skillBook: skillBook, skillCoverage: skillCoverage]
+        respond skillModel, model: [skillBook: skillBook, skillCoverage: skillCoverage]
     }
 
 }

@@ -9,6 +9,7 @@
 //= require plugin/fastclick/fastclick
 //= require plugin/customscrollbar/jquery.mCustomScrollbar
 //= require plugin/succinct/jQuery.succinct
+//= require plugin/storageapi/jquery.storageapi
 
 
 
