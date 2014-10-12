@@ -100,27 +100,34 @@
 
                                             <h1>${skill.domainInstance.title}</h1>
 
-                                            <div class="panel-group smart-accordion-default" id="accordion-2">
+                                            <g:each in="${skill.evaluations}" var="evaluation">
 
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        <h4 class="panel-title">
-                                                            <a data-toggle="collapse" data-parent="#accordion-2"
-                                                               href="#collapseOne-1">
-                                                                <i class="fa fa-lg fa-angle-down pull-right"></i>
-                                                                <i class="fa fa-lg fa-angle-up pull-right"></i>
-                                                                Collapsible Group Item #1
-                                                            </a>
-                                                        </h4>
-                                                    </div>
+                                                <div class="panel-group smart-accordion-default"
+                                                     id="accordion-${evaluation.id}">
 
-                                                    <div id="collapseOne-1" class="panel-collapse collapse in">
-                                                        <div class="panel-body">
-                                                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title">
+                                                                <a data-toggle="collapse"
+                                                                   data-parent="#accordion-${evaluation.id}"
+                                                                   href="#collapse-${evaluation.id}">
+                                                                    <i class="fa fa-lg fa-angle-down pull-right"></i>
+                                                                    <i class="fa fa-lg fa-angle-up pull-right"></i>
+                                                                    ${evaluation.title}
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+
+                                                        <div id="collapse-${evaluation.id}"
+                                                             class="panel-collapse collapse in">
+                                                            <div class="panel-body">
+                                                                Liste des valeurs
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+
+                                            </g:each>
 
                                         </div>
                                     </g:each>
