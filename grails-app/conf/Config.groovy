@@ -116,6 +116,12 @@ log4j.main = {
            'net.sf.ehcache.hibernate'
 }
 
+grails.cache.enabled = true
+grails.cache.config = {
+    cache {
+        name 'skillsAndEvaluationsByTeacherAndSkillBook'
+    }
+}
 
 grails {
     mail {

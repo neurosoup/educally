@@ -12,7 +12,7 @@
         <h1 class="page-title txt-color-blueDark"><i class="fa fa-tachometer fa-fw "></i>
             Evaluations
             <span>
-                ${expandoInstance.skillBook.id}
+                ${expandoInstance.skillBook.title}
             </span>
         </h1>
     </div>
@@ -88,17 +88,17 @@
                                 <ul id="evaluationTabs" class="nav nav-tabs bordered tabs-pull-right hidden">
                                     <g:each in="${expandoInstance.skills}" var="skill">
                                         <li>
-                                            <a href="#skill-${skill.id}"
-                                               data-toggle="tab">${skill.title}</a>
+                                            <a href="#skill-${skill.domainInstance.id}"
+                                               data-toggle="tab">${skill.domainInstance.id}</a>
                                         </li>
                                     </g:each>
                                 </ul>
 
                                 <div id="myTabContent1" class="tab-content padding-10">
                                     <g:each in="${expandoInstance.skills}" var="skill">
-                                        <div class="tab-pane fade in" id="skill-${skill.id}">
+                                        <div class="tab-pane fade in" id="skill-${skill.domainInstance.id}">
 
-                                            <h1>${skill.title}</h1>
+                                            <h1>${skill.domainInstance.title}</h1>
 
                                             <div class="panel-group smart-accordion-default" id="accordion-2">
 
@@ -152,23 +152,7 @@
 <asset:javascript src="evaluation.index.js"/>
 
 <g:javascript>
-
-    var skillBookId = "${expandoInstance.skillBook.id}";
-    var modelKey = 'evaluation.model.skillBookId' + skillBookId;
-    var valueKey = modelKey + '.value';
-    var statusKey = modelKey + '.status';
     var model = "${raw(expandoInstance.skills.domainInstance as JSON)}";
-
-    if ($.localStorage.get(statusKey) == 'set') {
-        console.log("cache ready for skillBook " + skillBookId)
-        model = $.localStorage.get(valueKey)
-    } else {
-        console.log("initialize cache for skillBook " + skillBookId)
-        $.localStorage.set(valueKey, model);
-        $.localStorage.set(statusKey, 'set');
-    }
-
-    console.log(model);
     initializeModel(model, "#nestable", "${g.render(template: 'skillNode')}");
 </g:javascript>
 

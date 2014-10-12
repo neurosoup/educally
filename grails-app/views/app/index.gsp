@@ -118,11 +118,5 @@
 
 <asset:javascript src="app.index.js"/>
 
-<g:each in="${skillBookInstanceSet}">
-    <g:javascript>
-        initializeCachedLink("${it.id}");
-    </g:javascript>
-</g:each>
-
 </body>
 </html>
