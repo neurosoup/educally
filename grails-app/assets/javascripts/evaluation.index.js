@@ -9,7 +9,7 @@ pageSetUp();
  * PAGE RELATED SCRIPTS
  */
 
-var initializeModel = function (data, root, nodeTemplate, skillBookId) {
+var initializeModel = function (data, root, nodeTemplate) {
 
     var skills = JSON.parse(data);
     console.log(skills);

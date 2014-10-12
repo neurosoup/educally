@@ -155,22 +155,21 @@
 
     var skillBookId = "${expandoInstance.skillBook.id}";
     var modelKey = 'evaluation.model.skillBookId' + skillBookId;
+    var valueKey = modelKey + '.value';
     var statusKey = modelKey + '.status';
     var model = "${raw(expandoInstance.skills.domainInstance as JSON)}";
 
-    console.log(model);
-
     if ($.localStorage.get(statusKey) == 'set') {
         console.log("cache ready for skillBook " + skillBookId)
-        skillModel = $.localStorage.get(modelKey)
+        model = $.localStorage.get(valueKey)
     } else {
         console.log("initialize cache for skillBook " + skillBookId)
-        $.localStorage.set(modelKey, model);
+        $.localStorage.set(valueKey, model);
         $.localStorage.set(statusKey, 'set');
     }
 
     console.log(model);
-    initializeModel(model, "#nestable", "${g.render(template: 'skillNode')}", skillBookId);
+    initializeModel(model, "#nestable", "${g.render(template: 'skillNode')}");
 </g:javascript>
 
 </body>
