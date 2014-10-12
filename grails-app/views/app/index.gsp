@@ -58,9 +58,8 @@
                 </a>
                 <ul>
                     <g:each in="${skillBookInstanceSet}">
-                        <g:set var="schoolYear" value="${it}"/>
                         <li>
-                            <a id="evaluations-manage" href="${createLink(controller: 'evaluation', action: 'manage', params: [skillBookId: it.id])}">${it.title}</a>
+                            <a id="evaluation-link" href="${createLink(controller: 'evaluation', action: 'index', params: [skillBookId: it.id])}">${it.title}</a>
                         </li>
                     </g:each>
                 </ul>
@@ -118,6 +117,12 @@
 <!-- END #MAIN PANEL -->
 
 <asset:javascript src="app.index.js"/>
+
+<g:each in="${skillBookInstanceSet}">
+    <g:javascript>
+        initializeCachedLink("${it.id}");
+    </g:javascript>
+</g:each>
 
 </body>
 </html>

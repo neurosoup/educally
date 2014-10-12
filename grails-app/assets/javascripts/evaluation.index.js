@@ -1,3 +1,4 @@
+//= require plugin/storageapi/jquery.storageapi
 //= require plugin/jquery-nestable/jquery.nestable
 //= require plugin/pace/pace
 //= require_self
@@ -8,10 +9,9 @@ pageSetUp();
  * PAGE RELATED SCRIPTS
  */
 
-var initializeSkillExplorer = function (data, root, nodeTemplate) {
+var initializeModel = function (data, root, nodeTemplate, skillBookId) {
 
     var skills = JSON.parse(data);
-
     console.log(skills);
 
     var nodeElement = $("<div/>").html(nodeTemplate);

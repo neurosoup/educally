@@ -11,8 +11,8 @@
     <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
         <h1 class="page-title txt-color-blueDark"><i class="fa fa-tachometer fa-fw "></i>
             Evaluations
-            <span>>
-            ${skillBookTitle}
+            <span>
+                ${expandoInstance.skillBook.id}
             </span>
         </h1>
     </div>
@@ -20,7 +20,8 @@
     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
         <ul id="sparks" class="">
             <li class="sparks-info">
-                <h5>Couverture <span class="txt-color-blue"><i class="fa fa-check-circle"></i>&nbsp;${skillCoverage}%
+                <h5>Couverture <span class="txt-color-blue"><i
+                        class="fa fa-check-circle"></i>&nbsp;${expandoInstance.stats.coverage}%
                 </span></h5>
             </li>
         </ul>
@@ -85,19 +86,20 @@
                             <div class="evaluations-nav activate">
 
                                 <ul id="evaluationTabs" class="nav nav-tabs bordered tabs-pull-right hidden">
-                                    <g:each in="${evaluatedSkills}" var="evaluatedSkill">
+                                    <g:each in="${expandoInstance.skills}" var="skill">
                                         <li>
-                                            <a href="#skill-${evaluatedSkill.skill.id}"
-                                               data-toggle="tab">${evaluatedSkill.skill.title}</a>
+                                            <a href="#skill-${skill.id}"
+                                               data-toggle="tab">${skill.title}</a>
                                         </li>
                                     </g:each>
                                 </ul>
 
                                 <div id="myTabContent1" class="tab-content padding-10">
-                                    <g:each in="${evaluatedSkills}" var="evaluatedSkill">
-                                        <div class="tab-pane fade in" id="skill-${evaluatedSkill.skill.id}">
+                                    <g:each in="${expandoInstance.skills}" var="skill">
+                                        <div class="tab-pane fade in" id="skill-${skill.id}">
 
-                                            <h1>${evaluatedSkill.skill.title}</h1>
+                                            <h1>${skill.title}</h1>
+
                                             <div class="panel-group smart-accordion-default" id="accordion-2">
 
                                                 <div class="panel panel-default">
@@ -147,21 +149,28 @@
 </section>
 <!-- end widget grid -->
 
-<asset:javascript src="evaluation.manage.js"/>
+<asset:javascript src="evaluation.index.js"/>
 
 <g:javascript>
 
-    var skills = "";
+    var skillBookId = "${expandoInstance.skillBook.id}";
+    var modelKey = 'evaluation.model.skillBookId' + skillBookId;
+    var statusKey = modelKey + '.status';
+    var model = "${raw(expandoInstance.skills.domainInstance as JSON)}";
 
-    if ($.localStorage.isSet('skills')) {
-        skills = $.localStorage.get('skills')
+    console.log(model);
+
+    if ($.localStorage.get(statusKey) == 'set') {
+        console.log("cache ready for skillBook " + skillBookId)
+        skillModel = $.localStorage.get(modelKey)
     } else {
-        skills = "${raw(expandoInstanceList.domainInstance as JSON)}";
-        $.localStorage.set('skills', skills)
+        console.log("initialize cache for skillBook " + skillBookId)
+        $.localStorage.set(modelKey, model);
+        $.localStorage.set(statusKey, 'set');
     }
 
-    initializeSkillExplorer(skills, "#nestable", "${g.render(template: 'skillNode')}");
-
+    console.log(model);
+    initializeModel(model, "#nestable", "${g.render(template: 'skillNode')}", skillBookId);
 </g:javascript>
 
 </body>
