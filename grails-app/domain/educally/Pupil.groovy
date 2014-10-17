@@ -8,7 +8,7 @@ class Pupil {
 
     }
 
-    static hasMany = [evaluations: Evaluation]
+    static hasMany = [ratings: Rating]
 
     String firstName
     String lastName

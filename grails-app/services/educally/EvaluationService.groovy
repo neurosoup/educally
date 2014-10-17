@@ -7,39 +7,16 @@ import org.joda.time.LocalDateTime
 @Transactional
 class EvaluationService {
 
-    def Evaluation createEvaluationForPupil(List<String> tags, Pupil pupil, String title, NotationSystem preferredNotationSystem, Skill skill, BigDecimal value = null) {
+    def  ratePupil(Pupil pupil, Evaluation evaluation, Skill skill, BigDecimal value = null) {
 
-        def evaluation = new Evaluation(tags: tags, title: title).addToPreferredNotationSystems(preferredNotationSystem)
-        evaluation.addToValues(new EvaluatedSkill(skill: skill, value: value, missed: !value, dateTime: LocalDateTime.now()))
-        pupil.addToEvaluations(evaluation)
+        pupil.addToRatings(new Rating(skill: skill, evaluation: evaluation, value: value, missed: !value, dateTime: LocalDateTime.now()))
         pupil.save()
-
-        evaluation
-    }
-
-    def addEvaluationValue(Evaluation evaluation, Skill skill, BigDecimal value) {
-        evaluation.addToValues(new EvaluatedSkill(skill: skill, value: value, missed: !value, dateTime: LocalDateTime.now()))
-        evaluation.save()
-    }
-
-    def Integer calculateSkillCoverage(Teacher teacher, SkillBook skillBook) {
-
-        BigDecimal skillCount = Skill.countBySkillBook(skillBook)
-        BigDecimal evaluatedCount = teacher.pupils.evaluations.values.skill.flatten().collect {
-            it.id
-        }.unique().size().toBigDecimal()
-
-        if (skillCount > 0) {
-            Math.round(evaluatedCount / skillCount * 100)
-        } else {
-            0
-        }
 
     }
 
     @Cacheable(value = 'skillsAndEvaluationsByTeacherAndSkillBook', key = "{ #teacher.id, #skillBook.id }")
     def Expando GetSkillsAndEvaluationsByTeacherAndSkillBook(Teacher teacher, SkillBook skillBook) {
-        def evaluations = teacher.pupils.flatten().evaluations.flatten().groupBy { x -> x.values.sort { y -> y.skillId }.skillId }
+        def evaluations = teacher.pupils.flatten().evaluations.flatten().groupBy { x -> x.ratings.sort { y -> y.skillId }.skillId }
         def sortedSkills = skillBook.skills.sort { it.path }
         BigDecimal skillCount = sortedSkills.findAll { !it.name }.size()
         BigDecimal evaluatedCount = evaluations.values().flatten().size()
@@ -67,7 +44,7 @@ class EvaluationService {
                 skill.linkedSkills = []
                 for (evaluation in entry.value) {
                     skill.evaluations.add(evaluation)
-                    for (value in evaluation.values) {
+                    for (value in evaluation.ratings) {
                         def s = sortedSkills.find { it.id == value.skill.id }
                         def linkedSkill = new Expando()
                         if (s.id != skillId && !skill.linkedSkills.any { y -> y.id == s.id }) {
