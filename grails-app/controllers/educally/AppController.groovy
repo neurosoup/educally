@@ -201,31 +201,31 @@ class AppController {
                 def eval2 = new Evaluation(tags: ['contrôle'], title: 'Contrôle grands nombres').addToPreferredNotationSystems(preferredNotationSystem)
                 def eval3 = new Evaluation(tags: ['contrôle'], title: 'Contrôle calcul').addToPreferredNotationSystems(preferredNotationSystem)
 
-                evaluationService.ratePupil(pupil1, eval1, skill1, 0.6)
-                evaluationService.ratePupil(pupil1, eval1, skill4, 0.4)
-                evaluationService.ratePupil(pupil1, eval2, skill2, 0.75)
-                evaluationService.ratePupil(pupil1, eval3, skill3)
+                evaluationService.teacherRatePupil(teacher, pupil1, eval1, skill1, 0.6)
+                evaluationService.teacherRatePupil(teacher, pupil1, eval1, skill4, 0.4)
+                evaluationService.teacherRatePupil(teacher, pupil1, eval2, skill2, 0.75)
+                evaluationService.teacherRatePupil(teacher, pupil1, eval3, skill3)
 
-                evaluationService.ratePupil(pupil2, eval1, skill1, 0.1)
-                evaluationService.ratePupil(pupil2, eval1, skill4, 0.25)
-                evaluationService.ratePupil(pupil2, eval2, skill2, 0.05)
-                evaluationService.ratePupil(pupil2, eval3, skill3, 0.45)
+                evaluationService.teacherRatePupil(teacher, pupil2, eval1, skill1, 0.1)
+                evaluationService.teacherRatePupil(teacher, pupil2, eval1, skill4, 0.25)
+                evaluationService.teacherRatePupil(teacher, pupil2, eval2, skill2, 0.05)
+                evaluationService.teacherRatePupil(teacher, pupil2, eval3, skill3, 0.45)
 
 
-                evaluationService.ratePupil(pupil3, eval1, skill1)
-                evaluationService.ratePupil(pupil3, eval1, skill4, 0.1)
-                evaluationService.ratePupil(pupil3, eval2, skill2)
-                evaluationService.ratePupil(pupil3, eval3, skill3)
+                evaluationService.teacherRatePupil(teacher, pupil3, eval1, skill1)
+                evaluationService.teacherRatePupil(teacher, pupil3, eval1, skill4, 0.1)
+                evaluationService.teacherRatePupil(teacher, pupil3, eval2, skill2)
+                evaluationService.teacherRatePupil(teacher, pupil3, eval3, skill3)
 
-                evaluationService.ratePupil(pupil4, eval1, skill1, 0.5)
-                evaluationService.ratePupil(pupil4, eval1, skill4, 0.55)
-                evaluationService.ratePupil(pupil4, eval2, skill2, 0.45)
-                evaluationService.ratePupil(pupil4, eval3, skill3, 0.575)
+                evaluationService.teacherRatePupil(teacher, pupil4, eval1, skill1, 0.5)
+                evaluationService.teacherRatePupil(teacher, pupil4, eval1, skill4, 0.55)
+                evaluationService.teacherRatePupil(teacher, pupil4, eval2, skill2, 0.45)
+                evaluationService.teacherRatePupil(teacher, pupil4, eval3, skill3, 0.575)
 
-                evaluationService.ratePupil(pupil5, eval1, skill1, 0.95)
-                evaluationService.ratePupil(pupil5, eval1, skill4, 0.1)
-                evaluationService.ratePupil(pupil5, eval2, skill2, 1)
-                evaluationService.ratePupil(pupil5, eval3, skill3, 0.9875)
+                evaluationService.teacherRatePupil(teacher, pupil5, eval1, skill1, 0.95)
+                evaluationService.teacherRatePupil(teacher, pupil5, eval1, skill4, 0.1)
+                evaluationService.teacherRatePupil(teacher, pupil5, eval2, skill2, 1)
+                evaluationService.teacherRatePupil(teacher, pupil5, eval3, skill3, 0.9875)
 
 
                 if (!teacher.save()) {

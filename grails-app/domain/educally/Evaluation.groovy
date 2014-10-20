@@ -8,7 +8,10 @@ class Evaluation {
 
     static hasMany = [preferredNotationSystems: NotationSystem]
 
+    static embedded = ['stats']
+
     String title
     List<String> tags = []
+    EvaluationStats stats
 
 }

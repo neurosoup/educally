@@ -12,14 +12,15 @@ class Skill {
         path index: true
     }
 
-    static belongsTo = [skillBook: SkillBook]
+    static embedded = ['stats']
 
-    //static hasMany = [evaluations: Evaluation]
+    static belongsTo = [skillBook: SkillBook]
 
     String title
     String name
     String path
     Skill basedOn
+    SkillStats stats
 
 
 }

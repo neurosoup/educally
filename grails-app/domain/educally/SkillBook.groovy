@@ -8,8 +8,11 @@ class SkillBook {
 
     static hasMany = [skills: Skill]
 
+    static embedded = ['stats']
+
     String title
     String description
     SchoolYear schoolYear
+    SkillBookStats stats
 
 }

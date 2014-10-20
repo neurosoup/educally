@@ -7,15 +7,44 @@ import org.joda.time.LocalDateTime
 @Transactional
 class EvaluationService {
 
-    def  ratePupil(Pupil pupil, Evaluation evaluation, Skill skill, BigDecimal value = null) {
+    def teacherRatePupil(Teacher teacher, Pupil pupil, Evaluation evaluation, Skill skill, BigDecimal value = null) {
 
         pupil.addToRatings(new Rating(skill: skill, evaluation: evaluation, value: value, missed: !value, dateTime: LocalDateTime.now()))
         pupil.save()
+
+        //stats
+
+        skill.stats.evaluationCount = teacher.pupils.ratings.findAll {
+            it.skill.id == skill.id
+        }.evaluation.unique().size()
+
+        skill.stats.averageRating = teacher.pupils.ratings.value.sum() / teacher.pupils.ratings.size()
+
+        skill.skillBook.stats.skillCoverage = skill.stats.evaluationCount / skill.skillBook.skills.findAll {
+            it.name == null
+        }.size()
+
+
+        def nonZeroRating = teacher.pupils.ratings.findAll { it.value != 0 }
+        def simpleRating = teacher.pupils.ratings.findAll { !it.missed }
+
+        evaluation.stats.nonRatedcount = teacher.pupils.minus { x -> x.ratings.any { y -> y.evaluation == evaluation.id } }.size()
+        evaluation.stats.ratingMissedCount = teacher.pupils.ratings.findAll { it.missed }.size()
+        evaluation.stats.zeroRatingCount = teacher.pupils.ratings.findAll { it.value == 0 }.size()
+        evaluation.stats.nonZeroRatingCount = nonZeroRating.size()
+        evaluation.stats.simpleRatingCount = simpleRating.size()
+
+        evaluation.stats.nonZeroRatingAverage = nonZeroRating.value.sum() / nonZeroRating.size()
+        evaluation.stats.simpleRatingAverage = simpleRating.value.sum() / simpleRating.size()
 
     }
 
     @Cacheable(value = 'skillsAndEvaluationsByTeacherAndSkillBook', key = "{ #teacher.id, #skillBook.id }")
     def Expando GetSkillsAndEvaluationsByTeacherAndSkillBook(Teacher teacher, SkillBook skillBook) {
+
+        def evaluationsBySkill = teacher.pupils.ratings.groupBy { x -> x.skill }
+        def skills = skillBook.skills.sort { it.path }
+
         def evaluations = teacher.pupils.flatten().evaluations.flatten().groupBy { x -> x.ratings.sort { y -> y.skillId }.skillId }
         def sortedSkills = skillBook.skills.sort { it.path }
         BigDecimal skillCount = sortedSkills.findAll { !it.name }.size()
