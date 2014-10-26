@@ -14,10 +14,12 @@ class Rating {
 
     static belongsTo = [pupil: Pupil]
 
+    static hasOne = [evaluation: Evaluation, skill: Skill]
+
     BigDecimal value
     Boolean missed = false
     LocalDateTime dateTime
-    Skill skill
-    Evaluation evaluation
+    /*Skill skill
+    Evaluation evaluation*/
 
 }

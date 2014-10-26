@@ -14,17 +14,21 @@ class EvaluationService {
 
         //stats
 
-        skill.stats.evaluationCount = teacher.pupils.ratings.findAll {
-            it.skill.id == skill.id
-        }.evaluation.unique().size()
+        skill.stats = new SkillStats()
+        skill.stats.evaluationCount = teacher.pupils.findAll {
+            it.ratings.any {
+                it.skill == skill
+            }
+        }.ratings.evaluation.unique().size()
 
         skill.stats.averageRating = teacher.pupils.ratings.value.sum() / teacher.pupils.ratings.size()
 
+        skill.skillBook.stats = new SkillBookStats()
         skill.skillBook.stats.skillCoverage = skill.stats.evaluationCount / skill.skillBook.skills.findAll {
             it.name == null
         }.size()
 
-
+        evaluation.stats = new EvaluationStats()
         def nonZeroRating = teacher.pupils.ratings.findAll { it.value != 0 }
         def simpleRating = teacher.pupils.ratings.findAll { !it.missed }
 
