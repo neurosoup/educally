@@ -5,7 +5,7 @@ class SkillStats {
     static constraints = {
     }
 
-    int evaluationCount
-    int averageRating
+    BigDecimal evaluationCount
+    BigDecimal averageRating
 
 }
