@@ -23,8 +23,9 @@ class EvaluationService {
         def ratings = teacher.pupils.ratings.value.flatten() - null
         skill.stats.averageRating = ratings.sum() / ratings.size()
 
-        skill.skillBook.stats = skill.skillBook.stats ?: new SkillBookStats()
-        skill.skillBook.stats.skillCoverage = skill.stats.evaluationCount / skill.skillBook.skills.findAll {
+        def skillBook = teacher.skillBooks.find { it.skills.any { it == skill } }
+        skillBook.stats = skill.skillBook.stats ?: new SkillBookStats()
+        skillBook.stats.skillCoverage = skill.stats.evaluationCount / skill.skillBook.skills.findAll {
             it.name == null
         }.size()
 
