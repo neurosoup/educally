@@ -189,6 +189,10 @@ class AppController {
                         .addToPupils(pupil4)
                         .addToPupils(pupil5)
 
+                if (!teacher.save()) {
+                    log.error('Error saving pupils.')
+                }
+
                 log.info('Initializing evaluations...')
                 def skill1 = Skill.findBySkillBookAndTitle(teacherSkillBook, 'Restituer les tables d’addition et de multiplication de 2 à 9')
                 def skill2 = Skill.findBySkillBookAndTitle(teacherSkillBook, 'Estimer l’ordre de grandeur d’un résultat')
@@ -206,7 +210,7 @@ class AppController {
                 evaluationService.teacherRatePupil(teacher, pupil1, eval2, skill2, 0.75)
                 evaluationService.teacherRatePupil(teacher, pupil1, eval3, skill3)
 
-                evaluationService.teacherRatePupil(teacher, pupil2, eval1, skill1, 0.1)
+                evaluationService.teacherRatePupil(teacher, pupil2, eval1, skill1, 0.0)
                 evaluationService.teacherRatePupil(teacher, pupil2, eval1, skill4, 0.25)
                 evaluationService.teacherRatePupil(teacher, pupil2, eval2, skill2, 0.05)
                 evaluationService.teacherRatePupil(teacher, pupil2, eval3, skill3, 0.45)
@@ -227,10 +231,6 @@ class AppController {
                 evaluationService.teacherRatePupil(teacher, pupil5, eval2, skill2, 1)
                 evaluationService.teacherRatePupil(teacher, pupil5, eval3, skill3, 0.9875)
 
-
-                if (!teacher.save()) {
-                    log.error('Error saving pupils world.')
-                }
             }
         } else {
             log.warn('Cannot insert demo data because no demo user found.')

@@ -10,7 +10,6 @@ class EvaluationService {
     def teacherRatePupil(Teacher teacher, Pupil pupil, Evaluation evaluation, Skill skill, BigDecimal value = null) {
 
         pupil.addToRatings(new Rating(skill: skill, evaluation: evaluation, value: value, missed: !value, dateTime: LocalDateTime.now()))
-        pupil.save()
 
         //stats
 
@@ -29,8 +28,6 @@ class EvaluationService {
             it.name == null
         }.size()
 
-        skill.save()
-
         evaluation.stats = evaluation.stats ?: new EvaluationStats()
         def nonZeroRating = teacher.pupils.ratings.flatten().findAll { it?.value > 0 }
         def simpleRating = teacher.pupils.ratings.flatten().findAll { it?.value >= 0 }
@@ -46,7 +43,7 @@ class EvaluationService {
         evaluation.stats.nonZeroRatingAverage = nonZeroRating.value.sum() / nonZeroRating.size()
         evaluation.stats.simpleRatingAverage = simpleRating.value.sum() / simpleRating.size()
 
-        evaluation.save()
+        teacher.save()
 
     }
 
