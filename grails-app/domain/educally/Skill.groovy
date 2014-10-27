@@ -22,5 +22,4 @@ class Skill {
     Skill basedOn
     SkillStats stats
 
-
 }

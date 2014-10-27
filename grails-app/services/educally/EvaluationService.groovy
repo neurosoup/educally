@@ -21,27 +21,32 @@ class EvaluationService {
             }
         }.ratings.evaluation.unique().size()
 
-        skill.stats.averageRating = teacher.pupils.ratings.value.flatten().sum() / teacher.pupils.ratings.flatten().size()
+        def ratings = teacher.pupils.ratings.value.flatten() - null
+        skill.stats.averageRating = ratings.sum() / ratings.size()
 
         skill.skillBook.stats = skill.skillBook.stats ?: new SkillBookStats()
         skill.skillBook.stats.skillCoverage = skill.stats.evaluationCount / skill.skillBook.skills.findAll {
             it.name == null
         }.size()
 
+        skill.save()
+
         evaluation.stats = evaluation.stats ?: new EvaluationStats()
-        def nonZeroRating = teacher.pupils.ratings.findAll { it.any { it.value != 0 } }
-        def simpleRating = teacher.pupils.ratings.findAll { it.any { !it.missed } }
+        def nonZeroRating = teacher.pupils.ratings.flatten().findAll { it?.value > 0 }
+        def simpleRating = teacher.pupils.ratings.flatten().findAll { it?.value >= 0 }
 
         evaluation.stats.nonRatedcount = teacher.pupils.minus(teacher.pupils.findAll {
             it.ratings.any { it.evaluation == evaluation }
         }).size()
         evaluation.stats.ratingMissedCount = teacher.pupils.ratings.findAll { it.any { it.missed } }.size()
         evaluation.stats.zeroRatingCount = teacher.pupils.ratings.findAll { it.any { it.value == 0 } }.size()
-        evaluation.stats.nonZeroRatingCount = nonZeroRating.flatten().size()
-        evaluation.stats.simpleRatingCount = simpleRating.flatten().size()
+        evaluation.stats.nonZeroRatingCount = nonZeroRating.size()
+        evaluation.stats.simpleRatingCount = simpleRating.size()
 
-        evaluation.stats.nonZeroRatingAverage = nonZeroRating.flatten().value.sum() / nonZeroRating.flatten().size()
-        evaluation.stats.simpleRatingAverage = simpleRating.flatten().value.sum() / simpleRating.flatten().size()
+        evaluation.stats.nonZeroRatingAverage = nonZeroRating.value.sum() / nonZeroRating.size()
+        evaluation.stats.simpleRatingAverage = simpleRating.value.sum() / simpleRating.size()
+
+        evaluation.save()
 
     }
 
