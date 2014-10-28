@@ -9,7 +9,7 @@ class Rating {
     }
 
     static mapping = {
-        index(["dateTime": 1], [unique: true])
+        //index(["dateTime": 1], [unique: true])
     }
 
     //static belongsTo = [pupil: Pupil]
