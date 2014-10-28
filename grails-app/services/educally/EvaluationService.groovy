@@ -7,9 +7,11 @@ import org.joda.time.LocalDateTime
 @Transactional
 class EvaluationService {
 
+    // All domain instances must have been saved before !
     def teacherRatePupil(Teacher teacher, Pupil pupil, Evaluation evaluation, Skill skill, BigDecimal value = null) {
 
-        pupil.addToRatings(new Rating(skill: skill, evaluation: evaluation, value: value, missed: !value, dateTime: LocalDateTime.now()))
+        def rating = new Rating(skill: skill, evaluation: evaluation, value: value, missed: !value, dateTime: LocalDateTime.now())
+        pupil.addToRatings(rating)
 
         //stats
 
@@ -23,11 +25,13 @@ class EvaluationService {
         def ratings = teacher.pupils.ratings.value.flatten() - null
         skill.stats.averageRating = ratings.sum() / ratings.size()
 
-        def skillBook = teacher.skillBooks.find { it.skills.any { it == skill } }
+        def skillBook = teacher.skillBooks.find { it.skills.any { it.id == skill.id } }
         skillBook.stats = skill.skillBook.stats ?: new SkillBookStats()
         skillBook.stats.skillCoverage = skill.stats.evaluationCount / skill.skillBook.skills.findAll {
             it.name == null
         }.size()
+
+        teacher.save()
 
         evaluation.stats = evaluation.stats ?: new EvaluationStats()
         def nonZeroRating = teacher.pupils.ratings.flatten().findAll { it?.value > 0 }
@@ -44,7 +48,6 @@ class EvaluationService {
         evaluation.stats.nonZeroRatingAverage = nonZeroRating.value.sum() / nonZeroRating.size()
         evaluation.stats.simpleRatingAverage = simpleRating.value.sum() / simpleRating.size()
 
-        teacher.save()
 
     }
 
@@ -56,9 +59,6 @@ class EvaluationService {
 
         def evaluations = teacher.pupils.flatten().evaluations.flatten().groupBy { x -> x.ratings.sort { y -> y.skillId }.skillId }
         def sortedSkills = skillBook.skills.sort { it.path }
-        BigDecimal skillCount = sortedSkills.findAll { !it.name }.size()
-        BigDecimal evaluatedCount = evaluations.values().flatten().size()
-        def skillCoverage = skillCount > 0 ? Math.round(evaluatedCount / skillCount * 100) : 0
 
         def model = new Expando()
         model.skills = []

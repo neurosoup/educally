@@ -6,7 +6,7 @@ class Evaluation {
 
     }
 
-    static hasMany = [preferredNotationSystems: NotationSystem]
+    static hasMany = [preferredNotationSystems: NotationSystem, ratings: Rating]
 
     static embedded = ['stats']
 

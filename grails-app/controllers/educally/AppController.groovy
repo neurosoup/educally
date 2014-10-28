@@ -201,9 +201,9 @@ class AppController {
 
                 def preferredNotationSystem = NotationSystem.findByTitle('Note sur 20')
 
-                def eval1 = new Evaluation(tags: ['exercice'], title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem)
-                def eval2 = new Evaluation(tags: ['contrôle'], title: 'Contrôle grands nombres').addToPreferredNotationSystems(preferredNotationSystem)
-                def eval3 = new Evaluation(tags: ['contrôle'], title: 'Contrôle calcul').addToPreferredNotationSystems(preferredNotationSystem)
+                def eval1 = new Evaluation(tags: ['exercice'], title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem).save()
+                def eval2 = new Evaluation(tags: ['contrôle'], title: 'Contrôle grands nombres').addToPreferredNotationSystems(preferredNotationSystem).save()
+                def eval3 = new Evaluation(tags: ['contrôle'], title: 'Contrôle calcul').addToPreferredNotationSystems(preferredNotationSystem).save()
 
                 evaluationService.teacherRatePupil(teacher, pupil1, eval1, skill1, 0.6)
                 evaluationService.teacherRatePupil(teacher, pupil1, eval1, skill4, 0.4)

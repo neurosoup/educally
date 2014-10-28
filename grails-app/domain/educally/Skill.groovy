@@ -16,6 +16,8 @@ class Skill {
 
     static belongsTo = [skillBook: SkillBook]
 
+    static hasMany = [ratings: Rating]
+
     String title
     String name
     String path

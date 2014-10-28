@@ -12,14 +12,12 @@ class Rating {
         index(["dateTime": 1], [unique: true])
     }
 
-    static belongsTo = [pupil: Pupil]
-
-    static hasOne = [evaluation: Evaluation, skill: Skill]
+    //static belongsTo = [pupil: Pupil]
 
     BigDecimal value
     Boolean missed = false
     LocalDateTime dateTime
-    /*Skill skill
-    Evaluation evaluation*/
+    //Skill skill
+    //Evaluation evaluation
 
 }
