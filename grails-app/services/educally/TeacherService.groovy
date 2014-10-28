@@ -9,8 +9,6 @@ class TeacherService {
     def Teacher getCurrentTeacher() {
 
         Teacher.findByAccount(Account.findByUser(springSecurityService.currentUser as User))
-
     }
-
 
 }

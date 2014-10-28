@@ -9,15 +9,12 @@ class Rating {
     }
 
     static mapping = {
-        //index(["dateTime": 1], [unique: true])
-    }
 
-    //static belongsTo = [pupil: Pupil]
+    }
 
     BigDecimal value
     Boolean missed = false
+    Boolean awaiting = true
     LocalDateTime dateTime
-    //Skill skill
-    //Evaluation evaluation
 
 }
