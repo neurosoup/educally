@@ -7,55 +7,61 @@ import org.joda.time.LocalDateTime
 @Transactional
 class EvaluationService {
 
-    def teacherRateSkillEvaluationForPupil(Teacher teacher, Pupil pupil, Evaluation evaluation, Skill skill, BigDecimal value = null) {
+    def ratePupil(Teacher teacher, Pupil pupil, Evaluation evaluation, Skill skill, BigDecimal value = null) {
 
         def rating = new Rating(value: value, missed: !value, awaiting: false, dateTime: LocalDateTime.now())
-        def teacherSkill = teacher.skillBooks.skills.flatten().find { it.id == skill.id }
-        def teacherPupil = teacher.pupils.find { it.id == pupil.id }
-        def teacherEvaluation = teacher.evaluations.find { it.id == evaluation.id }
 
-        teacherSkill.addToRatings(rating)
-        teacherPupil.addToRatings(rating)
-        teacherEvaluation.addToRatings(rating)
+        skill.addToRatings(rating)
+        skill.save()
 
-        updateStats(teacher, teacherSkill, teacherEvaluation, teacherSkill.skillBook)
+        evaluation.addToRatings(rating)
+        evaluation.save()
 
-        teacher.save()
+        pupil.addToRatings(rating)
+        pupil.save()
+
+        updateSkillStats(skill)
+        updateSkillBookStats(skill.skillBook)
+        updateEvaluationStats(teacher, evaluation)
     }
 
-    def updateStats(Teacher teacher, Skill teacherSkill, Evaluation teacherEvaluation, SkillBook teacherSkillBook) {
+    def updateSkillStats(Skill skill) {
 
-        def skillRatings = Rating.findAllBySkill(teacherSkill)
+        def ratings = Rating.findAllBySkill(skill)
+        skill.stats = skill.stats ?: new SkillStats()
+        skill.stats.evaluationCount = ratings.evaluation.size()
+        skill.stats.averageRating = ratings.value.sum() / ratings.size()
+        skill.save()
+    }
 
-        teacherSkill.stats = teacherSkill.stats ?: new SkillStats()
-        teacherSkill.stats.evaluationCount = skillRatings.evaluation.size()
-        teacherSkill.stats.averageRating = skillRatings.sum() / skillRatings.size()
+    def updateSkillBookStats(SkillBook skillBook) {
 
-        def teacherSkills = Skill.findBySkillBook(teacherSkillBook).findAll { it.name == null }
-        def evaluatedSkills = Skill.findBySkillBook(teacherSkillBook).findAll { it.name == null && it.}
-        teacherSkillBook.stats = teacherSkill.skillBook.stats ?: new SkillBookStats()
-        teacherSkillBook.stats.skillCoverage = Skill
-                teacherSkillBook.stats.skillCoverage = teacherSkill.stats.evaluationCount / teacherSkill.skillBook.skills.findAll {
-            it.name == null
-        }.size()
+        def skills = Skill.findAllBySkillBook(skillBook)
 
-        teacher.save()
+        skillBook.stats = skillBook.stats ?: new SkillBookStats()
+        skillBook.stats.skillCoverage = skills.ratedLeaves.size() / skills.leaves.size()
+        skillBook.save()
+    }
 
-        teacherEvaluation.stats = teacherEvaluation.stats ?: new EvaluationStats()
-        def nonZeroRating = teacher.pupils.ratings.flatten().findAll { it?.value > 0 }
-        def simpleRating = teacher.pupils.ratings.flatten().findAll { it?.value >= 0 }
+    def updateEvaluationStats(Teacher teacher, Evaluation evaluation) {
 
-        teacherEvaluation.stats.nonRatedcount = teacher.pupils.minus(teacher.pupils.findAll {
-            it.ratings.any { it.evaluation == teacherEvaluation }
+        def ratings = Rating.findAllByEvaluation(evaluation)
+
+        evaluation.stats = evaluation.stats ?: new EvaluationStats()
+        evaluation.stats.nonRatedcount = teacher.pupils.minus(teacher.pupils.findAll {
+            it.ratings.any { it.evaluation.id == evaluation.id }
         }).size()
-        teacherEvaluation.stats.ratingMissedCount = teacher.pupils.ratings.findAll { it.any { it.missed } }.size()
-        teacherEvaluation.stats.zeroRatingCount = teacher.pupils.ratings.findAll { it.any { it.value == 0 } }.size()
-        teacherEvaluation.stats.nonZeroRatingCount = nonZeroRating.size()
-        teacherEvaluation.stats.simpleRatingCount = simpleRating.size()
 
-        teacherEvaluation.stats.nonZeroRatingAverage = nonZeroRating.value.sum() / nonZeroRating.size()
-        teacherEvaluation.stats.simpleRatingAverage = simpleRating.value.sum() / simpleRating.size()
+        evaluation.stats.ratingMissedCount = ratings.findAll { it.missed }.size()
+        evaluation.stats.zeroRatingCount = ratings.zero.size()
+        evaluation.stats.nonZeroRatingCount = ratings.nonZero.size()
+        evaluation.stats.simpleRatingCount = ratings.size()
 
+        evaluation.stats.nonZeroRatingAverage = ratings.findAll { it.value > 0 }.value.sum() / ratings.nonZero.size()
+        evaluation.stats.simpleRatingAverage = ratings.findAll { !it.missed }.value.sum() / ratings.findAll {
+            !it.missed
+        }.size()
+        evaluation.save()
     }
 
 

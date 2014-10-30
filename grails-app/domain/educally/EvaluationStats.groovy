@@ -5,7 +5,6 @@ class EvaluationStats {
     static constraints = {
     }
 
-
     int zeroRatingCount
     int nonRatedcount
     int ratingMissedCount

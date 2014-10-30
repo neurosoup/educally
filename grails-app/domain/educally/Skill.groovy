@@ -18,6 +18,10 @@ class Skill {
 
     static hasMany = [ratings: Rating]
 
+    static ratedLeaves = where { !name && !ratings.isEmpty() }
+
+    static leaves = where { !name }
+
     String title
     String name
     String path
