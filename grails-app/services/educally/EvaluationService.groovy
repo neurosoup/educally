@@ -12,7 +12,7 @@ class EvaluationService {
         def rating = new Rating(value: value, missed: !value, awaiting: false, dateTime: LocalDateTime.now())
         def teacherSkill = teacher.skillBooks.skills.flatten().find { it.id == skill.id }
         def teacherPupil = teacher.pupils.find { it.id == pupil.id }
-        def teacherEvaluation = teacher.evaluations.find {it.id == evaluation.id}
+        def teacherEvaluation = teacher.evaluations.find { it.id == evaluation.id }
 
         teacherSkill.addToRatings(rating)
         teacherPupil.addToRatings(rating)
@@ -25,18 +25,17 @@ class EvaluationService {
 
     def updateStats(Teacher teacher, Skill teacherSkill, Evaluation teacherEvaluation, SkillBook teacherSkillBook) {
 
+        def skillRatings = Rating.findAllBySkill(teacherSkill)
+
         teacherSkill.stats = teacherSkill.stats ?: new SkillStats()
-        teacherSkill.stats.evaluationCount = teacher.pupils.findAll {
-            it.ratings.any {
-                it.skill == teacherSkill
-            }
-        }.ratings.evaluation.unique().size()
+        teacherSkill.stats.evaluationCount = skillRatings.evaluation.size()
+        teacherSkill.stats.averageRating = skillRatings.sum() / skillRatings.size()
 
-        def ratings = teacher.pupils.ratings.value.flatten() - null
-        teacherSkill.stats.averageRating = ratings.sum() / ratings.size()
-
+        def teacherSkills = Skill.findBySkillBook(teacherSkillBook).findAll { it.name == null }
+        def evaluatedSkills = Skill.findBySkillBook(teacherSkillBook).findAll { it.name == null && it.}
         teacherSkillBook.stats = teacherSkill.skillBook.stats ?: new SkillBookStats()
-        teacherSkillBook.stats.skillCoverage = teacherSkill.stats.evaluationCount / teacherSkill.skillBook.skills.findAll {
+        teacherSkillBook.stats.skillCoverage = Skill
+                teacherSkillBook.stats.skillCoverage = teacherSkill.stats.evaluationCount / teacherSkill.skillBook.skills.findAll {
             it.name == null
         }.size()
 
