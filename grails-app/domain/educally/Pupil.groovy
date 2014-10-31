@@ -5,7 +5,7 @@ import org.joda.time.LocalDate
 class Pupil {
 
     static constraints = {
-
+        ratings nullable: true
     }
 
     static hasMany = [ratings: Rating]

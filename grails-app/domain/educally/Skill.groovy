@@ -3,6 +3,7 @@ package educally
 class Skill {
 
     static constraints = {
+        ratings nullable: true
         name nullable: true //leaf
         path nullable: true //root
         basedOn nullable: true
@@ -18,9 +19,11 @@ class Skill {
 
     static hasMany = [ratings: Rating]
 
-    static ratedLeaves = where { !name && !ratings.isEmpty() }
-
-    static leaves = where { !name }
+    static leaves = where { name == null }
+    static ratedLeaves
+    {
+        leaves && ratings != null && ratings.size() > 0
+    }
 
     String title
     String name

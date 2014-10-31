@@ -7,9 +7,9 @@ import org.joda.time.LocalDateTime
 @Transactional
 class EvaluationService {
 
-    def ratePupil(Teacher teacher, Pupil pupil, Evaluation evaluation, Skill skill, BigDecimal value = null) {
+    def teacherRatePupil(Teacher teacher, Pupil pupil, Evaluation evaluation, Skill skill, BigDecimal value = null) {
 
-        def rating = new Rating(value: value, missed: !value, awaiting: false, dateTime: LocalDateTime.now())
+        def rating = new Rating(value: value, missed: !value, dateTime: LocalDateTime.now())
 
         skill.addToRatings(rating)
         skill.save()
