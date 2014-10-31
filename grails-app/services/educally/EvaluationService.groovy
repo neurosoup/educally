@@ -11,6 +11,9 @@ class EvaluationService {
 
         def rating = new Rating(value: value, missed: !value, dateTime: LocalDateTime.now())
 
+        teacher.addToEvaluations(evaluation)
+        teacher.save()
+
         skill.addToRatings(rating)
         skill.save()
 
