@@ -4,6 +4,7 @@ class SkillBook {
 
     static constraints = {
         description nullable: true
+        stats nullable: true
     }
 
     static hasMany = [skills: Skill]

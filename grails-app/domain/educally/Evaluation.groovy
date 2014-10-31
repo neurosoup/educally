@@ -4,6 +4,7 @@ class Evaluation {
 
     static constraints = {
         ratings nullable: true
+        stats nullable: true
     }
 
     static hasMany = [preferredNotationSystems: NotationSystem, ratings: Rating]

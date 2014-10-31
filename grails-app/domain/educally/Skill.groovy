@@ -4,6 +4,8 @@ class Skill {
 
     static constraints = {
         ratings nullable: true
+        stats nullable: true
+
         name nullable: true //leaf
         path nullable: true //root
         basedOn nullable: true
