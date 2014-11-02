@@ -21,12 +21,6 @@ class Skill {
 
     static hasMany = [ratings: Rating]
 
-    static leaves = where { name == null }
-    static ratedLeaves
-    {
-        leaves && ratings != null && ratings.size() > 0
-    }
-
     String title
     String name
     String path

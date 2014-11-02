@@ -1,9 +1,6 @@
 package educally
 
-import educally.security.Role
 import educally.security.User
-import educally.security.UserRole
-import org.joda.time.DateTime
 import org.joda.time.LocalDate
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
@@ -148,16 +145,16 @@ class AppController {
         if (user) {
             def account = Account.findByUser(user)
 
-            log.info('Initializing teacher...')
+            log.info('Initializing classroom...')
             def teacher = Teacher.findByAccount(account)
 
             if (removeDemoData) {
                 if (teacher) {
-                    teacher.pupils?.each { it.delete() }
-                    teacher.skillBooks?.each { it.delete() }
-                    teacher.delete()
+                    //TODO: remove classroom data
                 }
             } else if (!teacher) {
+
+                def classroom = new Classroom(name: 'CM1')
 
                 teacher = new Teacher(account: account)
 
@@ -171,9 +168,7 @@ class AppController {
                 teacher.evaluationTags.add('contrôle')
                 teacher.pupilTags.add('cm2')
 
-                if (!teacher.save()) {
-                    log.error('Error saving teacher world.')
-                }
+                classroom.addToTeachers(teacher)
 
                 log.info('Initializing pupils...')
                 def pupil1 = new Pupil(firstName: 'Michel', lastName: 'Constantin', birthDay: new LocalDate(1924, 7, 13), tags: ['cm2'])
@@ -182,15 +177,15 @@ class AppController {
                 def pupil4 = new Pupil(firstName: 'Garret', lastName: 'Fitzgerald', birthDay: new LocalDate(1926, 5, 19), tags: ['cm2'])
                 def pupil5 = new Pupil(firstName: 'Joelle', lastName: 'Mogensen', birthDay: new LocalDate(1953, 2, 3), tags: ['cm2'])
 
-                teacher
+                classroom
                         .addToPupils(pupil1)
                         .addToPupils(pupil2)
                         .addToPupils(pupil3)
                         .addToPupils(pupil4)
                         .addToPupils(pupil5)
 
-                if (!teacher.save()) {
-                    log.error('Error saving pupils.')
+                if (!classroom.save()) {
+                    log.error('Error saving classRoom.')
                 }
 
                 log.info('Initializing evaluations...')
@@ -201,35 +196,35 @@ class AppController {
 
                 def preferredNotationSystem = NotationSystem.findByTitle('Note sur 20')
 
-                def eval1 = new Evaluation(tags: ['exercice'], title: 'Récitation tables de multiplication').addToPreferredNotationSystems(preferredNotationSystem).save(failOnError: true)
-                def eval2 = new Evaluation(tags: ['contrôle'], title: 'Contrôle grands nombres').addToPreferredNotationSystems(preferredNotationSystem).save(failOnError: true)
-                def eval3 = new Evaluation(tags: ['contrôle'], title: 'Contrôle calcul').addToPreferredNotationSystems(preferredNotationSystem).save(failOnError: true)
+                def evaluation1 = evaluationService.create(['exercice'], "Récitation tables de multiplication", preferredNotationSystem)
+                def evaluation2 = evaluationService.create(['contrôle'], 'Contrôle grands nombres', preferredNotationSystem)
+                def evaluation3 = evaluationService.create(['contrôle'], 'Contrôle calcul', preferredNotationSystem)
 
-                evaluationService.teacherRatePupil(teacher, pupil1, eval1, skill1, 0.6)
-                evaluationService.teacherRatePupil(teacher, pupil1, eval1, skill4, 0.4)
-                evaluationService.teacherRatePupil(teacher, pupil1, eval2, skill2, 0.75)
-                evaluationService.teacherRatePupil(teacher, pupil1, eval3, skill3)
+                evaluationService.rate(teacher, pupil1, evaluation1, skill1, 0.6)
+                evaluationService.rate(teacher, pupil1, evaluation1, skill4, 0.4)
+                evaluationService.rate(teacher, pupil1, evaluation2, skill2, 0.75)
+                evaluationService.rate(teacher, pupil1, evaluation3, skill3)
 
-                evaluationService.teacherRatePupil(teacher, pupil2, eval1, skill1, 0.0)
-                evaluationService.teacherRatePupil(teacher, pupil2, eval1, skill4, 0.25)
-                evaluationService.teacherRatePupil(teacher, pupil2, eval2, skill2, 0.05)
-                evaluationService.teacherRatePupil(teacher, pupil2, eval3, skill3, 0.45)
+                evaluationService.rate(teacher, pupil2, evaluation1, skill1, 0.0)
+                evaluationService.rate(teacher, pupil2, evaluation1, skill4, 0.25)
+                evaluationService.rate(teacher, pupil2, evaluation2, skill2, 0.05)
+                evaluationService.rate(teacher, pupil2, evaluation3, skill3, 0.45)
 
 
-                evaluationService.teacherRatePupil(teacher, pupil3, eval1, skill1)
-                evaluationService.teacherRatePupil(teacher, pupil3, eval1, skill4, 0.1)
-                evaluationService.teacherRatePupil(teacher, pupil3, eval2, skill2)
-                evaluationService.teacherRatePupil(teacher, pupil3, eval3, skill3)
+                evaluationService.rate(teacher, pupil3, evaluation1, skill1)
+                evaluationService.rate(teacher, pupil3, evaluation1, skill4, 0.1)
+                evaluationService.rate(teacher, pupil3, evaluation2, skill2)
+                evaluationService.rate(teacher, pupil3, evaluation3, skill3)
 
-                evaluationService.teacherRatePupil(teacher, pupil4, eval1, skill1, 0.5)
-                evaluationService.teacherRatePupil(teacher, pupil4, eval1, skill4, 0.55)
-                evaluationService.teacherRatePupil(teacher, pupil4, eval2, skill2, 0.45)
-                evaluationService.teacherRatePupil(teacher, pupil4, eval3, skill3, 0.575)
+                evaluationService.rate(teacher, pupil4, evaluation1, skill1, 0.5)
+                evaluationService.rate(teacher, pupil4, evaluation1, skill4, 0.55)
+                evaluationService.rate(teacher, pupil4, evaluation2, skill2, 0.45)
+                evaluationService.rate(teacher, pupil4, evaluation3, skill3, 0.575)
 
-                evaluationService.teacherRatePupil(teacher, pupil5, eval1, skill1, 0.95)
-                evaluationService.teacherRatePupil(teacher, pupil5, eval1, skill4, 0.1)
-                evaluationService.teacherRatePupil(teacher, pupil5, eval2, skill2, 1)
-                evaluationService.teacherRatePupil(teacher, pupil5, eval3, skill3, 0.9875)
+                evaluationService.rate(teacher, pupil5, evaluation1, skill1, 0.95)
+                evaluationService.rate(teacher, pupil5, evaluation1, skill4, 0.1)
+                evaluationService.rate(teacher, pupil5, evaluation2, skill2, 1)
+                evaluationService.rate(teacher, pupil5, evaluation3, skill3, 0.9875)
 
             }
         } else {
