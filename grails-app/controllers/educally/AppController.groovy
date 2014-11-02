@@ -196,9 +196,9 @@ class AppController {
 
                 def preferredNotationSystem = NotationSystem.findByTitle('Note sur 20')
 
-                def evaluation1 = evaluationService.create(['exercice'], "Récitation tables de multiplication", preferredNotationSystem)
-                def evaluation2 = evaluationService.create(['contrôle'], 'Contrôle grands nombres', preferredNotationSystem)
-                def evaluation3 = evaluationService.create(['contrôle'], 'Contrôle calcul', preferredNotationSystem)
+                def evaluation1 = evaluationService.create(['exercice'] as String[], 'Récitation tables de multiplication', preferredNotationSystem)
+                def evaluation2 = evaluationService.create(['contrôle'] as String[], 'Contrôle grands nombres', preferredNotationSystem)
+                def evaluation3 = evaluationService.create(['contrôle'] as String[], 'Contrôle calcul', preferredNotationSystem)
 
                 evaluationService.rate(teacher, pupil1, evaluation1, skill1, 0.6)
                 evaluationService.rate(teacher, pupil1, evaluation1, skill4, 0.4)

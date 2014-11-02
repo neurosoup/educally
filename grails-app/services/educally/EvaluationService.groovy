@@ -47,7 +47,7 @@ class EvaluationService {
     def updateSkillBookStats(SkillBook skillBook) {
 
         def leaves = Skill.findAllBySkillBookAndNameIsNull(skillBook)
-        def rated = Skill.findAllBySkillBookAndNameIsNullAndRatingsIsNotNullAndRatingsIsNotEmpty(skillBook)
+        def rated = Skill.findAllBySkillBookAndNameIsNullAndRatingsIsNotEmpty(skillBook)
 
         skillBook.stats = skillBook.stats ?: new SkillBookStats()
         skillBook.stats.skillCoverage = rated.size() / leaves.size()
