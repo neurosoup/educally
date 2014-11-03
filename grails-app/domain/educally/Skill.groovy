@@ -3,9 +3,7 @@ package educally
 class Skill {
 
     static constraints = {
-        ratings nullable: true
         stats nullable: true
-
         name nullable: true //leaf
         path nullable: true //root
         basedOn nullable: true
@@ -14,6 +12,8 @@ class Skill {
     static mapping = {
         path index: true
     }
+
+    static rated = where { ratings.size() > 0 }
 
     static embedded = ['stats']
 
