@@ -40,7 +40,9 @@ class EvaluationService {
         def ratings = skill.ratings
         skill.stats = skill.stats ?: new SkillStats()
         skill.stats.evaluationCount = ratings.evaluation.size()
-        skill.stats.averageRating = ratings.value.sum() / ratings.size()
+
+        def sum = ratings.value.sum() ?: 0.0
+        skill.stats.averageRating =  sum / ratings.size()
         skill.save()
     }
 
@@ -71,10 +73,11 @@ class EvaluationService {
         evaluation.stats.nonZeroRatingCount = nonZeroRating.size()
         evaluation.stats.simpleRatingCount = allRatings.size()
 
-        evaluation.stats.nonZeroRatingAverage = nonZeroRating.value.sum() / nonZeroRating.size()
-        evaluation.stats.simpleRatingAverage = allRatings.value.sum() / allRatings.findAll {
-            !it.missed
-        }.size()
+        def nonZeroRatingSum = nonZeroRating.value.sum() ?: 0.0
+        def allRatingsSum = allRatings.value.sum() ?: 0.0
+
+        evaluation.stats.nonZeroRatingAverage = nonZeroRating.size() > 0 ? nonZeroRatingSum / nonZeroRating.size() : 0.0
+        evaluation.stats.simpleRatingAverage = allRatings.size() > 0 ? allRatingsSum / allRatings.size() : 0.0
         evaluation.save()
     }
 

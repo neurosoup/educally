@@ -1,7 +1,6 @@
 package educally
 
 import grails.transaction.Transactional
-import sun.invoke.empty.Empty
 
 import java.text.Normalizer
 
@@ -13,15 +12,13 @@ class SkillService {
         def normalizedTitle = Normalizer.normalize(title, Normalizer.Form.NFKD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
         def name = isLeaf ? null : normalizedTitle.toLowerCase().replace(' ', '_').replace("'", '_')
 
-        String[] elements = null
+        def elements = null
         if (parent) {
-            elements = parent.path.split(',')
+            elements = parent.path ? parent.path.split(',').toList() - "" : new ArrayList<String>()
             elements << parent.name
         }
 
         def path = elements ? ",${elements.join(',')}," : ''
-        //def path = parent ? parent.path.isEmpty() ? "$parent.name" : "$parent.path,$parent.name," : ''
-
         def skill = new Skill(name: isLeaf ? null : name, title: title, path: path)
 
         skillBook.addToSkills(skill)
