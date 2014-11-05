@@ -10,7 +10,7 @@ class SkillService {
     def Skill create(SkillBook skillBook, Skill parent, Boolean isLeaf, String title) {
 
         def normalizedTitle = Normalizer.normalize(title, Normalizer.Form.NFKD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
-        def name = isLeaf ? null : normalizedTitle.toLowerCase().replace(' ', '_').replace("'", '_')
+        def name = isLeaf ? null : normalizedTitle.toLowerCase().replace(' ', '_').replace("'", '_').replace(',', '')
 
         def elements = null
         if (parent) {

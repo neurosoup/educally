@@ -16,7 +16,7 @@ class EvaluationService {
 
     def rate(Teacher teacher, Pupil pupil, Evaluation evaluation, Skill skill, BigDecimal value = null) {
 
-        def rating = new Rating(value: value, missed: !value, dateTime: LocalDateTime.now())
+        def rating = new Rating(value: value, missed: value == null, dateTime: LocalDateTime.now())
 
         teacher.addToEvaluations(evaluation)
         teacher.save()
@@ -41,7 +41,10 @@ class EvaluationService {
         skill.stats = skill.stats ?: new SkillStats()
         skill.stats.evaluationCount = ratings.evaluation.size()
 
-        def sum = ratings.value.sum() ?: 0.0
+
+        def values = ratings.value - null
+        def sum = values.sum() ?: 0.0
+
         skill.stats.averageRating =  sum / ratings.size()
         skill.save()
     }
@@ -61,8 +64,8 @@ class EvaluationService {
     def updateEvaluationStats(Teacher teacher, Evaluation evaluation) {
 
         def allRatings = Rating.findAllByEvaluationAndMissed(evaluation, false)
-        def zeroRating = Rating.findAllByEvaluationAndValue(evaluation, 0)
-        def nonZeroRating = Rating.findAllByEvaluationAndValueGreaterThan(evaluation, 0)
+        def zeroRating = Rating.findAllByEvaluationAndScaledValue(evaluation, 0)
+        def nonZeroRating = Rating.findAllByEvaluationAndScaledValueGreaterThan(evaluation, 0)
         def missedRatings = Rating.findAllByEvaluationAndMissed(evaluation, true)
 
         evaluation.stats = evaluation.stats ?: new EvaluationStats()
