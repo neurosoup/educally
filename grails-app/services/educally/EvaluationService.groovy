@@ -64,12 +64,12 @@ class EvaluationService {
     def updateEvaluationStats(Teacher teacher, Evaluation evaluation) {
 
         def allRatings = Rating.findAllByEvaluationAndMissed(evaluation, false)
-        def zeroRating = Rating.findAllByEvaluationAndScaledValue(evaluation, 0)
+        def zeroRating = Rating.findAllByEvaluationAndMissedAndScaledValue(evaluation, false, 0)
         def nonZeroRating = Rating.findAllByEvaluationAndScaledValueGreaterThan(evaluation, 0)
         def missedRatings = Rating.findAllByEvaluationAndMissed(evaluation, true)
 
         evaluation.stats = evaluation.stats ?: new EvaluationStats()
-        evaluation.stats.nonRatedcount = teacher.classRoom.pupils.size() - allRatings.size()
+        evaluation.stats.nonRatedcount = teacher.classRoom.pupils.size() - allRatings.pupil.unique().size()
 
         evaluation.stats.ratingMissedCount = missedRatings.size()
         evaluation.stats.zeroRatingCount = zeroRating.size()
