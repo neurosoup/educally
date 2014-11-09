@@ -27,10 +27,9 @@ class SkillService {
         skill
     }
 
-    @Cacheable(value = 'skillsBySkillBook', key = "#skillBook")
-    def getSkillsBySkillBook(SkillBook skillBook)
-    {
-        Skill.findBySkillBook(skillBook).listOrderByPath()
+    @Cacheable(value = 'skillsBySkillBook', key = "#skillBook.id")
+    def getSkillsBySkillBook(SkillBook skillBook) {
+        Skill.findAllBySkillBook(skillBook).sort { it.path }
     }
 
 }

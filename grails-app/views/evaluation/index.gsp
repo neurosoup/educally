@@ -12,7 +12,7 @@
         <h1 class="page-title txt-color-blueDark"><i class="fa fa-tachometer fa-fw "></i>
             Evaluations
             <span>
-                ${expandoInstance.skillBook.title}
+                ${skillBook.title}
             </span>
         </h1>
     </div>
@@ -21,7 +21,7 @@
         <ul id="sparks" class="">
             <li class="sparks-info">
                 <h5>Couverture <span class="txt-color-blue"><i
-                        class="fa fa-check-circle"></i>&nbsp;${expandoInstance.stats.coverage}%
+                        class="fa fa-check-circle"></i>&nbsp;${skillBook.stats.skillCoverage}%
                 </span></h5>
             </li>
         </ul>
@@ -73,68 +73,32 @@
 
                         <div id="wid-content-0">
 
-                            %{--Skills navigator--}%
-                            <div class="skills-nav activate">
-                                <div class="dd" id="nestable">
-                                    <ol class="dd-list" data-name="root">
-                                    </ol>
-                                </div>
-                                <span class="minifyme" data-action="minifySkills"><i class="fa fa-book hit"></i></span>
-                            </div>
+                            <g:render template="/skill/explorer"/>
 
                             %{--Evaluations--}%
                             <div class="evaluations-nav activate">
 
                                 <ul id="evaluationTabs" class="nav nav-tabs bordered tabs-pull-right hidden">
-                                    <g:each in="${expandoInstance.skills}" var="skill">
+                                    <g:each in="${skills}" var="skill">
                                         <li>
-                                            <a href="#skill-${skill.domainInstance.id}"
-                                               data-toggle="tab">${skill.domainInstance.id}</a>
+                                            <a href="#skill-${skill.id}"
+                                               data-toggle="tab">${skill.id}</a>
                                         </li>
                                     </g:each>
                                 </ul>
 
                                 <div id="myTabContent1" class="tab-content padding-10">
-                                    <g:each in="${expandoInstance.skills}" var="skill">
-                                        <div class="tab-pane fade in" id="skill-${skill.domainInstance.id}">
+                                    <g:each in="${skills}" var="skill">
+                                        <div class="tab-pane fade in" id="skill-${skill.id}">
+                                            <h1>${skill.title}</h1>
+                                            <div class="evaluation-content">
 
-                                            <h1>${skill.domainInstance.title}</h1>
-
-                                            <g:each in="${skill.evaluations}" var="evaluation">
-
-                                                <div class="panel-group smart-accordion-default"
-                                                     id="accordion-${evaluation.id}">
-
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading">
-                                                            <h4 class="panel-title">
-                                                                <a data-toggle="collapse"
-                                                                   data-parent="#accordion-${evaluation.id}"
-                                                                   href="#collapse-${evaluation.id}">
-                                                                    <i class="fa fa-lg fa-angle-down pull-right"></i>
-                                                                    <i class="fa fa-lg fa-angle-up pull-right"></i>
-                                                                    ${evaluation.title}
-                                                                </a>
-                                                            </h4>
-                                                        </div>
-
-                                                        <div id="collapse-${evaluation.id}"
-                                                             class="panel-collapse collapse in">
-                                                            <div class="panel-body">
-                                                                Liste des valeurs
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </g:each>
-
+                                            </div>
                                         </div>
                                     </g:each>
                                 </div>
 
                             </div>
-
                         </div>
 
                     </div>
@@ -159,8 +123,13 @@
 <asset:javascript src="evaluation.index.js"/>
 
 <g:javascript>
-    var model = "${raw(expandoInstance.skills.domainInstance as JSON)}";
-    initializeModel(model, "#nestable", "${g.render(template: 'skillNode')}");
+    var skills = "${raw(skills as grails.converters.JSON)}";
+    var skillExplorerRoot = "#nestable";
+    var skillTemplate = "${g.render(template: '/skill/node')}";
+    var getEvaluationsUrl = "${createLink(controller: 'evaluation', action: 'list')}"
+
+    buildSkillExplorer(skills, skillExplorerRoot, skillTemplate, getEvaluationsUrl);
+
 </g:javascript>
 
 </body>

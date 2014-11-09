@@ -9,30 +9,31 @@ pageSetUp();
  * PAGE RELATED SCRIPTS
  */
 
-var initializeModel = function (data, root, nodeTemplate) {
+var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate, getEvaluationUrl) {
 
-    var skills = JSON.parse(data);
+    var skills = JSON.parse(skillsData);
     console.log(skills);
 
-    var nodeElement = $("<div/>").html(nodeTemplate);
-    var rootElement = $(root);
+    var nodeElement = $("<div/>").html(skillTemplate);
+    var rootElement = $(skillExplorerRoot);
 
     for (var i = 0, len = skills.length; i < len; i++) {
 
         var node = nodeElement.clone();
         var nameHolder = node.find("ol");
-        var idHolder = node.find("li");
+        var linkHolder = node.find("li");
         var contentHolder = node.find(".inner-content");
 
         var skill = skills[i];
 
-        idHolder.attr("data-id", skill.id);
+        linkHolder.attr("data-id", skill.id);
+        linkHolder.attr("data-url", getEvaluationUrl + "?skillId=" + skill.id);
         contentHolder.html(skill.title);
 
         if (skill.name) {
             nameHolder.attr("data-name", skill.name);
         } else {
-            idHolder.addClass("leaf");
+            linkHolder.addClass("leaf");
             nameHolder.remove();
         }
 
@@ -68,14 +69,24 @@ var initializeModel = function (data, root, nodeTemplate) {
         }
     });
 
+    //Click on a skill in skill explorer
     $(".inner-content").on('click', function () {
         var $this = $(this);
+
+        //Remove previous selection
         $this.parents('[data-name=root]').find('li.leaf').removeClass('item-selected');
 
         var parent = $(this).parents('.dd-item:first');
         var id = parent.data('id');
 
+        //Show clicked skill as selected item
         parent.addClass('item-selected');
+
+        //Fill with evaluations summary
+        var url = parent.data('url');
+        $('#skill-' + id).children('.evaluation-content').first().load(url);
+
+        //Activate corresponding evaluation tab
         $("#evaluationTabs").find("a[href='#skill-" + id + "']").tab('show');
 
     });
@@ -150,7 +161,6 @@ function fitNestable(selector) {
     nestable.height(maxHeight);
 }
 
-
 var pagefunction = function () {
 
     var selector = '#wid-id-0';
@@ -163,6 +173,7 @@ var pagefunction = function () {
         fitNestable(selector);
     });
 
+    //Click somewhere on skill in skill explorer -> activate panel
     $('.dd').on('click', function () {
         var $this = $(this);
 
@@ -173,9 +184,9 @@ var pagefunction = function () {
         skillsPanel.css('white-space', 'normal');
 
         evaluationsPanel.addClass('activate');
-
     });
 
+    //Skill explorer mingifyer
     $(selector).on('click', '[data-action="minifySkills"]', function (e) {
         var $this = $(this);
 

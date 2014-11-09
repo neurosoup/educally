@@ -8,9 +8,9 @@ import org.joda.time.LocalDateTime
 @Transactional
 class EvaluationService {
 
-    @Cacheable(value = 'evaluationsBySkill', key = "#skill")
+    @Cacheable(value = 'evaluationsBySkill', key = "#skill.id")
     def getEvaluationsBySkill(Skill skill) {
-        Rating.findAllBySkill(skill).evaluation.unique()
+        Rating.findAllBySkill(skill).evaluation.unique { it.id }
     }
 
     def Evaluation create(String[] tags, String title, NotationSystem preferredNotationSystem) {
