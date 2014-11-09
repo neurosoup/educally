@@ -149,6 +149,15 @@
     margin-left: 33%;
 }
 
+.dd3-content .badge {
+    position: absolute;
+    right: 6px;
+    top: 9px;
+}
+
+.inner-content {
+    margin-right: 24px;
+}
 
 
 

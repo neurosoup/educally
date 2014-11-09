@@ -29,6 +29,7 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
         linkHolder.attr("data-id", skill.id);
         linkHolder.attr("data-url", getEvaluationUrl + "?skillId=" + skill.id);
         contentHolder.html(skill.title);
+        contentHolder.parent().append("<em class='badge pull-right bg-color-purple'>99</em>");
 
         if (skill.name) {
             nameHolder.attr("data-name", skill.name);
