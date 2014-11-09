@@ -122,7 +122,22 @@ log4j.main = {
 grails.cache.enabled = true
 grails.cache.config = {
     cache {
-        name 'skillsAndEvaluationsByTeacherAndSkillBook'
+        name 'evaluationsBySkill'
+        maxElementsInMemory 1000
+        timeToIdleSeconds 2*60*60
+        eternal false
+        overflowToDisk false
+        maxElementsOnDisk 0
+
+    }
+    cache {
+        name 'skillsBySkillBook'
+        maxElementsInMemory 1000
+        timeToIdleSeconds 2*60*60
+        eternal false
+        overflowToDisk false
+        maxElementsOnDisk 0
+
     }
 }
 

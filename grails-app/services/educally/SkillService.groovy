@@ -1,5 +1,6 @@
 package educally
 
+import grails.plugin.cache.Cacheable
 import grails.transaction.Transactional
 
 import java.text.Normalizer
@@ -25,4 +26,11 @@ class SkillService {
         skillBook.save()
         skill
     }
+
+    @Cacheable(value = 'skillsBySkillBook', key = "#skillBook")
+    def getSkillsBySkillBook(SkillBook skillBook)
+    {
+        Skill.findBySkillBook(skillBook).listOrderByPath()
+    }
+
 }
