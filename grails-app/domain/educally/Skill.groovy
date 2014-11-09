@@ -13,8 +13,6 @@ class Skill {
         path index: true
     }
 
-    static rated = where { ratings.size() > 0 }
-
     static embedded = ['stats']
 
     static belongsTo = [skillBook: SkillBook]
@@ -26,5 +24,9 @@ class Skill {
     String path
     Skill basedOn
     SkillStats stats
+
+    def getChildren() {
+        skillBook.skills.findAll { it.path == /^,${this.name},/ }
+    }
 
 }

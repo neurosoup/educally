@@ -9,10 +9,23 @@ pageSetUp();
  * PAGE RELATED SCRIPTS
  */
 
+var processSkillStats = function (skill, context) {
+
+    var $context = $(context);
+    console.log(skill);
+
+    if (skill.name != null) {
+        var children = skills.findAll(function(n) {
+            return true;
+        });
+        console.log(children);
+    }
+
+}
+
 var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate, getEvaluationUrl) {
 
     var skills = JSON.parse(skillsData);
-    console.log(skills);
 
     var nodeElement = $("<div/>").html(skillTemplate);
     var rootElement = $(skillExplorerRoot);
@@ -29,7 +42,7 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
         linkHolder.attr("data-id", skill.id);
         linkHolder.attr("data-url", getEvaluationUrl + "?skillId=" + skill.id);
         contentHolder.html(skill.title);
-        contentHolder.parent().append("<em class='badge pull-right bg-color-purple'>99</em>");
+        contentHolder.parent().append("<em class='badge pull-right bg-color-purple stat-count'></em>");
 
         if (skill.name) {
             nameHolder.attr("data-name", skill.name);
@@ -93,6 +106,8 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
     });
 
     truncSkillsTitle($("[data-name=root]"));
+
+    processSkillStats(skills[0], skillExplorerRoot);
 
 };
 
