@@ -4,8 +4,8 @@ class Skill {
 
     static constraints = {
         stats nullable: true
-        name nullable: true //leaf
-        path nullable: true //root
+        name nullable: true //if null then leaf
+        path nullable: true //if null then root
         basedOn nullable: true
     }
 
@@ -26,7 +26,13 @@ class Skill {
     SkillStats stats
 
     def getChildren() {
-        skillBook.skills.findAll { it.path == /^,${this.name},/ }
+        skillBook.skills.findAll { it.path =~ /,${this.name},/ }
+    }
+
+    def getRoot() {
+        if (this.path == null) return this
+        def name = (this.path.split(',') - "").first()
+        this.skillBook.skills.find { it.name == name }
     }
 
 }

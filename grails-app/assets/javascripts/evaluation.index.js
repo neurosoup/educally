@@ -9,19 +9,6 @@ pageSetUp();
  * PAGE RELATED SCRIPTS
  */
 
-var processSkillStats = function (skill, context) {
-
-    var $context = $(context);
-    console.log(skill);
-
-    if (skill.name != null) {
-        var children = skills.findAll(function(n) {
-            return true;
-        });
-        console.log(children);
-    }
-
-}
 
 var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate, getEvaluationUrl) {
 
@@ -38,11 +25,14 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
         var contentHolder = node.find(".inner-content");
 
         var skill = skills[i];
+        var evaluationCount = skill.stats ? skill.stats.evaluationCount : 0;
 
         linkHolder.attr("data-id", skill.id);
         linkHolder.attr("data-url", getEvaluationUrl + "?skillId=" + skill.id);
         contentHolder.html(skill.title);
-        contentHolder.parent().append("<em class='badge pull-right bg-color-purple stat-count'></em>");
+        if (evaluationCount > 0) {
+            contentHolder.parent().append("<em class='badge pull-right stat-count'>" + evaluationCount + "</em>");
+        }
 
         if (skill.name) {
             nameHolder.attr("data-name", skill.name);
@@ -106,8 +96,6 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
     });
 
     truncSkillsTitle($("[data-name=root]"));
-
-    processSkillStats(skills[0], skillExplorerRoot);
 
 };
 

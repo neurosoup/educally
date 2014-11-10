@@ -19,7 +19,7 @@ class EvaluationService {
                 .save(failOnError: true)
     }
 
-    @CachePut(value = 'evaluationBySkill', key = '#skill')
+    @CachePut(value = 'evaluationBySkill', key = '#skill.id')
     def rate(Teacher teacher, Pupil pupil, Evaluation evaluation, Skill skill, BigDecimal value = null) {
 
         def rating = new Rating(value: value, missed: value == null, dateTime: LocalDateTime.now())
@@ -39,13 +39,14 @@ class EvaluationService {
         updateSkillStats(skill)
         updateSkillBookStats(skill.skillBook)
         updateEvaluationStats(teacher, evaluation)
+        updateHierarchicalSkillStats(skill.root)
     }
 
     def updateSkillStats(Skill skill) {
 
         def ratings = skill.ratings
         skill.stats = skill.stats ?: new SkillStats()
-        skill.stats.evaluationCount = ratings.evaluation.size()
+        skill.stats.evaluationCount = ratings.evaluation.unique().size()
 
 
         def values = ratings.value - null
@@ -53,6 +54,30 @@ class EvaluationService {
 
         skill.stats.averageRating = sum / ratings.size()
         skill.save()
+
+    }
+
+    def updateHierarchicalSkillStats(Skill skill) {
+
+        def stat = 0
+
+        if (skill.name != null) {
+            skill.children.each {
+                stat += updateHierarchicalSkillStats(it)
+            }
+
+            skill.stats = skill.stats ?: new SkillStats()
+            skill.stats.evaluationCount = stat
+            skill.stats.averageRating = 0.0
+            log.debug("stat ${skill.title} = ${skill.stats.evaluationCount}")
+            skill.save()
+            stat = 0;
+
+        } else {
+            stat = skill.stats ? skill.stats.evaluationCount : 0
+        }
+
+        return stat
     }
 
     def updateSkillBookStats(SkillBook skillBook) {

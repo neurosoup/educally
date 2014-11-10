@@ -16,4 +16,12 @@ class SkillBook {
     SchoolYear schoolYear
     SkillBookStats stats
 
+    def getOrderedSkills() {
+        this.skills.sort { it.path }
+    }
+
+    def getRoots() {
+        this.skills.findAll { it.path == null }
+    }
+
 }
