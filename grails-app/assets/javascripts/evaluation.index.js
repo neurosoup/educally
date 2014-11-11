@@ -1,3 +1,4 @@
+//= require plugin/easy-pie-chart/jquery.easy-pie-chart
 //= require plugin/storageapi/jquery.storageapi
 //= require plugin/jquery-nestable/jquery.nestable
 //= require plugin/pace/pace
@@ -25,13 +26,26 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
         var contentHolder = node.find(".inner-content");
 
         var skill = skills[i];
-        var evaluationCount = skill.stats ? skill.stats.evaluationCount : 0;
+
+        var evaluationCount = 0;
+        var averageRating = 0;
+        if (skill.stats) {
+            evaluationCount = skill.stats.evaluationCount;
+            averageRating = skill.stats.averageRating;
+        }
 
         linkHolder.attr("data-id", skill.id);
         linkHolder.attr("data-url", getEvaluationUrl + "?skillId=" + skill.id);
         contentHolder.html(skill.title);
         if (evaluationCount > 0) {
-            contentHolder.parent().append("<em class='badge pull-right stat-count'>" + evaluationCount + "</em>");
+            //contentHolder.parent().append("<em class='badge pull-right stat-count'>" + evaluationCount + "</em>");
+            var color = 'txt-color-green';
+            if (0 <= averageRating && averageRating < 0.25) color = 'txt-color-red';
+            if (0.25 <= averageRating && averageRating < 0.5) color = 'txt-color-orangeDark';
+            if (0.5 <= averageRating && averageRating < 0.75) color = 'txt-color-yellow';
+            if (0.75 <= averageRating && averageRating < 1) color = 'txt-color-green';
+            var stat = "<div class='easy-pie-chart " + color + "' data-percent='" + averageRating * 100 + "'><span>" + evaluationCount + "</span></div>";
+            contentHolder.parent().append(stat)
         }
 
         if (skill.name) {
@@ -96,6 +110,38 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
     });
 
     truncSkillsTitle($("[data-name=root]"));
+
+    if ($.fn.easyPieChart) {
+
+        $('.easy-pie-chart').each(function () {
+
+            console.log(this);
+
+            var $this = $(this),
+                barColor = $this.css('color') || $this.data('pie-color'),
+                trackColor = $this.data('pie-track-color') || '#eeeeee',
+                size = parseInt($this.data('pie-size')) || 25;
+
+            $this.easyPieChart({
+
+                barColor: barColor,
+                trackColor: trackColor,
+                scaleColor: false,
+                lineCap: 'butt',
+                lineWidth: parseInt(size / 8.5),
+                animate: 1500,
+                rotate: -90,
+                size: size/*,
+                 onStep: function (value) {
+                 this.$el.find('span').text(~~value);
+                 }*/
+
+            });
+
+            $this = null;
+        });
+
+    } // end if
 
 };
 
@@ -211,6 +257,7 @@ var pagefunction = function () {
         //clear memory reference
         $this = null;
     });
+
 
 };
 

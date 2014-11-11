@@ -6,6 +6,8 @@ class SkillStats {
     }
 
     BigDecimal evaluationCount
+    int ratingCount
+    BigDecimal ratingSum
     BigDecimal averageRating
 
 }

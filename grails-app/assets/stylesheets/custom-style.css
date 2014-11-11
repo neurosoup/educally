@@ -19,6 +19,21 @@
  * Nestable Draggable Handles
  */
 
+.dd-item > button:before {
+    content: '\f107';
+    display: block;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    text-indent: 0;
+    color: #333;
+}
+
+.dd-item > button[data-action="collapse"]:before {
+    content: '\f106';
+    color: #333;
+}
+
 .dd3-item.leaf .inner-selected {
     visibility: hidden;
     position: absolute;
@@ -58,16 +73,6 @@
     color: inherit;
     background: none repeat scroll 0 0 rgba(0, 145, 217, 0.07);
 }
-
-/*.dd3-item.leaf .dd3-content:hover {
-    color: #ffffff;
-    background: #0091D9;
-    -webkit-transition: all 0.2s ease-in;
-    -moz-transition: all 0.2s ease-in;
-    -ms-transition: all 0.2s ease-in;
-    -o-transition: all 0.2s ease-in;
-    transition: all 0.2s ease-in;
-}*/
 
 .dd {
     overflow-y: visible;
@@ -159,5 +164,10 @@
     margin-right: 24px;
 }
 
-
+.easy-pie-chart {
+    position: absolute;
+    text-align: center;
+    right: 6px;
+    top: 6px;
+}
 

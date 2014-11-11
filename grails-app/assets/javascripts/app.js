@@ -1332,6 +1332,7 @@ function runAllCharts() {
     if ($.fn.easyPieChart) {
 
         $('.easy-pie-chart').each(function () {
+
             var $this = $(this),
                 barColor = $this.css('color') || $this.data('pie-color'),
                 trackColor = $this.data('pie-track-color') || '#eeeeee',

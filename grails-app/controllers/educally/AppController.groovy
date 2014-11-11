@@ -194,38 +194,44 @@ class AppController {
                 def skill2 = Skill.findBySkillBookAndTitle(teacherSkillBook, 'Estimer l’ordre de grandeur d’un résultat')
                 def skill3 = Skill.findBySkillBookAndTitle(teacherSkillBook, 'Utiliser une calculatrice')
                 def skill4 = Skill.findBySkillBookAndTitle(teacherSkillBook, 'Lire, interpréter et construire quelques représentations simples : tableaux, graphiques')
+                def skill5 = Skill.findBySkillBookAndTitle(teacherSkillBook, 'Epeler des mots familiers')
 
                 def preferredNotationSystem = NotationSystem.findByTitle('Note sur 20')
 
                 def evaluation1 = evaluationService.create(['exercice'] as String[], 'Récitation tables de multiplication', preferredNotationSystem)
                 def evaluation2 = evaluationService.create(['contrôle'] as String[], 'Contrôle grands nombres', preferredNotationSystem)
                 def evaluation3 = evaluationService.create(['contrôle'] as String[], 'Contrôle calcul', preferredNotationSystem)
+                def evaluation4 = evaluationService.create(['exercice'] as String[], "Evaluation français début d'année", preferredNotationSystem)
 
                 evaluationService.rate(teacher, pupil1, evaluation1, skill1, 0.6)
                 evaluationService.rate(teacher, pupil1, evaluation1, skill4, 0.4)
                 evaluationService.rate(teacher, pupil1, evaluation2, skill2, 0.75)
                 evaluationService.rate(teacher, pupil1, evaluation3, skill3)
+                evaluationService.rate(teacher, pupil1, evaluation4, skill5, 1)
 
                 evaluationService.rate(teacher, pupil2, evaluation1, skill1, 0.0)
                 evaluationService.rate(teacher, pupil2, evaluation1, skill4, 0.25)
                 evaluationService.rate(teacher, pupil2, evaluation2, skill2, 0.05)
-                evaluationService.rate(teacher, pupil2, evaluation3, skill3, 0.45)
-
+                evaluationService.rate(teacher, pupil2, evaluation3, skill3, 0.55)
+                evaluationService.rate(teacher, pupil2, evaluation4, skill5, 0.9875)
 
                 evaluationService.rate(teacher, pupil3, evaluation1, skill1)
                 evaluationService.rate(teacher, pupil3, evaluation1, skill4, 0.1)
                 evaluationService.rate(teacher, pupil3, evaluation2, skill2)
                 evaluationService.rate(teacher, pupil3, evaluation3, skill3)
+                evaluationService.rate(teacher, pupil3, evaluation4, skill5, 0.9625)
 
                 evaluationService.rate(teacher, pupil4, evaluation1, skill1, 0.5)
                 evaluationService.rate(teacher, pupil4, evaluation1, skill4, 0.55)
                 evaluationService.rate(teacher, pupil4, evaluation2, skill2, 0.45)
                 evaluationService.rate(teacher, pupil4, evaluation3, skill3, 0.575)
+                evaluationService.rate(teacher, pupil4, evaluation4, skill5, 1)
 
                 evaluationService.rate(teacher, pupil5, evaluation1, skill1, 0.95)
                 evaluationService.rate(teacher, pupil5, evaluation1, skill4, 0.1)
                 evaluationService.rate(teacher, pupil5, evaluation2, skill2, 1)
                 evaluationService.rate(teacher, pupil5, evaluation3, skill3, 0.9875)
+                evaluationService.rate(teacher, pupil5, evaluation4, skill5, 0.9375)
 
             }
         } else {
