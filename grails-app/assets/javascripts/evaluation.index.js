@@ -38,13 +38,13 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
         linkHolder.attr("data-url", getEvaluationUrl + "?skillId=" + skill.id);
         contentHolder.html(skill.title);
         if (evaluationCount > 0) {
-            //contentHolder.parent().append("<em class='badge pull-right stat-count'>" + evaluationCount + "</em>");
             var color = 'txt-color-green';
-            if (0 <= averageRating && averageRating < 0.25) color = 'txt-color-red';
-            if (0.25 <= averageRating && averageRating < 0.5) color = 'txt-color-orangeDark';
-            if (0.5 <= averageRating && averageRating < 0.75) color = 'txt-color-yellow';
-            if (0.75 <= averageRating && averageRating < 1) color = 'txt-color-green';
-            var stat = "<div class='easy-pie-chart " + color + "' data-percent='" + averageRating * 100 + "'><span>" + evaluationCount + "</span></div>";
+            if (0 <= averageRating && averageRating < 0.25) color = 'color-red';
+            if (0.25 <= averageRating && averageRating < 0.5) color = 'color-orangeDark';
+            if (0.5 <= averageRating && averageRating < 0.75) color = 'color-yellow';
+            if (0.75 <= averageRating && averageRating < 1) color = 'color-green';
+            //var stat = "<div class='easy-pie-chart txt-" + color + "' data-percent='" + averageRating * 100 + "'><span>" + evaluationCount + "</span></div>";
+            var stat = "<em class='badge pull-right stat-count bg-" + color + "'>" + evaluationCount + "</em>";
             contentHolder.parent().append(stat)
         }
 
@@ -128,7 +128,7 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
                 trackColor: trackColor,
                 scaleColor: false,
                 lineCap: 'butt',
-                lineWidth: parseInt(size / 8.5),
+                lineWidth: parseInt(size / 6),
                 animate: 1500,
                 rotate: -90,
                 size: size/*,
