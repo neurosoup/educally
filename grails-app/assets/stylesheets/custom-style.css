@@ -15,6 +15,10 @@
     padding: 7px 10px;
 }
 
+.bg-color-yellow {
+    background-color: #d1ca45 !important;
+}
+
 /**
  * Nestable Draggable Handles
  */
@@ -97,7 +101,6 @@
         width: 11%;
     }
 }
-
 
 .skills-nav.activate {
     width: 33%;

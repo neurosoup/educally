@@ -203,13 +203,13 @@ class AppController {
                 def evaluation3 = evaluationService.create(['contrôle'] as String[], 'Contrôle calcul', preferredNotationSystem)
                 def evaluation4 = evaluationService.create(['exercice'] as String[], "Evaluation français début d'année", preferredNotationSystem)
 
-                evaluationService.rate(teacher, pupil1, evaluation1, skill1, 0.6)
+                evaluationService.rate(teacher, pupil1, evaluation1, skill1, 1)
                 evaluationService.rate(teacher, pupil1, evaluation1, skill4, 0.4)
                 evaluationService.rate(teacher, pupil1, evaluation2, skill2, 0.75)
                 evaluationService.rate(teacher, pupil1, evaluation3, skill3)
                 evaluationService.rate(teacher, pupil1, evaluation4, skill5, 1)
 
-                evaluationService.rate(teacher, pupil2, evaluation1, skill1, 0.0)
+                evaluationService.rate(teacher, pupil2, evaluation1, skill1, 1)
                 evaluationService.rate(teacher, pupil2, evaluation1, skill4, 0.25)
                 evaluationService.rate(teacher, pupil2, evaluation2, skill2, 0.05)
                 evaluationService.rate(teacher, pupil2, evaluation3, skill3, 0.55)
@@ -221,13 +221,13 @@ class AppController {
                 evaluationService.rate(teacher, pupil3, evaluation3, skill3)
                 evaluationService.rate(teacher, pupil3, evaluation4, skill5, 0.9625)
 
-                evaluationService.rate(teacher, pupil4, evaluation1, skill1, 0.5)
+                evaluationService.rate(teacher, pupil4, evaluation1, skill1, 1)
                 evaluationService.rate(teacher, pupil4, evaluation1, skill4, 0.55)
                 evaluationService.rate(teacher, pupil4, evaluation2, skill2, 0.45)
                 evaluationService.rate(teacher, pupil4, evaluation3, skill3, 0.575)
                 evaluationService.rate(teacher, pupil4, evaluation4, skill5, 1)
 
-                evaluationService.rate(teacher, pupil5, evaluation1, skill1, 0.95)
+                evaluationService.rate(teacher, pupil5, evaluation1, skill1, 1)
                 evaluationService.rate(teacher, pupil5, evaluation1, skill4, 0.1)
                 evaluationService.rate(teacher, pupil5, evaluation2, skill2, 1)
                 evaluationService.rate(teacher, pupil5, evaluation3, skill3, 0.9875)

@@ -46,7 +46,7 @@ class EvaluationService {
 
     def updateSkillStats(Teacher teacher, Skill skill) {
 
-        def ratings = skill.ratings
+        def ratings = skill.ratings.findAll { !it.missed }
         skill.stats = skill.stats ?: new SkillStats()
         skill.stats.evaluationCount = ratings.evaluation.unique().size()
 
@@ -55,7 +55,7 @@ class EvaluationService {
 
         skill.stats.ratingSum = sum as BigDecimal
         skill.stats.ratingCount = ratings.size()
-        skill.stats.averageRating = sum / ratings.size()
+        skill.stats.averageRating =  ratings.size() > 0 ? sum / ratings.size() : 0.0
 
         skill.save()
 
