@@ -91,15 +91,20 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
     $(".inner-content").on('click', function () {
         var $this = $(this);
 
-        console.log($this);
-
         //Remove previous selection
         $this.parents('[data-name=root]').find('li.leaf').removeClass('item-selected');
 
         var parent = $(this).parents('.dd-item:first');
         var id = parent.data('id');
 
-
+        var folder = $(this).parents('.dd-item').first();
+        if (!folder.hasClass('leaf')) {
+            if (folder.hasClass('dd-collapsed')) {
+                $('.dd').nestable('expandItem', folder);
+            } else {
+                $('.dd').nestable('collapseItem', folder);
+            }
+        }
 
         //Show clicked skill as selected item
         parent.addClass('item-selected');

@@ -462,7 +462,7 @@
 
     };
 
-    $.fn.nestable = function(params)
+    $.fn.nestable = function(params, args)
     {
         var lists  = this,
             retval = this;
@@ -476,7 +476,7 @@
                 $(this).data("nestable-id", new Date().getTime());
             } else {
                 if (typeof params === 'string' && typeof plugin[params] === 'function') {
-                    retval = plugin[params]();
+                    retval = plugin[params](args);
                 }
             }
         });
