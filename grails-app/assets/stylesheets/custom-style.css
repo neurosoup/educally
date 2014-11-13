@@ -38,6 +38,16 @@
     color: #333;
 }
 
+.dd3-content {
+    background-color: #f7f7f7;
+    box-shadow: 3px 3px 4px #eeeeee;
+    cursor: pointer;
+}
+
+.dd3-item.leaf .dd3-content {
+    background-color: #fdfdfd;
+}
+
 .dd3-item.leaf .inner-selected {
     visibility: hidden;
     position: absolute;

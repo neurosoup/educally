@@ -63,7 +63,7 @@
                                 <div class="col-xs-9 col-sm-5 col-md-5 col-lg-5">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                        <input class="form-control" id="prepend" placeholder="Filter" type="text">
+                                        <input class="form-control search" id="prepend" placeholder="Filter" type="text">
                                     </div>
                                 </div>
 

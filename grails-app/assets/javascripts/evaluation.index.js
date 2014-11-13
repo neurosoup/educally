@@ -1,6 +1,5 @@
 //= require plugin/easy-pie-chart/jquery.easy-pie-chart
-//= require list.fuzzysearch
-//= require plugin/storageapi/jquery.storageapi
+//= require list
 //= require plugin/jquery-nestable/jquery.nestable
 //= require plugin/pace/pace
 //= require_self
@@ -50,7 +49,7 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
 
         if (skill.name) {
             nameHolder.attr("data-name", skill.name);
-            linkHolder.find('.dd3-content').addClass("bg-color-blue");
+            //linkHolder.find('.dd3-content').addClass("bg-color-blue");
         } else {
             linkHolder.addClass("leaf");
             nameHolder.remove();
@@ -120,6 +119,10 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
     });
 
     truncSkillsTitle($("[data-name=root]"));
+
+    var nestableList = new List('nestable', {
+        valueNames: ['inner-content']
+    });
 
     if ($.fn.easyPieChart) {
 
