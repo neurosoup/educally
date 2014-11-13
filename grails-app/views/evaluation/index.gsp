@@ -21,7 +21,7 @@
         <ul id="sparks" class="">
             <li class="sparks-info">
                 <h5>Couverture <span class="txt-color-blue"><i
-                        class="fa fa-check-circle"></i>&nbsp;${skillBook.stats.skillCoverage}%
+                        class="fa fa-check-circle"></i>&nbsp;<g:formatNumber number="${skillBook.stats.skillCoverage * 100}" type="number" maxFractionDigits="0" />%
                 </span></h5>
             </li>
         </ul>
