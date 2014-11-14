@@ -16,6 +16,12 @@
         <sourceRoots />
       </configuration>
     </facet>
+    <facet type="hibernate" name="Hibernate">
+      <configuration>
+        <datasource-map />
+        <naming-strategy-map />
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -85,6 +91,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="grails-2.4.4" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="grails-2.4.4" level="application" />
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library (educally-grailsPlugins)">
         <CLASSES>
@@ -92,9 +99,6 @@
           <root url="jar://$MAVEN_REPOSITORY$/javax/activation/activation/1.1/activation-1.1.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/joda-time/joda-time/2.3/joda-time-2.3.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-web/3.1.2.RELEASE/grails-datastore-web-3.1.2.RELEASE.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-simple/3.1.2.RELEASE/grails-datastore-simple-3.1.2.RELEASE.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-core/3.1.2.RELEASE/grails-datastore-core-3.1.2.RELEASE.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-gorm/3.1.2.RELEASE/grails-datastore-gorm-3.1.2.RELEASE.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-gorm-plugin-support/3.1.2.RELEASE/grails-datastore-gorm-plugin-support-3.1.2.RELEASE.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/mongodb/mongo-java-driver/2.12.3/mongo-java-driver-2.12.3.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/com/gmongo/gmongo/1.2/gmongo-1.2.jar!/" />

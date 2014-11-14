@@ -1,4 +1,3 @@
-//= require javve/list
 //= require plugin/easy-pie-chart/jquery.easy-pie-chart
 //= require plugin/jquery-nestable/jquery.nestable
 //= require plugin/pace/pace
@@ -120,10 +119,6 @@ var buildSkillExplorer = function (skillsData, skillExplorerRoot, skillTemplate,
 
     truncSkillsTitle($("[data-name=root]"));
 
-    var nestableList = new List('nestable', {
-        valueNames: ['inner-content']
-    });
-
     if ($.fn.easyPieChart) {
 
         $('.easy-pie-chart').each(function () {
@@ -236,6 +231,24 @@ var pagefunction = function () {
         fitNestable(selector);
     });
 
+    //Filter box
+    $('.search').change(function () {
+        var filter = $(this).val();
+        var list = $('#nestable');
+        if (filter) {
+            var notQuery = "div:not[data-original~='" + filter + "']";
+            console.log(notQuery);
+
+            var donotmatch = $(list).find(notQuery);
+            console.log(donotmatch);
+
+            /*list.find("div:not[data-original*='" + filter + "']").slideUp();
+            list.find("div[data-original*='" + filter + "']").parent().slideDown();*/
+        }
+    }).keyup(function () {
+        $(this).change();
+    });
+
     //Click somewhere on skill in skill explorer -> activate panel
     $('.dd').on('click', function () {
         var $this = $(this);
@@ -270,7 +283,6 @@ var pagefunction = function () {
         //clear memory reference
         $this = null;
     });
-
 
 };
 
