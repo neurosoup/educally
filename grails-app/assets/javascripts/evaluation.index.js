@@ -239,7 +239,7 @@ var pagefunction = function () {
             var notQuery = "div:not[data-original~='" + filter + "']";
             console.log(notQuery);
 
-            var donotmatch = $(list).find(notQuery);
+            var donotmatch = list.find(notQuery);
             console.log(donotmatch);
 
             /*list.find("div:not[data-original*='" + filter + "']").slideUp();
