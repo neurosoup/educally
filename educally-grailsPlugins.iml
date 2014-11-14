@@ -4,24 +4,16 @@
     <facet type="web" name="GrailsWeb">
       <configuration>
         <webroots>
+          <root url="file://$MODULE_DIR$/target/work/plugins/famfamfam-1.0.1/web-app" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.7/grails-app/views" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/jquery-ui-1.10.3/web-app" relative="/" />
           <root url="file://$MODULE_DIR$/target/work/plugins/joda-time-1.5/grails-app/views" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/jquery-1.11.1/web-app" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC4/grails-app/views" relative="/" />
           <root url="file://$MODULE_DIR$/target/work/plugins/spring-security-ui-1.0-RC2/web-app" relative="/" />
           <root url="file://$MODULE_DIR$/target/work/plugins/spring-security-ui-1.0-RC2/grails-app/views" relative="/" />
-          <root url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC4/grails-app/views" relative="/" />
-          <root url="file://$MODULE_DIR$/target/work/plugins/jquery-1.11.1/web-app" relative="/" />
-          <root url="file://$MODULE_DIR$/target/work/plugins/jquery-ui-1.10.3/web-app" relative="/" />
-          <root url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.7/grails-app/views" relative="/" />
-          <root url="file://$MODULE_DIR$/target/work/plugins/famfamfam-1.0.1/web-app" relative="/" />
         </webroots>
         <sourceRoots />
-      </configuration>
-    </facet>
-    <facet type="hibernate" name="Hibernate">
-      <configuration>
-        <datasource-map>
-          <unit-entry name="Gorm" />
-        </datasource-map>
-        <naming-strategy-map />
       </configuration>
     </facet>
   </component>
@@ -92,10 +84,39 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="grails-2.4.3" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="grails-2.4.4" level="application" />
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library (educally-grailsPlugins)">
-        <CLASSES />
+        <CLASSES>
+          <root url="jar://$MAVEN_REPOSITORY$/javax/mail/javax.mail-api/1.5.1/javax.mail-api-1.5.1.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/javax/activation/activation/1.1/activation-1.1.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/joda-time/joda-time/2.3/joda-time-2.3.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-web/3.1.2.RELEASE/grails-datastore-web-3.1.2.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-simple/3.1.2.RELEASE/grails-datastore-simple-3.1.2.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-core/3.1.2.RELEASE/grails-datastore-core-3.1.2.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-gorm/3.1.2.RELEASE/grails-datastore-gorm-3.1.2.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-gorm-plugin-support/3.1.2.RELEASE/grails-datastore-gorm-plugin-support-3.1.2.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/mongodb/mongo-java-driver/2.12.3/mongo-java-driver-2.12.3.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/com/gmongo/gmongo/1.2/gmongo-1.2.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/1.7.3.RELEASE/spring-data-commons-1.7.3.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-mongodb/1.4.3.RELEASE/spring-data-mongodb-1.4.3.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-gorm-mongodb/3.0.2.RELEASE/grails-datastore-gorm-mongodb-3.0.2.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-web/3.2.3.RELEASE/spring-security-web-3.2.3.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-core/3.2.3.RELEASE/spring-security-core-3.2.3.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/javassist/javassist/3.17.1-GA/javassist-3.17.1-GA.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/net/sf/ehcache/ehcache-core/2.4.8/ehcache-core-2.4.8.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/com/sun/mail/javax.mail/1.5.1/javax.mail-1.5.1.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/mozilla/rhino/1.7R4/rhino-1.7R4.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-test-support/1.0-grails-2.4/grails-datastore-test-support-1.0-grails-2.4.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib-nodep/2.2.2/cglib-nodep-2.2.2.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/7.0.55/tomcat-embed-core-7.0.55.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jdt/core/compiler/ecj/3.7.2/ecj-3.7.2.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-websocket/7.0.55/tomcat-embed-websocket-7.0.55.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-logging-log4j/7.0.55/tomcat-embed-logging-log4j-7.0.55.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-el/7.0.55/tomcat-embed-el-7.0.55.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.55/tomcat-embed-jasper-7.0.55.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-catalina-ant/7.0.55/tomcat-catalina-ant-7.0.55.jar!/" />
+        </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>

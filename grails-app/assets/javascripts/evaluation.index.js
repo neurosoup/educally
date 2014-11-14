@@ -1,5 +1,5 @@
+//= require javve/list
 //= require plugin/easy-pie-chart/jquery.easy-pie-chart
-//= require list
 //= require plugin/jquery-nestable/jquery.nestable
 //= require plugin/pace/pace
 //= require_self
